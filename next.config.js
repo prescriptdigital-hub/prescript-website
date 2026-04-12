@@ -4,15 +4,14 @@ const nextConfig = {
   // This generates a plain HTML/CSS/JS build in the /out folder
   output: 'export',
 
+  // Ensures all pages are generated as /page/index.html (with trailing slash)
+  // Prevents hydration mismatches when static hosts normalise URLs differently
+  trailingSlash: true,
+
   // Required for static export with Next.js Image (disables server-side optimisation)
   images: {
     unoptimized: true,
   },
-
-  // Optional: set this if your site lives in a subfolder on Hostinger
-  // e.g. basePath: '/prescript' if hosted at yourdomain.com/prescript
-  // Leave empty if it's the root domain
-  // basePath: '',
 }
 
 module.exports = nextConfig
