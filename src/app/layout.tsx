@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Syne, DM_Sans } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const syne = Syne({
@@ -41,6 +42,8 @@ export const metadata: Metadata = {
   },
 }
 
+const crispId = process.env.NEXT_PUBLIC_CRISP_ID
+
 export default function RootLayout({
   children,
 }: {
@@ -48,7 +51,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
-      <body className="font-sans antialiased" suppressHydrationWarning>{children}</body>
+      <body className="font-sans antialiased" suppressHydrationWarning>
+        {children}
+
+        {/* Crisp live chat — only loads when NEXT_PUBLIC_CRISP_ID is set */}
+        {crispId && (
+          <Script id="crisp-widget" strategy="afterInteractive">
+            {`
+              window.$crisp = [];
+              window.CRISP_WEBSITE_ID = "${crispId}";
+              (function() {
+                var d = document;
+                var s = d.createElement("script");
+                s.src = "https://client.crisp.chat/l.js";
+                s.async = 1;
+                d.getElementsByTagName("head")[0].appendChild(s);
+              })();
+            `}
+          </Script>
+        )}
+      </body>
     </html>
   )
 }

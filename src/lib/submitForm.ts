@@ -1,35 +1,34 @@
 /**
- * Submits form data to the configured CRM webhook (GoHighLevel or Zoho).
+ * Submits form data to Web3Forms.
+ * Web3Forms sends an email notification to the address linked to your access key.
  *
- * GoHighLevel setup:
- *   Settings → Integrations → Webhooks → Add Webhook (POST)
- *   Paste the webhook URL into NEXT_PUBLIC_FORM_WEBHOOK_URL in .env.local
- *
- * Zoho setup:
- *   Zoho Flow → New Flow → Webhook trigger
- *   OR Zoho CRM → Webforms → embed the form URL directly
- *   Paste the Zoho Flow webhook URL into NEXT_PUBLIC_FORM_WEBHOOK_URL
+ * Setup:
+ *   1. Sign up at web3forms.com (free)
+ *   2. Copy your Access Key
+ *   3. Add NEXT_PUBLIC_WEB3FORMS_KEY to Cloudflare Pages environment variables
  */
 export async function submitToWebhook(data: Record<string, string>): Promise<void> {
-  const url = process.env.NEXT_PUBLIC_FORM_WEBHOOK_URL
+  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
 
-  if (!url) {
-    // No webhook configured — log locally (dev/staging mode)
-    console.log('[Form submission — no webhook configured]', data)
+  if (!accessKey) {
+    console.log('[Form submission — no Web3Forms key configured]', data)
     return
   }
 
-  const response = await fetch(url, {
+  const response = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      access_key: accessKey,
+      subject: `New enquiry from ${data.fullName} — Prescript Digital`,
+      from_name: 'Prescript Digital Website',
       ...data,
-      source: 'prescriptdigital.com',
-      submittedAt: new Date().toISOString(),
     }),
   })
 
-  if (!response.ok) {
-    throw new Error(`Webhook responded with ${response.status}`)
+  const result = await response.json()
+
+  if (!result.success) {
+    throw new Error(result.message ?? 'Form submission failed')
   }
 }
