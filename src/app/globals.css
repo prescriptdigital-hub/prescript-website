@@ -17,6 +17,8 @@ body {
   font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 * {

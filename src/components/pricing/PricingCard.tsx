@@ -39,7 +39,7 @@ export default function PricingCard({ pkg, currency }: PricingCardProps) {
             </span>
           ))}
         </div>
-        <p className="font-sans font-light text-xs text-gray-400 mb-3">{pkg.tagline}</p>
+        <p className="font-sans text-sm text-gray-400 mb-3">{pkg.tagline}</p>
         <div className="flex items-baseline gap-1">
           <span className="font-syne font-extrabold text-3xl text-gray-900">
             {formatPkg(pkg, currency)}
@@ -60,7 +60,7 @@ export default function PricingCard({ pkg, currency }: PricingCardProps) {
                 <Minus size={14} className="text-gray-300 flex-shrink-0 mt-0.5" />
               )}
               <span
-                className={`font-sans font-light text-sm ${
+                className={`font-sans text-sm ${
                   f.included ? 'text-gray-700' : 'text-gray-400'
                 }`}
               >

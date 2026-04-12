@@ -107,7 +107,7 @@ export default function PackagesPreview() {
                 {pkg.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
                     <Check size={14} className="text-prescript-green mt-0.5 flex-shrink-0" />
-                    <span className="font-sans font-light text-sm text-gray-600">{f}</span>
+                    <span className="font-sans text-sm text-gray-700">{f}</span>
                   </li>
                 ))}
               </ul>

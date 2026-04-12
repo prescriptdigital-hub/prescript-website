@@ -41,7 +41,7 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
       <div className="p-6 border-b border-gray-100">
         <p className="text-xs font-sans text-gray-400 uppercase tracking-widest mb-0.5">{plan.tier}</p>
         <p className="font-syne font-extrabold text-2xl text-gray-900 mb-1">{plan.name}</p>
-        <p className="font-sans font-light text-xs text-gray-400 mb-4 leading-relaxed">{plan.forWhom}</p>
+        <p className="font-sans text-sm text-gray-400 mb-4 leading-relaxed">{plan.forWhom}</p>
 
         <div className="flex items-baseline gap-1 mb-1">
           <span className="font-syne font-extrabold text-4xl text-prescript-green leading-none">
@@ -72,7 +72,7 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
                 <Minus size={13} className="text-gray-300 flex-shrink-0 mt-0.5" />
               )}
               <span
-                className={`font-sans font-light text-xs ${
+                className={`font-sans text-sm ${
                   f.included ? 'text-gray-700' : 'text-gray-400'
                 }`}
               >

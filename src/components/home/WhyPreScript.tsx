@@ -33,8 +33,8 @@ export default function WhyPreScript() {
             <p className="font-syne font-extrabold text-3xl text-prescript-green leading-none mb-2">
               {r.num}
             </p>
-            <p className="font-sans font-medium text-sm text-gray-800 my-1">{r.title}</p>
-            <p className="font-sans font-light text-xs text-gray-400 leading-relaxed">{r.desc}</p>
+            <p className="font-sans font-semibold text-base text-gray-800 my-1">{r.title}</p>
+            <p className="font-sans text-sm text-gray-500 leading-relaxed">{r.desc}</p>
           </div>
         ))}
       </div>

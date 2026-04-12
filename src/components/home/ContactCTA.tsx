@@ -47,7 +47,7 @@ export default function ContactCTA() {
         <h2 className="font-syne font-extrabold text-3xl lg:text-4xl tracking-tighter text-gray-900 mb-3 text-center">
           Your business deserves a digital team that actually delivers
         </h2>
-        <p className="font-sans font-light text-gray-500 text-base text-center mb-8 leading-relaxed">
+        <p className="font-sans text-gray-500 text-base text-center mb-8 leading-relaxed">
           Tell us where you are — we&apos;ll show you how{' '}
           <span className="text-prescript-green font-medium">Imprint</span>,{' '}
           Forge, Surge, Flow, and Cortex fit together for your business.
@@ -58,7 +58,7 @@ export default function ContactCTA() {
             <p className="font-syne font-bold text-prescript-green-dark text-lg mb-1">
               We&apos;ve received your message!
             </p>
-            <p className="font-sans font-light text-sm text-prescript-green-dark">
+            <p className="font-sans text-sm text-prescript-green-dark">
               We respond within 24 hours. Check your WhatsApp.
             </p>
           </div>
@@ -125,7 +125,7 @@ export default function ContactCTA() {
               {submitting ? 'Sending…' : 'Book My Free Strategy Call →'}
             </Button>
 
-            <p className="text-xs font-sans text-gray-400 text-center">
+            <p className="text-sm font-sans text-gray-400 text-center">
               No commitment. We respond within 24 hours.
             </p>
           </form>

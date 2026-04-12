@@ -38,7 +38,7 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
         </div>
       </div>
 
-      <p className="font-sans font-light text-base text-gray-500 max-w-xl leading-relaxed mb-6">
+      <p className="font-sans text-base text-gray-500 max-w-xl leading-relaxed mb-6">
         {service.description}
       </p>
 

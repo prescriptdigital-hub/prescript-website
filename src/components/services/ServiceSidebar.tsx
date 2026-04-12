@@ -16,7 +16,7 @@ export default function ServiceSidebar({ service }: ServiceSidebarProps) {
         <p className="font-syne font-extrabold text-4xl text-prescript-green leading-none mb-1">
           {service.investment.price}
         </p>
-        <p className="text-xs font-sans text-gray-400 mb-5">{service.investment.note}</p>
+        <p className="text-sm font-sans text-gray-500 mb-5">{service.investment.note}</p>
         <div className="flex flex-col gap-2">
           <Button variant="primary" size="md" href="/contact" className="w-full">
             Start with {service.name}
@@ -53,7 +53,7 @@ export default function ServiceSidebar({ service }: ServiceSidebarProps) {
           {service.results.map((r) => (
             <li key={r} className="flex items-start gap-2">
               <Check size={13} className="text-prescript-green flex-shrink-0 mt-0.5" />
-              <span className="text-xs font-sans text-gray-600 leading-relaxed">{r}</span>
+              <span className="text-sm font-sans text-gray-600 leading-relaxed">{r}</span>
             </li>
           ))}
         </ul>

@@ -51,7 +51,7 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="font-sans font-light text-gray-500 text-base lg:text-lg max-w-xl leading-relaxed mb-8"
+          className="font-sans text-gray-500 text-lg lg:text-xl max-w-xl leading-relaxed mb-8"
         >
           Five focused services. One integrated system. Prescript delivers the full digital
           infrastructure your business needs to scale globally — from brand identity to deployed AI

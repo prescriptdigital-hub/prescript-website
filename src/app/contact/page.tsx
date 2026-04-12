@@ -79,7 +79,7 @@ export default function ContactPage() {
                 <p className="font-syne font-bold text-prescript-green-dark text-2xl mb-2">
                   Message received!
                 </p>
-                <p className="font-sans font-light text-prescript-green-dark text-sm">
+                <p className="font-sans text-prescript-green-dark text-sm">
                   We&apos;ll respond within 24 hours via email or WhatsApp.
                 </p>
               </div>
@@ -87,7 +87,7 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-sans font-medium text-gray-600 mb-1 block">
+                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
                       Full name <span className="text-red-400">*</span>
                     </label>
                     <input
@@ -102,7 +102,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="text-xs font-sans font-medium text-gray-600 mb-1 block">
+                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
                       Business email <span className="text-red-400">*</span>
                     </label>
                     <input
@@ -122,7 +122,7 @@ export default function ContactPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-sans font-medium text-gray-600 mb-1 block">
+                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
                       WhatsApp number <span className="text-red-400">*</span>
                     </label>
                     <input
@@ -137,7 +137,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="text-xs font-sans font-medium text-gray-600 mb-1 block">
+                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
                       Company name
                     </label>
                     <input
@@ -151,7 +151,7 @@ export default function ContactPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-sans font-medium text-gray-600 mb-1 block">
+                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
                       Which service? <span className="text-red-400">*</span>
                     </label>
                     <select
@@ -174,7 +174,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="text-xs font-sans font-medium text-gray-600 mb-1 block">
+                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
                       Budget range <span className="text-red-400">*</span>
                     </label>
                     <select
@@ -225,7 +225,7 @@ export default function ContactPage() {
               <p className="font-syne font-bold text-prescript-green-dark text-base mb-1">
                 We respond within 24 hours
               </p>
-              <p className="font-sans font-light text-xs text-prescript-green-dark leading-relaxed">
+              <p className="font-sans text-sm text-prescript-green-dark leading-relaxed">
                 Every enquiry gets a personal response — not an automated reply.
               </p>
             </div>
@@ -234,30 +234,30 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <MapPin size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-sans font-medium text-gray-700">Location</p>
-                  <p className="text-xs font-sans text-gray-400">Lagos, Nigeria</p>
-                  <p className="text-xs font-sans text-gray-400">WAT (UTC+1)</p>
+                  <p className="text-sm font-sans font-medium text-gray-700">Location</p>
+                  <p className="text-sm font-sans text-gray-400">Lagos, Nigeria</p>
+                  <p className="text-sm font-sans text-gray-400">WAT (UTC+1)</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <Clock size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-sans font-medium text-gray-700">Response time</p>
-                  <p className="text-xs font-sans text-gray-400">Within 24 hours</p>
-                  <p className="text-xs font-sans text-gray-400">Mon – Sat, 8am – 8pm WAT</p>
+                  <p className="text-sm font-sans font-medium text-gray-700">Response time</p>
+                  <p className="text-sm font-sans text-gray-400">Within 24 hours</p>
+                  <p className="text-sm font-sans text-gray-400">Mon – Sat, 8am – 8pm WAT</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <MessageCircle size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-sans font-medium text-gray-700">WhatsApp</p>
+                  <p className="text-sm font-sans font-medium text-gray-700">WhatsApp</p>
                   <a
                     href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/\D/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-prescript-green hover:underline"
                   >
                     {COMPANY_INFO.whatsapp}
                   </a>
@@ -267,10 +267,10 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <Mail size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-sans font-medium text-gray-700">Email</p>
+                  <p className="text-sm font-sans font-medium text-gray-700">Email</p>
                   <a
                     href={`mailto:${COMPANY_INFO.email}`}
-                    className="text-xs font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-prescript-green hover:underline"
                   >
                     {COMPANY_INFO.email}
                   </a>
@@ -280,12 +280,12 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <Instagram size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-sans font-medium text-gray-700">Instagram</p>
+                  <p className="text-sm font-sans font-medium text-gray-700">Instagram</p>
                   <a
                     href={COMPANY_INFO.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-prescript-green hover:underline"
                   >
                     @prescriptdigital
                   </a>
@@ -295,12 +295,12 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <span className="text-prescript-green flex-shrink-0 mt-0.5"><XIcon size={16} /></span>
                 <div>
-                  <p className="text-xs font-sans font-medium text-gray-700">X (Twitter)</p>
+                  <p className="text-sm font-sans font-medium text-gray-700">X (Twitter)</p>
                   <a
                     href={COMPANY_INFO.x}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-prescript-green hover:underline"
                   >
                     @prescriptdigit1
                   </a>
@@ -310,12 +310,12 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <Facebook size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-sans font-medium text-gray-700">Facebook</p>
+                  <p className="text-sm font-sans font-medium text-gray-700">Facebook</p>
                   <a
                     href={COMPANY_INFO.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-prescript-green hover:underline"
                   >
                     /prescriptdigital
                   </a>
@@ -325,12 +325,12 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <Linkedin size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-sans font-medium text-gray-700">LinkedIn</p>
+                  <p className="text-sm font-sans font-medium text-gray-700">LinkedIn</p>
                   <a
                     href={COMPANY_INFO.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-prescript-green hover:underline"
                   >
                     /company/prescriptdigital
                   </a>

@@ -62,7 +62,7 @@ export default function SubscriptionsPage() {
           <h1 className="font-syne font-extrabold text-4xl lg:text-5xl tracking-tighter text-gray-900 mb-3">
             World-class services. Monthly. No big upfront.
           </h1>
-          <p className="font-sans font-light text-gray-500 text-base max-w-xl leading-relaxed mb-6">
+          <p className="font-sans text-gray-500 text-base max-w-xl leading-relaxed mb-6">
             Choose your track — personal brand or business — and pick the plan that fits where you are now.
           </p>
           <div className="flex flex-wrap items-center gap-4">
@@ -83,7 +83,7 @@ export default function SubscriptionsPage() {
             }`}
           >
             <p className="font-syne font-bold text-lg text-gray-900 mb-1">Personal Brand</p>
-            <p className="font-sans font-light text-xs text-gray-500 mb-3">
+            <p className="font-sans text-sm text-gray-500 mb-3">
               For creators, coaches, consultants, and solo professionals building a personal brand.
             </p>
             <p className="font-syne font-bold text-prescript-green text-sm">
@@ -102,7 +102,7 @@ export default function SubscriptionsPage() {
             }`}
           >
             <p className="font-syne font-bold text-lg text-gray-900 mb-1">Business</p>
-            <p className="font-sans font-light text-xs text-gray-500 mb-3">
+            <p className="font-sans text-sm text-gray-500 mb-3">
               For registered businesses, startups, and SMEs that need a full digital team.
             </p>
             <p className="font-syne font-bold text-prescript-green text-sm">
@@ -128,7 +128,7 @@ export default function SubscriptionsPage() {
             {SUBSCRIBER_PERKS.map((perk) => (
               <div key={perk.title} className="border border-gray-100 rounded-xl p-5">
                 <p className="font-sans font-medium text-sm text-gray-900 mb-1">{perk.title}</p>
-                <p className="font-sans font-light text-xs text-gray-400 leading-relaxed">{perk.desc}</p>
+                <p className="font-sans text-sm text-gray-400 leading-relaxed">{perk.desc}</p>
               </div>
             ))}
           </div>
@@ -162,7 +162,7 @@ export default function SubscriptionsPage() {
         <div className="bg-prescript-green rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <p className="font-syne font-bold text-white text-xl mb-1">Not sure which plan?</p>
-            <p className="font-sans font-light text-white text-sm opacity-80">
+            <p className="font-sans text-white text-sm opacity-80">
               Book a free 20-minute call and we&apos;ll recommend the right fit.
             </p>
           </div>

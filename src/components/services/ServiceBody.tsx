@@ -31,8 +31,8 @@ export default function ServiceBody({ service }: ServiceBodyProps) {
                 {service.icon}
               </div>
               <div>
-                <p className="text-sm font-sans font-medium text-gray-800">{d.title}</p>
-                <p className="text-xs font-sans text-gray-400 mt-0.5 leading-relaxed">
+                <p className="text-base font-sans font-semibold text-gray-800">{d.title}</p>
+                <p className="text-sm font-sans text-gray-500 mt-1 leading-relaxed">
                   {d.description}
                 </p>
               </div>
@@ -59,8 +59,8 @@ export default function ServiceBody({ service }: ServiceBodyProps) {
                 {i + 1}
               </div>
               <div>
-                <p className="text-sm font-sans font-medium text-gray-800">{step.title}</p>
-                <p className="text-xs font-sans text-gray-400 mt-0.5 leading-relaxed">
+                <p className="text-base font-sans font-semibold text-gray-800">{step.title}</p>
+                <p className="text-sm font-sans text-gray-500 mt-1 leading-relaxed">
                   {step.description}
                 </p>
               </div>

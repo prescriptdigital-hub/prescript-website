@@ -59,11 +59,11 @@ export default function ServicesGrid() {
               <p className="font-syne font-extrabold text-prescript-green text-base leading-tight">
                 {service.name}
               </p>
-              <p className="font-sans text-xs text-gray-400 mt-0.5">{service.fullName}</p>
+              <p className="font-sans text-sm text-gray-400 mt-0.5">{service.fullName}</p>
             </div>
 
             {/* Description */}
-            <p className="font-sans font-light text-sm text-gray-500 leading-relaxed flex-1">
+            <p className="font-sans text-sm text-gray-500 leading-relaxed flex-1">
               {service.description.slice(0, 110)}…
             </p>
 
