@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     'web development Nigeria',
     'AI agents Africa',
   ],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'Prescript Digital Solutions',
     description: 'We Build, Automate & Deploy AI Into Businesses',
