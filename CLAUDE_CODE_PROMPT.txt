@@ -1,0 +1,451 @@
+
+╔══════════════════════════════════════════════════════════════╗
+║         PRESCRIPT DIGITAL SOLUTIONS — CLAUDE CODE PROMPT     ║
+║         Paste this into Claude Code (VS Code terminal)        ║
+╚══════════════════════════════════════════════════════════════╝
+
+HOW TO USE THIS FILE:
+─────────────────────
+1. Open VS Code in an empty project folder (e.g. "prescript-website")
+2. Open the Claude Code panel (Ctrl+Shift+P → "Claude Code")
+   OR open the terminal and run: claude
+3. Copy everything inside the dashes below and paste it as your first message
+4. Claude Code will scaffold, build, and wire up the entire project
+5. After it finishes, run: npm run dev  →  open http://localhost:3000
+
+━━━━━━━━━━━━━━━━━━━━━━ PASTE FROM HERE ━━━━━━━━━━━━━━━━━━━━━━━
+
+You are going to build the complete production-ready website for 
+"Prescript Digital Solutions" — a Nigerian digital agency serving 
+Africa, America, and Europe.
+
+Read the full project specification in PRESCRIPT_PROJECT_SPEC.md 
+before writing any code. Then execute the following build plan 
+step by step, confirming each major step before moving to the next.
+
+═══════════════════════════════════════════════════════════════
+STEP 1 — PROJECT SCAFFOLD
+═══════════════════════════════════════════════════════════════
+
+Run this command to create the Next.js project:
+
+  npx create-next-app@latest . --typescript --tailwind --eslint \
+    --app --src-dir --import-alias "@/*" --no-git
+
+Then install additional dependencies:
+
+  npm install framer-motion lucide-react react-hook-form \
+    clsx tailwind-merge
+
+═══════════════════════════════════════════════════════════════
+STEP 2 — TAILWIND & GLOBAL STYLES
+═══════════════════════════════════════════════════════════════
+
+Update tailwind.config.ts with:
+- Custom colors: prescript.green (#1D9E75), prescript.green-light 
+  (#E1F5EE), prescript.green-dark (#085041), prescript.green-mid (#0F6E56)
+- Custom fonts: syne (Syne), sans (DM Sans)
+- Custom letterSpacing: tighter (-0.03em), tight (-0.02em)
+
+Update src/app/globals.css:
+- Import Google Fonts: Syne (700, 800) and DM Sans (300, 400, 500)
+- Set base font to DM Sans
+- Set html scroll-behavior: smooth
+- Define CSS custom properties for brand colors
+
+Update src/app/layout.tsx:
+- Add Google Fonts via next/font/google
+- Set metadata: title, description, keywords for SEO
+- Wrap with font variables applied to <body>
+
+═══════════════════════════════════════════════════════════════
+STEP 3 — DATA LAYER
+═══════════════════════════════════════════════════════════════
+
+Create src/lib/services.ts with a SERVICES array containing all 
+5 service objects. Each service object must have:
+
+  {
+    slug: string           // 'imprint' | 'forge' | 'surge' | 'flow' | 'cortex'
+    name: string           // 'Imprint'
+    fullName: string       // 'Branding & Creative'
+    icon: string           // '✦' | '◈' | '◉' | '⟳' | '◆'
+    seriesNum: string      // '01' through '05'
+    isCoreService: boolean
+    accentBg: string       // CSS color string
+    accentText: string     // CSS color string
+    tagline: string        // one-line sell
+    description: string    // full paragraph
+    meta: {
+      from: string
+      turnaround: string
+      thirdLabel: string
+      thirdValue: string
+    }
+    deliverables: Array<{ title: string; description: string }>
+    process: Array<{ title: string; description: string }>
+    tools: string[]
+    results: string[]
+    investment: { price: string; note: string }
+    nextService: { name: string; slug: string; teaser: string }
+  }
+
+Populate all 5 services with the full data from PRESCRIPT_PROJECT_SPEC.md.
+
+Create src/lib/pricing.ts with:
+- ONE_TIME_PACKAGES array (3 packages with features, price, included/excluded items)
+- ADDONS array (6 add-on services)
+- PERSONAL_PLANS array (3 subscription plans: Seed, Bloom, Authority)
+- BUSINESS_PLANS array (4 subscription plans: Launch, Build, Scale, Command)
+- CURRENCY_RATES object: { usd: 1, ngn: 1600 }
+- Helper function: formatPrice(usdAmount, currency, billing)
+  - billing: 'monthly' | 'annual' (annual = monthly * 10, i.e. 2 months free)
+
+Create src/lib/constants.ts with:
+- COMPANY_INFO (name, tagline, location, markets, whatsapp, email, social links)
+- MARKET_PILLS array with flag emoji and label
+
+═══════════════════════════════════════════════════════════════
+STEP 4 — UI COMPONENTS (src/components/ui/)
+═══════════════════════════════════════════════════════════════
+
+Build these reusable components:
+
+Button.tsx
+  Props: variant ('primary' | 'outline'), size ('sm' | 'md' | 'lg'), 
+         children, onClick, href, className
+  Primary: bg-prescript-green text-white, hover opacity-90
+  Outline: transparent bg, border border-gray-300, hover bg-gray-50
+
+SectionLabel.tsx
+  Props: children
+  Renders: uppercase, tracking-widest, text-xs, text-prescript-green, 
+           font-medium, mb-2
+
+ServiceBadge.tsx
+  Props: name (service name), size ('sm' | 'md')
+  Renders: Syne font, font-extrabold, text-prescript-green
+
+ServiceTag.tsx  
+  Props: service ('imprint' | 'forge' | 'surge' | 'flow' | 'cortex')
+  Renders: small pill badge with service-specific accent bg/text color
+
+MarketPill.tsx
+  Props: flag (emoji), label
+  Renders: flex pill with border, rounded-full, text-sm
+
+FAQItem.tsx
+  Props: question, answer
+  Renders: expandable accordion item with + / − toggle
+  Use useState for open/closed
+  Smooth height animation with Framer Motion (AnimatePresence)
+
+CurrencyToggle.tsx
+  Props: value ('usd' | 'ngn'), onChange
+  Renders: pill toggle with two buttons (USD $ | NGN ₦)
+
+BillingToggle.tsx  
+  Props: value ('monthly' | 'annual'), onChange
+  Renders: pill toggle (Monthly | Annual — save 17%)
+  Show green "save 17%" label when annual selected
+
+═══════════════════════════════════════════════════════════════
+STEP 5 — LAYOUT COMPONENTS
+═══════════════════════════════════════════════════════════════
+
+src/components/layout/Navbar.tsx
+  - Sticky top, white bg, bottom border
+  - Left: "PRESCRIPT." logo (Syne 800) with green period/dot
+    → links to /
+  - Center (desktop): Nav links → Imprint | Forge | Surge | Flow | 
+    Cortex | Pricing | Subscriptions
+    Each link routes to correct page
+    Active link: text-prescript-green underline
+  - Right: "Book a Free Call" green button → /contact
+  - Mobile (< 768px): Hamburger icon, slide-down drawer with all links
+  - Use framer-motion for hamburger menu animation
+
+src/components/layout/Footer.tsx
+  - Border top, 3-column layout on desktop, stacked on mobile
+  - Left: "PRESCRIPT." logo
+  - Center: "© 2025 Prescript Digital Solutions · Lagos, Nigeria"
+  - Right: Instagram | LinkedIn | WhatsApp (as links)
+
+═══════════════════════════════════════════════════════════════
+STEP 6 — HOME PAGE COMPONENTS (src/components/home/)
+═══════════════════════════════════════════════════════════════
+
+Hero.tsx
+  - Green dot chip: "Nigeria · Africa · America · Europe"
+  - H1 (Syne 800, ~4xl lg:text-6xl, tracking-tighter):
+    "We Build, Automate &" + line break + 
+    "Deploy <span className='text-prescript-green'>AI</span> Into Businesses"
+  - Subtitle paragraph (DM Sans 300, text-gray-500, max-w-xl)
+  - Two CTA buttons: "See Packages & Pricing" (primary → /pricing) 
+    + "Explore Services" (outline → #services)
+  - Framer Motion: stagger children fade-in-up (0.1s delays per element)
+  - Below buttons: ServiceStrip component
+
+ServiceStrip.tsx
+  - Horizontal row, bordered top, 5 equal columns (overflow-x-auto on mobile)
+  - Each strip item: cursor-pointer, hover:bg-gray-50
+  - Service name (Syne 800, text-prescript-green, text-base)
+  - Full name (DM Sans 300, text-xs, text-gray-400, mt-1)
+  - onClick → router.push('/services/[slug]')
+
+StatsBar.tsx
+  - 4-column grid (2x2 on mobile), bordered
+  - Each stat: large number (Syne 800, text-3xl, text-prescript-green) 
+    + small label (DM Sans, text-xs, text-gray-400)
+  - Stats: "5" Focused services | "3" Continents served | 
+           "AI" At our core | "24/7" Agent uptime
+  - Framer Motion: count-up animation for numeric stats on scroll
+
+ServicesGrid.tsx (id="services")
+  - SectionLabel: "Our services"
+  - Title: "Five Services. One Partner."
+  - Subtitle paragraph
+  - Market pills row (4 pills with flags)
+  - 5-column card grid (1 col mobile, 2 col tablet, 5 col desktop)
+  - Each ServiceCard:
+    - Accent icon box (38x38px, rounded-lg, accent bg color)
+    - Service name (Syne 800, text-prescript-green)
+    - Full name (text-xs, text-gray-400)
+    - Description (text-sm, DM Sans 300, text-gray-500, leading-relaxed)
+    - "From $X" pill (green bg, green-dark text, text-xs, rounded-full)
+    - Hover: bg-gray-50 transition
+    - onClick → router.push('/services/[slug]')
+  - Framer Motion: stagger fade-in-up on scroll (whileInView)
+
+PackagesPreview.tsx
+  - SectionLabel + title + subtitle
+  - 3 offer cards (1 col mobile, 3 col desktop)
+  - Each card: border rounded-2xl, overflow-hidden
+  - Featured (Growth Engine): border-[1.5px] border-prescript-green
+  - Card top section (border-b): name, tag (services included in green), 
+    price + period
+  - Card body: feature list (✓ per item) + CTA button
+  - See spec for exact features per card
+
+WhyPreScript.tsx
+  - 4 cards in grid (1 col mobile, 2 col tablet, 4 col desktop)
+  - Each: bg-gray-50 rounded-xl p-5
+  - Large number (Syne 800, text-3xl, text-prescript-green)
+  - Title (DM Sans 500, text-sm, my-1)
+  - Description (DM Sans 300, text-xs, text-gray-400)
+
+ContactCTA.tsx
+  - Light bg section (bg-gray-50)
+  - Title with green word inline
+  - Subtitle
+  - Form (react-hook-form):
+    - Full name input
+    - Business email input
+    - WhatsApp number input
+    - Select: which service (options: Imprint/Forge/Surge/Flow/Cortex/Full Package)
+  - Submit button full width
+  - Note: "No commitment. We respond within 24 hours." (text-xs, center)
+  - On submit: console.log form data (wire to API later)
+
+═══════════════════════════════════════════════════════════════
+STEP 7 — HOME PAGE (src/app/page.tsx)
+═══════════════════════════════════════════════════════════════
+
+Compose the home page:
+
+  <Navbar />
+  <main>
+    <Hero />
+    <StatsBar />
+    <ServicesGrid />
+    <PackagesPreview />
+    <WhyPreScript />
+    <ContactCTA />
+  </main>
+  <Footer />
+
+═══════════════════════════════════════════════════════════════
+STEP 8 — SERVICE PAGES (src/app/services/[slug]/page.tsx)
+═══════════════════════════════════════════════════════════════
+
+Create dynamic service page. Use generateStaticParams() to pre-render 
+all 5 services:
+
+  export function generateStaticParams() {
+    return SERVICES.map(s => ({ slug: s.slug }))
+  }
+
+  export function generateMetadata({ params }) — dynamic SEO per service
+
+Page layout (two-column: 2/3 main + 1/3 sidebar on lg, stacked on mobile):
+
+ServiceHero component (src/components/services/ServiceHero.tsx):
+  - Back link: ← Back to home (router.back() or Link to /)
+  - Accent icon box (52x52, rounded-xl, accentBg color)
+  - Series badge (text-xs, uppercase, gray-400)
+  - Service name (Syne 800, text-5xl lg:text-6xl, tracking-tighter, 
+    text-prescript-green)
+  - Full name (text-sm, text-gray-400, mt-1, mb-3)
+  - Description paragraph (DM Sans 300, text-base, text-gray-500, 
+    max-w-xl, leading-relaxed)
+  - Meta row: 3 items each with label (uppercase xs gray) + value (green 500)
+
+ServiceDeliverables (main left):
+  - "What [name] delivers" heading (Syne 700, text-lg)
+  - 5 deliverable items:
+    Each: bordered card, hover:bg-gray-50, flex gap-3
+      - Accent icon box (30x30, rounded-lg, accentBg)
+      - Title (text-sm, font-medium) + Description (text-xs, gray-400)
+
+ServiceProcess (main left, below deliverables):
+  - "How [name] works" heading
+  - Process steps with green numbered circles + content + border-b divider
+
+ServiceSidebar (right column, sticky top-24):
+  - Investment card (bordered):
+    - "Investment" title
+    - Price (Syne 800, text-4xl, text-prescript-green)
+    - Note (text-xs, gray-400)
+    - "Start with [Name]" green button
+    - "Ask a question" outline button
+  - Tools card (bordered):
+    - "Tools we use" title
+    - Pill tags for each tool
+  - Results card (bordered):
+    - "What you walk away with" title
+    - ✓ checkmark list
+  - "Next: pair with [NextService]" card (green border):
+    - Title + teaser text
+    - Link button to next service
+
+Framer Motion: stagger deliverables and process steps on page load
+
+═══════════════════════════════════════════════════════════════
+STEP 9 — PRICING PAGE (src/app/pricing/page.tsx)
+═══════════════════════════════════════════════════════════════
+
+State: currency ('usd' | 'ngn') — default 'usd'
+
+Sections:
+1. Header: SectionLabel + Title + Subtitle + CurrencyToggle
+2. Three pricing cards (PricingCard component):
+   - Props: name, tagline, servicesIncluded, price, period, 
+            features (with included bool), buttonLabel, buttonVariant,
+            isFeatured, currency
+   - Featured card: border-[1.5px] border-prescript-green, "Most Popular" badge
+   - Features list: green checkmark for included, gray dash for not included
+   - Price shown in selected currency
+3. Add-ons grid (2 cols mobile, 3 cols desktop):
+   - Each: bordered card, name + description + green price
+4. FAQ Section:
+   - 5 FAQItem accordion components
+   - Only one can be open at a time
+
+═══════════════════════════════════════════════════════════════
+STEP 10 — SUBSCRIPTIONS PAGE (src/app/subscriptions/page.tsx)
+═══════════════════════════════════════════════════════════════
+
+State: 
+  - track: 'personal' | 'business' — default 'personal'
+  - billing: 'monthly' | 'annual' — default 'monthly'  
+  - currency: 'usd' | 'ngn' — default 'usd'
+
+Sections:
+1. Header: SectionLabel + Title + Subtitle
+2. Controls row: BillingToggle + CurrencyToggle
+3. Track selector: two large clickable cards (Personal Brand | Business)
+   with icons, description, starting price, plan count
+4. Plan grid (shown based on selected track):
+   - 3 plans for personal, 4 plans for business
+   - Each PlanCard:
+     - Badge (tier label, colored)
+     - Tier number (text-xs, uppercase, gray)
+     - Plan name (Syne 800)
+     - For whom (text-sm, gray-400, DM Sans 300)
+     - Price (Syne 800, text-4xl, text-prescript-green, reactive to billing + currency)
+     - Annual note (text-xs, gray-400, conditional on annual billing)
+     - Service tags (ServiceTag components for included services)
+     - Feature list (✓ items + – excluded items)
+     - CTA button
+   - Featured plan: green border, "Most Popular" badge
+5. "What every subscriber gets" — 4 feature cards
+6. Comparison table (ComparisonTable component):
+   - Shows all plans for current track
+   - Rows = features, columns = plans
+   - ✓ (green) | partial value | – (gray)
+   - Featured column: light green column background
+   - Horizontal scroll on mobile
+7. FAQ section (5 questions specific to subscriptions)
+8. CTA strip (green bg): "Not sure which plan?" + Book Call button
+
+═══════════════════════════════════════════════════════════════
+STEP 11 — CONTACT PAGE (src/app/contact/page.tsx)
+═══════════════════════════════════════════════════════════════
+
+Two column layout (lg: 2/3 form + 1/3 info panel):
+
+Left — Contact Form (react-hook-form):
+  Fields: Full name*, Business email*, WhatsApp*, Company name, 
+          Service dropdown*, Budget range dropdown*, Message textarea
+  Validation: required fields, email format, min length on message
+  Submit: show success state, console.log data (ready for API)
+
+Right — Info Panel:
+  - "We respond within 24 hours" badge
+  - Response time info
+  - Location: Lagos, Nigeria (WAT, UTC+1)
+  - Contact methods: WhatsApp link, Email, Instagram, LinkedIn
+  - Each with icon (Lucide) + label + value
+
+═══════════════════════════════════════════════════════════════
+STEP 12 — FINAL POLISH
+═══════════════════════════════════════════════════════════════
+
+1. .env.local — create with placeholder values for all env vars
+2. next.config.js — ensure images domains configured
+3. README.md — write clear project README with:
+   - Setup instructions (npm install, npm run dev)
+   - Project structure overview
+   - Environment variables guide
+   - Deployment to Vercel instructions
+4. Run: npm run build — fix any TypeScript or build errors
+5. Confirm all routes work: /, /services/[each slug], /pricing, 
+   /subscriptions, /contact
+6. Confirm mobile responsiveness at 375px, 768px, 1280px
+7. Confirm Framer Motion animations don't cause layout shift
+8. Confirm dark mode is NOT implemented (light only)
+
+═══════════════════════════════════════════════════════════════
+IMPORTANT RULES FOR CLAUDE CODE TO FOLLOW:
+═══════════════════════════════════════════════════════════════
+
+✅ Always use 'prescript-green' (#1D9E75) for the brand color
+✅ Service names are always: Imprint, Forge, Surge, Flow, Cortex  
+   (capitalized, styled green where prominent)
+✅ Use Syne font for ALL headings (logo, h1, h2, service names, prices)
+✅ Use DM Sans for ALL body text, buttons, labels
+✅ All currency displayed as USD by default; NGN toggle available
+✅ Annual billing = monthly price × 10 (2 months free = 17% saving)
+✅ Components should be modular and reusable
+✅ All images use Next.js <Image /> component
+✅ All internal links use Next.js <Link /> component
+✅ TypeScript strict mode — no 'any' types
+✅ Tailwind only — no custom CSS except globals.css
+
+❌ Do NOT implement a backend or API routes in this phase
+❌ Do NOT implement authentication
+❌ Do NOT use any CSS-in-JS libraries (styled-components etc.)
+❌ Do NOT implement dark mode
+❌ Do NOT use placeholder/lorem ipsum text — use the real copy from spec
+
+━━━━━━━━━━━━━━━━━━ END OF PROMPT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After Claude Code finishes, run:
+  npm run dev
+
+Then open: http://localhost:3000
+
+Your Prescript Digital Solutions website will be live locally.
+To deploy: push to GitHub, then import to vercel.com (free tier).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
