@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Instagram, Linkedin, Facebook } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 
@@ -17,8 +18,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/" className="font-syne font-extrabold text-base tracking-tight text-gray-900">
-            PRESCRIPT<span className="text-prescript-green">.</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/prescriptcreatives_logo.png"
+              alt="Prescript Digital Solutions"
+              width={120}
+              height={36}
+              className="h-8 w-auto object-contain"
+            />
           </Link>
 
           {/* Copyright */}

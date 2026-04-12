@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
@@ -27,8 +28,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="font-syne font-extrabold text-lg tracking-tight text-gray-900">
-            PRESCRIPT<span className="text-prescript-green">.</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/prescriptcreatives_logo.png"
+              alt="Prescript Digital Solutions"
+              width={140}
+              height={40}
+              className="h-9 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
