@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     'AI agents Africa',
   ],
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: '/prescriptcreatives_logo.png',
+    shortcut: '/prescriptcreatives_logo.png',
+    apple: '/prescriptcreatives_logo.png',
   },
   openGraph: {
     title: 'Prescript Digital Solutions',
