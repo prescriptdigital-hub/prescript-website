@@ -5,7 +5,7 @@ node_modules/
 
 # Next.js build output
 /.next/
-/out/
+# /out/ — included in repo for Hostinger Git deployment
 
 # Environment variables — NEVER commit this
 .env.local
