@@ -11,6 +11,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Prevent iOS from auto-scaling text on orientation change */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -19,6 +22,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   line-height: 1.6;
+  /* Smooth momentum scrolling on iOS Safari */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safari: ensure sticky positioning works correctly */
+header[class*='sticky'] {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Safari: fix for gap in older flex layouts */
+.gap-fix > * + * {
+  margin-left: inherit;
+}
+
+/* Ensure tap targets are not affected by tap highlight on iOS */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 * {

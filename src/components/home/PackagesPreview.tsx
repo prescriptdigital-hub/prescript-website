@@ -62,13 +62,13 @@ const PACKAGES = [
 export default function PackagesPreview() {
   return (
     <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionLabel>Packages</SectionLabel>
+      <SectionLabel>Enterprise Packages</SectionLabel>
       <h2 className="font-syne font-extrabold text-3xl lg:text-4xl tracking-tighter text-gray-900 mb-3">
-        Three ways to start.
+        For corporations &amp; established businesses.
       </h2>
       <p className="font-sans font-light text-gray-500 text-base max-w-2xl mb-10 leading-relaxed">
-        Every package stacks our five services into one clear engagement. Start where you are,
-        scale as you grow.
+        One-time or retainer packages built for companies that need the full stack — brand, tech,
+        marketing, automation, and AI working as a single system.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -129,7 +129,7 @@ export default function PackagesPreview() {
           href="/pricing"
           className="text-sm font-sans text-prescript-green hover:underline"
         >
-          View full pricing details →
+          View full enterprise pricing →
         </Link>
       </p>
     </section>
