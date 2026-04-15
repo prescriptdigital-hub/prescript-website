@@ -31,6 +31,7 @@ interface ContactFormData {
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(false)
 
   const {
     register,
@@ -40,6 +41,7 @@ export default function ContactPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     setSubmitting(true)
+    setError(false)
     try {
       await submitToWebhook({
         fullName: data.fullName,
@@ -54,7 +56,7 @@ export default function ContactPage() {
       setSubmitted(true)
     } catch (err) {
       console.error('Form submission error:', err)
-      setSubmitted(true)
+      setError(true)
     } finally {
       setSubmitting(false)
     }
@@ -82,6 +84,21 @@ export default function ContactPage() {
                 <p className="font-sans text-prescript-green-dark text-sm">
                   We&apos;ll respond within 24 hours via email or WhatsApp.
                 </p>
+              </div>
+            ) : error ? (
+              <div className="border border-red-200 bg-red-50 rounded-2xl p-10 text-center">
+                <p className="font-syne font-bold text-red-700 text-xl mb-2">
+                  Something went wrong.
+                </p>
+                <p className="font-sans text-red-600 text-sm mb-4">
+                  Your message could not be sent. Please reach us directly on WhatsApp or email.
+                </p>
+                <button
+                  onClick={() => setError(false)}
+                  className="text-sm font-sans text-red-600 underline"
+                >
+                  Try again
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
