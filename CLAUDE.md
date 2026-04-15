@@ -140,4 +140,4 @@ Loaded in `src/app/layout.tsx` via `next/script` with `strategy="afterInteractiv
 
 ## NGN Pricing
 
-All NGN prices are calculated at **₦1,600 per $1 USD**. If the exchange rate is updated, search `1600` across pricing components and `src/lib/pricing.ts`.
+All NGN prices are calculated at **₦1,400 per $1 USD**. If the exchange rate is updated, search for `ngn:` in `src/lib/pricing.ts` and update the rate there — it flows automatically to all pricing components.

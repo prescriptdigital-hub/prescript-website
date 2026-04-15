@@ -34,7 +34,7 @@ export interface SubscriptionPlan {
 
 export const CURRENCY_RATES: Record<string, number> = {
   usd: 1,
-  ngn: 1600,
+  ngn: 1400,
 }
 
 export function formatPrice(
