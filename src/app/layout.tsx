@@ -42,8 +42,6 @@ export const metadata: Metadata = {
   },
 }
 
-const crispId = process.env.NEXT_PUBLIC_CRISP_ID
-
 export default function RootLayout({
   children,
 }: {
@@ -54,22 +52,20 @@ export default function RootLayout({
       <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
 
-        {/* Crisp live chat — only loads when NEXT_PUBLIC_CRISP_ID is set */}
-        {crispId && (
-          <Script id="crisp-widget" strategy="afterInteractive">
-            {`
-              window.$crisp = [];
-              window.CRISP_WEBSITE_ID = "${crispId}";
-              (function() {
-                var d = document;
-                var s = d.createElement("script");
-                s.src = "https://client.crisp.chat/l.js";
-                s.async = 1;
-                d.getElementsByTagName("head")[0].appendChild(s);
-              })();
-            `}
-          </Script>
-        )}
+        {/* Tawk.to live chat */}
+        <Script id="tawkto-widget" strategy="afterInteractive">
+          {`
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+              s1.async=true;
+              s1.src='https://embed.tawk.to/69dfc63deae0ed1c3366934a/1jm91so4v';
+              s1.charset='UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1,s0);
+            })();
+          `}
+        </Script>
       </body>
     </html>
   )
