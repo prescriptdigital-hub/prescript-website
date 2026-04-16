@@ -43,7 +43,7 @@ export default function HeroVisual() {
       <div className="relative bg-gray-950 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl flex flex-row">
 
         {/* Left — animation panel */}
-        <div className="relative bg-gray-900 border-r border-gray-800 flex-shrink-0 w-[260px]">
+        <div className="relative bg-gray-900 border-r border-gray-800 flex-shrink-0 w-[300px]">
           {/* Grid */}
           <div
             className="absolute inset-0 opacity-10"
@@ -129,7 +129,7 @@ export default function HeroVisual() {
         </div>
 
         {/* Right — pipeline + metrics */}
-        <div className="flex-1 p-4 flex flex-col justify-between min-h-[210px]">
+        <div className="flex-1 p-5 flex flex-col justify-between min-h-[260px]">
           {/* Header */}
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-1.5">
