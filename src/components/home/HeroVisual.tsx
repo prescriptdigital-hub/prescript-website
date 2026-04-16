@@ -54,16 +54,35 @@ export default function HeroVisual() {
                 x1={nodes[a].cx} y1={nodes[a].cy}
                 x2={nodes[b].cx} y2={nodes[b].cy}
                 stroke="#1D9E75"
-                strokeWidth="0.6"
-                strokeOpacity="0.15"
+                strokeWidth="1"
+                strokeOpacity="0.35"
               />
+            ))}
+            {/* Outer pulse rings */}
+            {nodes.filter((_, i) => i % 3 === 0).map((n, i) => (
+              <circle key={`ring-${i}`} cx={n.cx} cy={n.cy} r={n.r + 2} fill="none" stroke="#1D9E75" strokeWidth="1">
+                <animate
+                  attributeName="r"
+                  values={`${n.r + 2};${n.r + 8};${n.r + 2}`}
+                  dur={`${3 + n.delay}s`}
+                  begin={`${n.delay}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  values="0.6;0;0.6"
+                  dur={`${3 + n.delay}s`}
+                  begin={`${n.delay}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
             ))}
             {/* Nodes */}
             {nodes.map((n, i) => (
               <circle key={i} cx={n.cx} cy={n.cy} r={n.r} fill="#1D9E75">
                 <animate
                   attributeName="opacity"
-                  values="0.15;0.7;0.15"
+                  values="0.4;1;0.4"
                   dur={`${2.5 + n.delay}s`}
                   begin={`${n.delay}s`}
                   repeatCount="indefinite"
