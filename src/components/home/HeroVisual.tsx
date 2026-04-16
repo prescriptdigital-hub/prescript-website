@@ -1,0 +1,147 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
+const nodes = [
+  { cx: 60,  cy: 40,  r: 3,   delay: 0 },
+  { cx: 180, cy: 25,  r: 2.5, delay: 0.4 },
+  { cx: 290, cy: 55,  r: 3,   delay: 0.8 },
+  { cx: 100, cy: 110, r: 2,   delay: 1.2 },
+  { cx: 220, cy: 95,  r: 3.5, delay: 0.6 },
+  { cx: 320, cy: 130, r: 2.5, delay: 1.0 },
+  { cx: 50,  cy: 175, r: 2,   delay: 1.4 },
+  { cx: 155, cy: 160, r: 3,   delay: 0.2 },
+  { cx: 265, cy: 185, r: 2,   delay: 0.9 },
+  { cx: 340, cy: 70,  r: 2,   delay: 1.6 },
+]
+
+const edges = [
+  [0, 1], [1, 2], [1, 4], [2, 5],
+  [0, 3], [3, 7], [4, 7], [4, 5],
+  [5, 8], [6, 7], [7, 8], [8, 5],
+  [2, 9], [9, 5],
+]
+
+const steps = [
+  { label: 'Imprint',  desc: 'Brand identity deployed',    status: 'done'   },
+  { label: 'Forge',    desc: 'Platform infrastructure up',  status: 'done'   },
+  { label: 'Surge',    desc: 'Campaigns running',           status: 'active' },
+  { label: 'Flow',     desc: 'Automations executing',       status: 'active' },
+  { label: 'Cortex',   desc: 'AI agents online',            status: 'queued' },
+]
+
+export default function HeroVisual() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
+      className="relative w-full max-w-sm lg:max-w-md mx-auto lg:mx-0"
+    >
+      {/* Glow backdrop */}
+      <div className="absolute -inset-4 bg-prescript-green/10 rounded-3xl blur-2xl pointer-events-none" />
+
+      {/* Card */}
+      <div className="relative bg-gray-950 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+
+        {/* Animated node network */}
+        <div className="absolute inset-0 pointer-events-none">
+          <svg width="100%" height="100%" viewBox="0 0 380 210" preserveAspectRatio="xMidYMid slice">
+            {/* Edges */}
+            {edges.map(([a, b], i) => (
+              <line
+                key={i}
+                x1={nodes[a].cx} y1={nodes[a].cy}
+                x2={nodes[b].cx} y2={nodes[b].cy}
+                stroke="#1D9E75"
+                strokeWidth="0.6"
+                strokeOpacity="0.15"
+              />
+            ))}
+            {/* Nodes */}
+            {nodes.map((n, i) => (
+              <circle key={i} cx={n.cx} cy={n.cy} r={n.r} fill="#1D9E75">
+                <animate
+                  attributeName="opacity"
+                  values="0.15;0.7;0.15"
+                  dur={`${2.5 + n.delay}s`}
+                  begin={`${n.delay}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            ))}
+          </svg>
+        </div>
+
+        {/* UI content */}
+        <div className="relative z-10 p-5">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-prescript-green opacity-60" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-prescript-green" />
+              </span>
+              <span className="text-xs font-sans font-medium text-gray-300 tracking-wide uppercase">
+                System Active
+              </span>
+            </div>
+            <span className="text-xs font-sans text-gray-600">v2.4.1</span>
+          </div>
+
+          {/* Pipeline steps */}
+          <div className="flex flex-col gap-2">
+            {steps.map((step, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-between bg-gray-900/80 border border-gray-800 rounded-lg px-3 py-2.5"
+              >
+                <div className="flex items-center gap-2.5">
+                  {/* Step index */}
+                  <span className="text-[10px] font-sans text-gray-600 w-4">
+                    0{i + 1}
+                  </span>
+                  <div>
+                    <p className="text-xs font-sans font-medium text-gray-200">{step.label}</p>
+                    <p className="text-[10px] font-sans text-gray-500">{step.desc}</p>
+                  </div>
+                </div>
+                {/* Status badge */}
+                {step.status === 'done' && (
+                  <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-prescript-green/15 text-prescript-green border border-prescript-green/20">
+                    Done
+                  </span>
+                )}
+                {step.status === 'active' && (
+                  <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20 flex items-center gap-1">
+                    <span className="w-1 h-1 rounded-full bg-blue-400 animate-pulse" />
+                    Running
+                  </span>
+                )}
+                {step.status === 'queued' && (
+                  <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-gray-700/50 text-gray-500 border border-gray-700">
+                    Queued
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Footer metrics */}
+          <div className="mt-3 pt-3 border-t border-gray-800 grid grid-cols-3 gap-2">
+            {[
+              { val: '99.9%', label: 'Uptime' },
+              { val: '2 AI', label: 'Agents' },
+              { val: '14ms', label: 'Latency' },
+            ].map((m, i) => (
+              <div key={i} className="text-center">
+                <p className="text-sm font-syne font-bold text-prescript-green">{m.val}</p>
+                <p className="text-[10px] font-sans text-gray-600">{m.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
