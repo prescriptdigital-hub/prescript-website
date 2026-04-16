@@ -1,5 +1,9 @@
+'use client'
+
+import { useState } from 'react'
 import { Check, Minus } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import PaymentModal from '@/components/ui/PaymentModal'
 import ServiceTag from '@/components/ui/ServiceTag'
 import type { SubscriptionPlan } from '@/lib/pricing'
 import { CURRENCY_RATES } from '@/lib/pricing'
@@ -10,6 +14,10 @@ interface PlanCardProps {
   plan: SubscriptionPlan
   currency: 'usd' | 'ngn'
   billing: 'monthly' | 'annual'
+}
+
+function getAmountUSD(plan: SubscriptionPlan, billing: 'monthly' | 'annual'): number {
+  return billing === 'annual' ? plan.priceMonthly * 10 : plan.priceMonthly
 }
 
 function getPrice(plan: SubscriptionPlan, currency: 'usd' | 'ngn', billing: 'monthly' | 'annual'): string {
@@ -26,70 +34,83 @@ function getAnnualTotal(plan: SubscriptionPlan, currency: 'usd' | 'ngn'): string
 }
 
 export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const amountUSD = getAmountUSD(plan, billing)
+  const amountNGN = amountUSD * CURRENCY_RATES.ngn
+
   return (
-    <div
-      className={`border rounded-2xl overflow-hidden flex flex-col transition-transform hover:scale-[1.01] ${
-        plan.isFeatured ? 'border-[1.5px] border-prescript-green' : 'border-gray-200'
-      }`}
-    >
-      {plan.isFeatured && (
-        <div className="bg-prescript-green text-white text-center text-xs font-sans font-medium py-1.5">
-          Most Popular
-        </div>
-      )}
-
-      <div className="p-6 border-b border-gray-100">
-        <p className="text-xs font-sans text-gray-400 uppercase tracking-widest mb-0.5">{plan.tier}</p>
-        <p className="font-syne font-extrabold text-2xl text-gray-900 mb-1">{plan.name}</p>
-        <p className="font-sans text-sm text-gray-400 mb-4 leading-relaxed">{plan.forWhom}</p>
-
-        <div className="flex items-baseline gap-1 mb-1">
-          <span className="font-syne font-extrabold text-4xl text-prescript-green leading-none">
-            {getPrice(plan, currency, billing)}
-          </span>
-          <span className="text-sm font-sans text-gray-400">/mo</span>
-        </div>
-        {billing === 'annual' && (
-          <p className="text-xs font-sans text-gray-400 mb-3">
-            {getAnnualTotal(plan, currency)} billed annually
-          </p>
+    <>
+      <div
+        className={`border rounded-2xl overflow-hidden flex flex-col transition-transform hover:scale-[1.01] ${
+          plan.isFeatured ? 'border-[1.5px] border-prescript-green' : 'border-gray-200'
+        }`}
+      >
+        {plan.isFeatured && (
+          <div className="bg-prescript-green text-white text-center text-xs font-sans font-medium py-1.5">
+            Most Popular
+          </div>
         )}
 
-        <div className="flex flex-wrap gap-1 mt-3">
-          {plan.services.map((s) => (
-            <ServiceTag key={s} service={s as ServiceSlug} />
-          ))}
+        <div className="p-6 border-b border-gray-100">
+          <p className="text-xs font-sans text-gray-400 uppercase tracking-widest mb-0.5">{plan.tier}</p>
+          <p className="font-syne font-extrabold text-2xl text-gray-900 mb-1">{plan.name}</p>
+          <p className="font-sans text-sm text-gray-400 mb-4 leading-relaxed">{plan.forWhom}</p>
+
+          <div className="flex items-baseline gap-1 mb-1">
+            <span className="font-syne font-extrabold text-4xl text-prescript-green leading-none">
+              {getPrice(plan, currency, billing)}
+            </span>
+            <span className="text-sm font-sans text-gray-400">/mo</span>
+          </div>
+          {billing === 'annual' && (
+            <p className="text-xs font-sans text-gray-400 mb-3">
+              {getAnnualTotal(plan, currency)} billed annually
+            </p>
+          )}
+
+          <div className="flex flex-wrap gap-1 mt-3">
+            {plan.services.map((s) => (
+              <ServiceTag key={s} service={s as ServiceSlug} />
+            ))}
+          </div>
+        </div>
+
+        <div className="p-6 flex flex-col flex-1">
+          <ul className="space-y-2.5 flex-1 mb-6">
+            {plan.features.map((f) => (
+              <li key={f.text} className="flex items-start gap-2">
+                {f.included ? (
+                  <Check size={13} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                ) : (
+                  <Minus size={13} className="text-gray-300 flex-shrink-0 mt-0.5" />
+                )}
+                <span className={`font-sans text-sm ${f.included ? 'text-gray-700' : 'text-gray-400'}`}>
+                  {f.text}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <Button
+            variant={plan.isFeatured ? 'primary' : 'outline'}
+            size="md"
+            onClick={() => setModalOpen(true)}
+            className="w-full"
+          >
+            {plan.ctaLabel}
+          </Button>
         </div>
       </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        <ul className="space-y-2.5 flex-1 mb-6">
-          {plan.features.map((f) => (
-            <li key={f.text} className="flex items-start gap-2">
-              {f.included ? (
-                <Check size={13} className="text-prescript-green flex-shrink-0 mt-0.5" />
-              ) : (
-                <Minus size={13} className="text-gray-300 flex-shrink-0 mt-0.5" />
-              )}
-              <span
-                className={`font-sans text-sm ${
-                  f.included ? 'text-gray-700' : 'text-gray-400'
-                }`}
-              >
-                {f.text}
-              </span>
-            </li>
-          ))}
-        </ul>
-        <Button
-          variant={plan.isFeatured ? 'primary' : 'outline'}
-          size="md"
-          href="/contact"
-          className="w-full"
-        >
-          {plan.ctaLabel}
-        </Button>
-      </div>
-    </div>
+      {modalOpen && (
+        <PaymentModal
+          planName={plan.name}
+          amountUSD={amountUSD}
+          amountNGN={amountNGN}
+          currency={currency}
+          onClose={() => setModalOpen(false)}
+        />
+      )}
+    </>
   )
 }

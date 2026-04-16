@@ -1,0 +1,9 @@
+name = "prescript-payment-verify"
+main = "verify-payment.js"
+compatibility_date = "2024-01-01"
+
+# Deploy with: wrangler deploy (from inside the /workers folder)
+# Add secrets with:
+#   wrangler secret put PAYSTACK_SECRET_KEY
+#   wrangler secret put FLUTTERWAVE_SECRET_KEY
+#   wrangler secret put RESEND_API_KEY

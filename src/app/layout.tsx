@@ -52,6 +52,10 @@ export default function RootLayout({
       <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
 
+        {/* Payment SDKs */}
+        <Script src="https://js.paystack.co/v1/inline.js" strategy="afterInteractive" />
+        <Script src="https://checkout.flutterwave.com/v3.js" strategy="afterInteractive" />
+
         {/* Tawk.to live chat */}
         <Script id="tawkto-widget" strategy="afterInteractive">
           {`
