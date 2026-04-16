@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Script from 'next/script'
 import { MessageCircle, Mail, Instagram, Linkedin, Facebook, Clock, MapPin } from 'lucide-react'
 
 function XIcon({ size = 16 }: { size?: number }) {
@@ -29,6 +30,7 @@ interface ContactFormData {
 }
 
 export default function ContactPage() {
+  const [activeTab, setActiveTab] = useState<'book' | 'message'>('book')
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(false)
@@ -74,9 +76,49 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Form */}
+          {/* Form / Calendly */}
           <div className="lg:col-span-2">
-            {submitted ? (
+            {/* Tab toggle */}
+            <div className="flex gap-1 bg-gray-100 rounded-xl p-1 mb-6 w-fit">
+              <button
+                onClick={() => setActiveTab('book')}
+                className={`px-5 py-2 rounded-lg text-sm font-sans font-medium transition-colors ${
+                  activeTab === 'book'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                Book a Call
+              </button>
+              <button
+                onClick={() => setActiveTab('message')}
+                className={`px-5 py-2 rounded-lg text-sm font-sans font-medium transition-colors ${
+                  activeTab === 'message'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                Send a Message
+              </button>
+            </div>
+
+            {/* Calendly embed */}
+            {activeTab === 'book' && (
+              <>
+                <div
+                  className="calendly-inline-widget rounded-xl overflow-hidden border border-gray-100"
+                  data-url="https://calendly.com/prescriptdigitalsolutions/strategy-call"
+                  style={{ minWidth: '320px', height: '700px' }}
+                />
+                <Script
+                  src="https://assets.calendly.com/assets/external/widget.js"
+                  strategy="afterInteractive"
+                />
+              </>
+            )}
+
+            {/* Message form */}
+            {activeTab === 'message' && (submitted ? (
               <div className="border border-prescript-green bg-prescript-green-light rounded-2xl p-10 text-center">
                 <p className="font-syne font-bold text-prescript-green-dark text-2xl mb-2">
                   Message received!
@@ -230,10 +272,10 @@ export default function ContactPage() {
                 </div>
 
                 <Button type="submit" variant="primary" size="lg" className="w-full sm:w-auto" disabled={submitting}>
-                  {submitting ? 'Sending…' : 'Book My Free Strategy Call →'}
+                  {submitting ? 'Sending…' : 'Send Message →'}
                 </Button>
               </form>
-            )}
+            ))}
           </div>
 
           {/* Info panel */}
