@@ -102,20 +102,18 @@ export default function ContactPage() {
               </button>
             </div>
 
-            {/* Calendly embed */}
-            {activeTab === 'book' && (
-              <>
-                <div
-                  className="calendly-inline-widget rounded-xl overflow-hidden border border-gray-100"
-                  data-url="https://calendly.com/prescriptdigitalsolutions/strategy-call"
-                  style={{ minWidth: '320px', height: '700px' }}
-                />
-                <Script
-                  src="https://assets.calendly.com/assets/external/widget.js"
-                  strategy="afterInteractive"
-                />
-              </>
-            )}
+            {/* Calendly embed — always in DOM, hidden when not active */}
+            <div className={activeTab === 'book' ? 'block' : 'hidden'}>
+              <div
+                className="calendly-inline-widget rounded-xl overflow-hidden border border-gray-100"
+                data-url="https://calendly.com/prescriptdigitalsolutions/strategy-call"
+                style={{ minWidth: '320px', height: '700px' }}
+              />
+              <Script
+                src="https://assets.calendly.com/assets/external/widget.js"
+                strategy="afterInteractive"
+              />
+            </div>
 
             {/* Message form */}
             {activeTab === 'message' && (submitted ? (
