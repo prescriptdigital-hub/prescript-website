@@ -1,10 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import { X, CheckCircle } from 'lucide-react'
+import { X, CheckCircle, Copy, Check } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { openPaystackPopup, openFlutterwavePopup, verifyPayment } from '@/lib/payment'
+import { openPaystackPopup, openFlutterwavePopup, verifyPayment, generateRef } from '@/lib/payment'
 import Button from './Button'
+import { COMPANY_INFO } from '@/lib/constants'
+
+// Transaction limits
+const PAYSTACK_NGN_LIMIT = 1_000_000
+const FLUTTERWAVE_USD_LIMIT = 5_000
+
+const BANK = {
+  name: 'GT Bank',
+  account: '0254852285',
+  accountName: 'Prescript Digital Solutions',
+}
 
 interface FormData {
   name: string
@@ -19,12 +30,17 @@ interface PaymentModalProps {
   onClose: () => void
 }
 
-type Stage = 'form' | 'processing' | 'success' | 'error'
+type Stage = 'form' | 'processing' | 'success' | 'error' | 'bank-transfer'
 
 export default function PaymentModal({
   planName, amountUSD, amountNGN, currency, onClose,
 }: PaymentModalProps) {
-  const [stage, setStage] = useState<Stage>('form')
+  const exceedsLimit = currency === 'ngn'
+    ? amountNGN > PAYSTACK_NGN_LIMIT
+    : amountUSD > FLUTTERWAVE_USD_LIMIT
+
+  const [stage, setStage] = useState<Stage>(exceedsLimit ? 'bank-transfer' : 'form')
+  const [copied, setCopied] = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
@@ -32,6 +48,13 @@ export default function PaymentModal({
     ? `₦${amountNGN.toLocaleString()}`
     : `$${amountUSD.toLocaleString()}`
   const provider = currency === 'ngn' ? 'Paystack' : 'Flutterwave'
+  const payRef = `PSC-${planName.toUpperCase().replace(/\s/g, '-')}-${generateRef().split('-')[1]}`
+
+  const copyAccount = () => {
+    navigator.clipboard.writeText(BANK.account)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   const onSubmit = async (data: FormData) => {
     setStage('processing')
@@ -67,7 +90,10 @@ export default function PaymentModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={stage === 'processing' ? undefined : onClose} />
+      <div
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={stage === 'processing' ? undefined : onClose}
+      />
 
       {/* Card */}
       <div className="relative bg-white rounded-2xl w-full max-w-md shadow-2xl p-7">
@@ -88,9 +114,7 @@ export default function PaymentModal({
             <p className="font-sans text-sm text-gray-500 mb-6 leading-relaxed">
               Welcome to <strong>{planName}</strong>. We&apos;ll reach out within 24 hours to get you onboarded.
             </p>
-            <Button variant="primary" size="md" onClick={onClose} className="w-full">
-              Done
-            </Button>
+            <Button variant="primary" size="md" onClick={onClose} className="w-full">Done</Button>
           </div>
         )}
 
@@ -108,9 +132,71 @@ export default function PaymentModal({
               </a>{' '}
               with your payment reference and we&apos;ll sort it out.
             </p>
-            <Button variant="outline" size="md" onClick={onClose} className="w-full">
-              Close
-            </Button>
+            <Button variant="outline" size="md" onClick={onClose} className="w-full">Close</Button>
+          </div>
+        )}
+
+        {/* Bank Transfer */}
+        {stage === 'bank-transfer' && (
+          <div>
+            <p className="font-syne font-extrabold text-xl text-gray-900 mb-1">{planName}</p>
+            <p className="font-sans text-sm text-gray-400 mb-5">
+              {displayAmount} · Bank Transfer
+            </p>
+
+            <div className="bg-gray-50 border border-gray-100 rounded-xl p-4 mb-5 flex flex-col gap-3">
+              <div>
+                <p className="text-xs font-sans text-gray-400 mb-0.5">Bank</p>
+                <p className="text-sm font-sans font-medium text-gray-800">{BANK.name}</p>
+              </div>
+              <div>
+                <p className="text-xs font-sans text-gray-400 mb-0.5">Account name</p>
+                <p className="text-sm font-sans font-medium text-gray-800">{BANK.accountName}</p>
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-sans text-gray-400 mb-0.5">Account number</p>
+                  <p className="text-lg font-syne font-bold text-prescript-green tracking-wider">{BANK.account}</p>
+                </div>
+                <button
+                  onClick={copyAccount}
+                  className="flex items-center gap-1.5 text-xs font-sans text-prescript-green border border-prescript-green/30 rounded-lg px-3 py-1.5 hover:bg-prescript-green-light transition-colors"
+                >
+                  {copied ? <Check size={12} /> : <Copy size={12} />}
+                  {copied ? 'Copied!' : 'Copy'}
+                </button>
+              </div>
+              <div className="border-t border-gray-200 pt-3">
+                <p className="text-xs font-sans text-gray-400 mb-0.5">Use this as payment reference</p>
+                <p className="text-xs font-sans font-medium text-gray-700 bg-white border border-gray-200 rounded-lg px-3 py-2 tracking-wide">
+                  {payRef}
+                </p>
+              </div>
+            </div>
+
+            <p className="font-sans text-xs text-gray-500 mb-5 leading-relaxed">
+              After payment, send your receipt and the reference above to{' '}
+              <a href="mailto:billing@prescriptdigital.com" className="text-prescript-green underline">
+                billing@prescriptdigital.com
+              </a>{' '}
+              and we&apos;ll activate your plan within 24 hours.
+            </p>
+
+            <div className="flex gap-3">
+              <a
+                href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/\D/g, '')}?text=Hi, I just made a bank transfer for ${planName} (${displayAmount}). Reference: ${payRef}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1"
+              >
+                <Button variant="primary" size="md" className="w-full">
+                  Confirm on WhatsApp
+                </Button>
+              </a>
+              <Button variant="outline" size="md" onClick={onClose} className="flex-shrink-0">
+                Close
+              </Button>
+            </div>
           </div>
         )}
 
