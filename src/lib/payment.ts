@@ -91,7 +91,7 @@ export function openFlutterwavePopup({
   onClose: () => void
 }) {
   window.FlutterwaveCheckout({
-    public_key: 'FLWPUBK-148508f276b9f850253d1f29de6b1cfc-X',
+    public_key: 'FLWPUBK-77c231faa664aa60979f6233bc746b57-X',
     tx_ref: generateRef(),
     amount: amountUSD,
     currency: 'USD',
