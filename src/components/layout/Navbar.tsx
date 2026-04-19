@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { label: 'Surge', href: '/services/surge' },
   { label: 'Flow', href: '/services/flow' },
   { label: 'Cortex', href: '/services/cortex' },
+  { label: 'Work', href: '/work' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Subscriptions', href: '/subscriptions' },
 ]
