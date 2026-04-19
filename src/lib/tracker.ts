@@ -24,7 +24,7 @@ export interface TeamMember {
   createdAt: string
 }
 
-const BASE = process.env.NEXT_PUBLIC_TRACKER_URL || ""
+const BASE = process.env.NEXT_PUBLIC_TRACKER_URL || "https://prescript-tracker.prescriptdigital.workers.dev"
 
 async function apiFetch<T>(
   path: string,
