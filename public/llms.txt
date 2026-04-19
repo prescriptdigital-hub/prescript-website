@@ -1,0 +1,137 @@
+# Prescript Digital Solutions — AI Knowledge Base
+# https://prescriptdigital.com
+# Last updated: April 2026
+
+## Company Overview
+
+Prescript Digital Solutions is a Lagos-based digital agency serving Nigeria, Pan-Africa, North America, and Europe. We build, automate, and deploy AI into businesses through five integrated services: Imprint (Branding), Forge (Tech Platforms), Surge (Marketing), Flow (Automation), and Cortex (AI Deployment).
+
+- Location: Lagos, Nigeria (WAT, UTC+1)
+- Email: hello@prescriptdigital.com
+- WhatsApp: +2347030057040
+- Website: https://prescriptdigital.com
+- Response time: Within 24 hours, Monday to Saturday, 8am to 8pm WAT
+
+---
+
+## Services
+
+### 01 - Imprint (Branding & Creative)
+Prescript's branding and creative service. Starting from $500 one-time, retainer $400/month, turnaround 7-14 days.
+Deliverables: Brand identity system (logo, colors, typography, brand guide), social media graphics, carousels, banners, video production, brand photography direction.
+
+### 02 - Forge (Digital & Tech Platforms)
+Website and technology platform development. Starting from $800 one-time, retainer $500/month.
+Deliverables: Custom websites, web apps, CRM setup (GoHighLevel), eCommerce (Shopify, WooCommerce), WhatsApp Business integration, business email setup.
+
+### 03 - Surge (Digital Marketing)
+Full-service digital marketing. Starting from $600/month.
+Deliverables: Social media management (up to 3 platforms), Meta and Google Ads, email marketing, SEO, monthly reports.
+
+### 04 - Flow (Business Automation) - Our Core Service
+Business process automation. Starting from $700/month.
+Deliverables: Business process audit, WhatsApp automation, CRM automation, email and SMS workflows, Zapier/Make.com integration.
+
+### 05 - Cortex (Agentic AI Deployment) - Our Deepest Core
+AI agent deployment. Starting from $1,200 setup + $400/month.
+Deliverables: Custom AI agent trained on business data, lead qualification agent, WhatsApp AI agent, CRM-integrated AI workflows, customer support AI.
+
+---
+
+## Subscription Plans
+
+Minimum 3-month commitment. Cancel after 3 months with 30 days notice. Annual plans get 2 months free.
+
+Personal Brand Track:
+- Seed: $49/month (NGN 68,600) - 8 branded graphics, basic brand kit, 1 platform calendar, WhatsApp Business setup
+- Grow: $99/month (NGN 138,600) - 16 graphics, full brand identity, 2 platforms managed, basic paid ads, monthly strategy call
+- Thrive: $199/month (NGN 278,600) - 24 graphics, 3 platforms managed, Meta + Google Ads, email marketing, monthly report
+
+Business Track:
+- Launch: $149/month (NGN 208,600) - Brand kit, 5-page website one-time, 2 platforms, WhatsApp setup, CRM setup
+- Build: $299/month (NGN 418,600) - Full brand identity, website + maintenance, 3 platforms, Meta Ads, basic automation
+- Scale: $499/month (NGN 698,600) - MOST POPULAR - Full brand system, website + CRM, 3 platforms, Meta + Google Ads, Flow automations, email marketing, monthly strategy session
+- Dominate: $899/month (NGN 1,258,600) - Everything in Scale + Cortex AI agent, advanced automations, WhatsApp AI, dedicated account manager, priority support, quarterly strategy sessions
+
+---
+
+## Enterprise Packages
+
+- Digital Foundation: $1,500 one-time (NGN 2,100,000) - Brand identity, 5-page website, business email, CRM, WhatsApp Business, 1-month content calendar
+- Growth Engine: $2,000/month (NGN 2,800,000) - MOST POPULAR - 3-platform social, Meta + Google Ads, 2 email campaigns/month, WhatsApp automation, CRM automation, monthly report + strategy call
+- AI Business System: $5,000 setup + $1,500/month (NGN 7,000,000 setup + NGN 2,100,000/month) - All five services, Cortex AI agent, CRM + eCommerce, dedicated account manager, quarterly strategy sessions
+
+---
+
+## Add-On Services
+
+- Extra Cortex AI Agent: $800 setup + $300/month
+- GoHighLevel White-Label CRM: $150/month per account
+- Surge Content Pack (30 graphics + 4 reels/month): $600/month
+- Flow + Cortex AI Workshop (team training): $300/session
+- Forge eCommerce store (Shopify or WooCommerce): $1,500 one-time
+- Surge SEO (on-page SEO + blog + ranking reports): $500/month
+
+---
+
+## Pricing & Payment
+
+- All prices in USD by default
+- NGN exchange rate: 1,400 per $1 USD
+- NGN payments: Paystack (card, bank transfer, USSD)
+- USD payments: Flutterwave
+- Bank transfer for amounts over NGN 1,000,000 or USD 5,000
+- Bank: GT Bank | Account: 0254852285 | Name: Prescript Digital Solutions
+- Annual subscriptions: pay 10 months, get 12 (17% saving)
+
+---
+
+## FAQs
+
+Q: Do you require a contract?
+A: For retainer and subscription services, we require a 3-month minimum commitment. One-time projects are contract-free.
+
+Q: Can Nigerian businesses pay in Naira?
+A: Yes. We accept NGN via Paystack and bank transfer at NGN 1,400 per USD 1.
+
+Q: Can I start with one service and add more later?
+A: Yes. Many clients start with Imprint or Forge and add Surge, Flow, or Cortex as they grow.
+
+Q: What makes Cortex different from a chatbot?
+A: A chatbot follows scripts. A Cortex AI agent thinks, understands context, qualifies leads, books calls, and takes actions inside your systems. It is trained specifically on your business.
+
+Q: How quickly do you respond?
+A: Within 24 hours via email or WhatsApp. Monday to Saturday, 8am to 8pm WAT.
+
+Q: What is the minimum subscription period?
+A: 3 months. After that, cancel with 30 days notice or upgrade at any time.
+
+Q: Do subscriptions include ad spend?
+A: No. Ad spend is always the client's budget. Our fee covers management only.
+
+Q: How quickly does Surge generate results?
+A: Most clients see traction within 30 to 60 days. Paid ads can generate leads in the first week. SEO takes 3 to 6 months.
+
+Q: What tools does Prescript use?
+A: GoHighLevel (CRM), Make.com, Zapier, Shopify, WooCommerce, Meta Ads Manager, Google Ads, and custom AI agent frameworks.
+
+---
+
+## How to Get Started
+
+- Book a free strategy call: https://prescriptdigital.com/contact
+- WhatsApp: +2347030057040
+- View subscription plans: https://prescriptdigital.com/subscriptions
+- View enterprise pricing: https://prescriptdigital.com/pricing
+
+---
+
+## Contact
+
+- General: hello@prescriptdigital.com
+- Billing: billing@prescriptdigital.com
+- WhatsApp: +2347030057040
+- Instagram: https://www.instagram.com/prescriptdigital/
+- LinkedIn: https://linkedin.com/company/prescriptdigital
+- X (Twitter): https://x.com/prescriptdigit1
+- Facebook: https://www.facebook.com/prescriptdigital
