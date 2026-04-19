@@ -7,6 +7,8 @@ import SubscriptionsPreview from '@/components/home/SubscriptionsPreview'
 import PackagesPreview from '@/components/home/PackagesPreview'
 import WhyPreScript from '@/components/home/WhyPreScript'
 import ClientTracker from '@/components/home/ClientTracker'
+import WorkTeaser from '@/components/home/WorkTeaser'
+import Testimonials from '@/components/home/Testimonials'
 import ContactCTA from '@/components/home/ContactCTA'
 
 export default function HomePage() {
@@ -21,6 +23,8 @@ export default function HomePage() {
         <PackagesPreview />
         <WhyPreScript />
         <ClientTracker />
+        <WorkTeaser />
+        <Testimonials />
         <ContactCTA />
       </main>
       <Footer />

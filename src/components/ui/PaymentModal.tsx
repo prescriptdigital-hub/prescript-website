@@ -119,7 +119,12 @@ export default function PaymentModal({
               <a href={"/track?ref=" + payRef} className="text-prescript-green underline" target="_blank" rel="noopener noreferrer">prescriptdigital.com/track</a>
               {" "}using ref <span className="font-medium text-gray-600">{payRef}</span>
             </p>
-            <Button variant="primary" size="md" onClick={onClose} className="w-full">Done</Button>
+            <div className="flex flex-col gap-3">
+              <a href={"/onboarding?ref=" + payRef + "&plan=" + encodeURIComponent(planName)} className="block">
+                <Button variant="primary" size="md" className="w-full">Fill in your project brief</Button>
+              </a>
+              <Button variant="outline" size="md" onClick={onClose} className="w-full">Close</Button>
+            </div>
           </div>
         )}
 
