@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { ChevronDown, ChevronUp, Users, LogOut } from 'lucide-react'
-import { listProjects, updateProject, listTeam, type Project, type TeamMember } from '@/lib/tracker'
+import { ChevronDown, ChevronUp, Users, LogOut, KeyRound } from 'lucide-react'
+import { listProjects, updateProject, listTeam, changeAdminPassword, type Project, type TeamMember } from '@/lib/tracker'
 import Button from '@/components/ui/Button'
 
 export default function AdminProjectsPage() {
@@ -14,6 +14,11 @@ export default function AdminProjectsPage() {
   const [expanded, setExpanded] = useState<string | null>(null)
   const [saving, setSaving] = useState<string | null>(null)
   const [edits, setEdits] = useState<Record<string, Partial<Project>>>({})
+  const [showChangePw, setShowChangePw] = useState(false)
+  const [oldPw, setOldPw] = useState('')
+  const [newPw, setNewPw] = useState('')
+  const [pwError, setPwError] = useState('')
+  const [pwSuccess, setPwSuccess] = useState(false)
 
   useEffect(() => {
     const k = sessionStorage.getItem('admin_key')
@@ -23,6 +28,21 @@ export default function AdminProjectsPage() {
   }, [router])
 
   const logout = () => { sessionStorage.removeItem("admin_key"); router.push("/admin") }
+
+  const submitChangePw = async () => {
+    setPwError('')
+    const ok = await changeAdminPassword(oldPw, newPw)
+    if (ok) {
+      sessionStorage.setItem('admin_key', newPw)
+      setAdminKey(newPw)
+      setPwSuccess(true)
+      setOldPw('')
+      setNewPw('')
+      setTimeout(() => { setPwSuccess(false); setShowChangePw(false) }, 2000)
+    } else {
+      setPwError('Current password is incorrect')
+    }
+  }
 
   const toggleExpand = (ref: string) => setExpanded(expanded === ref ? null : ref)
 
@@ -48,9 +68,26 @@ export default function AdminProjectsPage() {
           </div>
           <div className="flex gap-3">
             <Button variant="outline" size="sm" onClick={() => router.push("/admin/team")}><Users size={14} className="mr-1.5" />Team</Button>
+            <Button variant="outline" size="sm" onClick={() => setShowChangePw(!showChangePw)}><KeyRound size={14} className="mr-1.5" />Password</Button>
             <Button variant="outline" size="sm" onClick={logout}><LogOut size={14} className="mr-1.5" />Logout</Button>
           </div>
         </div>
+
+        {showChangePw && (
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-6">
+            <p className="font-syne font-bold text-base text-gray-900 mb-4">Change password</p>
+            <div className="flex flex-col gap-3">
+              <input type="password" value={oldPw} onChange={e => setOldPw(e.target.value)} placeholder="Current password" className="border border-gray-200 rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-prescript-green" />
+              <input type="password" value={newPw} onChange={e => setNewPw(e.target.value)} placeholder="New password (min 6 characters)" className="border border-gray-200 rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-prescript-green" />
+              {pwError && <p className="text-xs text-red-500">{pwError}</p>}
+              {pwSuccess && <p className="text-xs text-prescript-green">Password changed successfully!</p>}
+              <div className="flex gap-3">
+                <Button variant="primary" size="sm" onClick={submitChangePw}>Save new password</Button>
+                <Button variant="outline" size="sm" onClick={() => setShowChangePw(false)}>Cancel</Button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {projects.length === 0 && <p className="text-center font-sans text-sm text-gray-400 py-16">No projects yet. They appear here automatically after a payment is verified.</p>}
 

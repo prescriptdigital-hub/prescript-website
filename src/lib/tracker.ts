@@ -91,3 +91,12 @@ export async function updateTeamMember(adminKey: string, email: string, updates:
 export async function deleteTeamMember(adminKey: string, email: string): Promise<void> {
   await apiFetch("/team", { method: "DELETE", body: JSON.stringify({ email }) }, adminKey)
 }
+
+export async function changeAdminPassword(oldPassword: string, newPassword: string): Promise<boolean> {
+  try {
+    await apiFetch("/change-password", { method: "POST", body: JSON.stringify({ oldPassword, newPassword }) })
+    return true
+  } catch {
+    return false
+  }
+}

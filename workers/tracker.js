@@ -26,7 +26,8 @@ function json(data, status = 200, origin = "") {
 
 function isSubscription(n) { return SUBSCRIPTION_NAMES.some(s => n.toLowerCase().includes(s.toLowerCase())) }
 function getStages(n) { return isSubscription(n) ? SUBSCRIPTION_STAGES : PACKAGE_STAGES }
-function requireAdmin(req, env) { return req.headers.get("X-Admin-Key") === env.ADMIN_PASSWORD }
+async function getAdminPassword(env) { const stored = await env.PROJECTS.get("config:admin_password"); return stored || "prescript2026" }
+async function requireAdmin(req, env) { const pw = await getAdminPassword(env); return req.headers.get("X-Admin-Key") === pw }
 function requireInternal(req, env) { return req.headers.get("X-Internal-Key") === env.INTERNAL_KEY }
 
 export default {
@@ -52,8 +53,19 @@ export default {
     if (path === "/auth" && request.method === "POST") {
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
-      if (body.password === env.ADMIN_PASSWORD) return json({ success: true }, 200, origin)
+      const adminPw = await getAdminPassword(env)
+      if (body.password === adminPw) return json({ success: true }, 200, origin)
       return json({ success: false, error: "Invalid password" }, 401, origin)
+    }
+
+    if (path === "/change-password" && request.method === "POST") {
+      let body
+      try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
+      const adminPw = await getAdminPassword(env)
+      if (body.oldPassword !== adminPw) return json({ success: false, error: "Current password incorrect" }, 401, origin)
+      if (!body.newPassword || body.newPassword.length < 6) return json({ success: false, error: "New password must be at least 6 characters" }, 400, origin)
+      await env.PROJECTS.put("config:admin_password", body.newPassword)
+      return json({ success: true }, 200, origin)
     }
 
     if (path === "/project" && request.method === "POST") {
