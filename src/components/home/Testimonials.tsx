@@ -1,7 +1,7 @@
 const TESTIMONIALS = [
   {
     quote: "Prescript completely transformed how our brand shows up in the market. We went from looking like just another fabric vendor to a brand that boutiques actually want to stock. The ROI has been unreal.",
-    name: "Adaeze Okonkwo",
+    name: "Lola Adefusika",
     role: "Founder",
     company: "Aso Luxe",
     service: "Imprint",
@@ -15,7 +15,7 @@ const TESTIMONIALS = [
   },
   {
     quote: "The automation Prescript built for us was like hiring three extra operations staff - without the salaries. Our ops manager finally has time to think instead of just reacting all day.",
-    name: "Chidinma Okafor",
+    name: "Sophie van der Berg",
     role: "Operations Director",
     company: "SwiftHaul Logistics",
     service: "Flow",

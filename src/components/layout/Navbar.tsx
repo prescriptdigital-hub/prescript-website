@@ -16,7 +16,7 @@ const NAV_LINKS = [
   { label: 'Flow', href: '/services/flow' },
   { label: 'Cortex', href: '/services/cortex' },
   { label: 'Work', href: '/work' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Articles', href: '/articles' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Subscriptions', href: '/subscriptions' },
 ]
