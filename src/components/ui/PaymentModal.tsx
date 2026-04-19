@@ -111,8 +111,13 @@ export default function PaymentModal({
           <div className="text-center py-4">
             <CheckCircle size={48} className="text-prescript-green mx-auto mb-4" />
             <p className="font-syne font-extrabold text-xl text-gray-900 mb-2">Payment confirmed!</p>
-            <p className="font-sans text-sm text-gray-500 mb-6 leading-relaxed">
+            <p className="font-sans text-sm text-gray-500 mb-3 leading-relaxed">
               Welcome to <strong>{planName}</strong>. We&apos;ll reach out within 24 hours to get you onboarded.
+            </p>
+            <p className="font-sans text-xs text-gray-400 mb-6">
+              Track your project at{" "}
+              <a href={"/track?ref=" + payRef} className="text-prescript-green underline" target="_blank" rel="noopener noreferrer">prescriptdigital.com/track</a>
+              {" "}using ref <span className="font-medium text-gray-600">{payRef}</span>
             </p>
             <Button variant="primary" size="md" onClick={onClose} className="w-full">Done</Button>
           </div>

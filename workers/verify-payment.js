@@ -27,6 +27,17 @@ function json(data, status = 200, origin = '') {
   })
 }
 
+async function createProjectRecord(env, { customerEmail, customerName, planName, reference, provider, amount }) {
+  if (!env.TRACKER_URL || !env.INTERNAL_KEY) return
+  try {
+    await fetch(env.TRACKER_URL + "/project", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Internal-Key": env.INTERNAL_KEY },
+      body: JSON.stringify({ reference, planName, customerEmail, customerName, amount, provider }),
+    })
+  } catch { /* non-critical */ }
+}
+
 async function sendBillingEmail(env, { customerEmail, planName, reference, provider, amount }) {
   if (!env.RESEND_API_KEY) return
 
@@ -91,7 +102,11 @@ export default {
         const planName = data.data.metadata?.custom_fields?.find(f => f.variable_name === 'plan')?.value ?? 'Unknown plan'
         const amount = `₦${(data.data.amount / 100).toLocaleString()}`
 
-        await sendBillingEmail(env, { customerEmail, planName, reference, provider: 'Paystack', amount })
+        const customerName = data.data.metadata?.custom_fields?.find(f => f.variable_name === 'name')?.value ?? ''
+        await Promise.all([
+          sendBillingEmail(env, { customerEmail, planName, reference, provider: 'Paystack', amount }),
+          createProjectRecord(env, { customerEmail, customerName, planName, reference, provider: 'Paystack', amount }),
+        ])
         return json({ success: true }, 200, origin)
       }
 
@@ -110,7 +125,11 @@ export default {
         const planName = data.data.meta?.planName ?? 'Unknown plan'
         const amount = `$${data.data.amount}`
 
-        await sendBillingEmail(env, { customerEmail, planName, reference, provider: 'Flutterwave', amount })
+        const customerName = data.data.customer?.name ?? ''
+        await Promise.all([
+          sendBillingEmail(env, { customerEmail, planName, reference, provider: 'Flutterwave', amount }),
+          createProjectRecord(env, { customerEmail, customerName, planName, reference, provider: 'Flutterwave', amount }),
+        ])
         return json({ success: true }, 200, origin)
       }
 

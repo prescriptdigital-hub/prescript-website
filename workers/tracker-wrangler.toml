@@ -1,0 +1,12 @@
+name = "prescript-tracker"
+main = "tracker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "PROJECTS"
+id = "2f617639ba0140b0b66a45da8f665d0a"
+
+# Deploy: wrangler deploy --config workers/tracker-wrangler.toml
+# Secrets:
+#   wrangler secret put ADMIN_PASSWORD --config workers/tracker-wrangler.toml
+#   wrangler secret put INTERNAL_KEY   --config workers/tracker-wrangler.toml
