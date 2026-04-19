@@ -31,10 +31,11 @@ export default function Footer() {
             </span>
           </Link>
 
-          {/* Copyright */}
-          <p className="text-xs font-sans text-gray-400 text-center">
-            © 2025 Prescript Digital Solutions · Lagos, Nigeria
-          </p>
+          {/* Copyright + track link */}
+          <div className="flex flex-col items-center gap-1.5">
+            <p className="text-xs font-sans text-gray-400 text-center">© 2025 Prescript Digital Solutions · Lagos, Nigeria</p>
+            <Link href="/track" className="text-xs font-sans text-prescript-green hover:underline">Track your project →</Link>
+          </div>
 
           {/* Social links */}
           <div className="flex items-center gap-4">

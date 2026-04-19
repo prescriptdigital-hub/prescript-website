@@ -6,6 +6,7 @@ import ServicesGrid from '@/components/home/ServicesGrid'
 import SubscriptionsPreview from '@/components/home/SubscriptionsPreview'
 import PackagesPreview from '@/components/home/PackagesPreview'
 import WhyPreScript from '@/components/home/WhyPreScript'
+import ClientTracker from '@/components/home/ClientTracker'
 import ContactCTA from '@/components/home/ContactCTA'
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
         <SubscriptionsPreview />
         <PackagesPreview />
         <WhyPreScript />
+        <ClientTracker />
         <ContactCTA />
       </main>
       <Footer />
