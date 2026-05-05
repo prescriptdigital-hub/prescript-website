@@ -12,7 +12,7 @@ export default function ClientTracker() {
             </div>
             <div>
               <p className="font-syne font-extrabold text-lg text-gray-900 mb-1">Already a client?</p>
-              <p className="font-sans text-sm text-gray-500 leading-relaxed max-w-md">Track your project progress in real time. See exactly what stage your project is at and what comes next — anytime, anywhere.</p>
+              <p className="font-sans text-sm text-gray-500 leading-relaxed max-w-md">Track your project progress in real time. See exactly what stage your project is at and what comes next, anytime, anywhere.</p>
             </div>
           </div>
           <Link href="/track" className="flex items-center gap-2 bg-prescript-green text-white font-sans font-medium text-sm px-6 py-3 rounded-xl hover:bg-prescript-green-mid transition-colors flex-shrink-0">

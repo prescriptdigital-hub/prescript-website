@@ -19,7 +19,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const service = SERVICES.find((s) => s.slug === params.slug)
   if (!service) return {}
   return {
-    title: `${service.name} — ${service.fullName} | Prescript Digital Solutions`,
+    title: `${service.name}, ${service.fullName} | Prescript Digital Solutions`,
     description: service.tagline,
     openGraph: {
       title: `${service.name} by Prescript`,

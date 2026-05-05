@@ -39,10 +39,10 @@ export default function HeroVisual() {
       {/* Glow */}
       <div className="absolute -inset-4 bg-prescript-green/10 rounded-3xl blur-2xl pointer-events-none" />
 
-      {/* Card — side by side layout */}
+      {/* Card, side by side layout */}
       <div className="relative bg-gray-950 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl flex flex-row">
 
-        {/* Left — animation panel */}
+        {/* Left, animation panel */}
         <div className="relative bg-gray-900 border-r border-gray-800 flex-shrink-0 w-[300px]">
           {/* Grid */}
           <div
@@ -128,7 +128,7 @@ export default function HeroVisual() {
           </svg>
         </div>
 
-        {/* Right — pipeline + metrics */}
+        {/* Right, pipeline + metrics */}
         <div className="flex-1 p-5 flex flex-col justify-between min-h-[260px]">
           {/* Header */}
           <div className="flex items-center justify-between mb-3">

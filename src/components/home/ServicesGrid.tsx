@@ -25,7 +25,7 @@ export default function ServicesGrid() {
         Five Services. One Partner.
       </h2>
       <p className="font-sans font-light text-gray-500 text-base max-w-2xl mb-6 leading-relaxed">
-        From your first logo to your first AI agent — we handle every layer of your digital
+        From your first logo to your first AI agent, we handle every layer of your digital
         business, and each service feeds the next.
       </p>
 

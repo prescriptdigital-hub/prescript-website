@@ -18,7 +18,7 @@ export default function Hero() {
   return (
     <section className="pt-16 pb-0 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16 mb-12">
-        {/* Left — text */}
+        {/* Left, text */}
         <div className="flex-1 max-w-2xl">
           {/* Chip */}
           <motion.div
@@ -57,7 +57,7 @@ export default function Hero() {
             className="font-sans text-gray-500 text-lg lg:text-xl max-w-xl leading-relaxed mb-8"
           >
             Five focused services. One integrated system. Prescript delivers the full digital
-            infrastructure your business needs to scale globally — from brand identity to deployed AI
+            infrastructure your business needs to scale globally, from brand identity to deployed AI
             agents.
           </motion.p>
 
@@ -78,7 +78,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right — visual */}
+        {/* Right, visual */}
         <div className="flex-shrink-0 w-full lg:w-auto mt-12 lg:mt-0">
           <HeroVisual />
         </div>

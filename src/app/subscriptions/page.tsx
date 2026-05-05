@@ -26,11 +26,11 @@ const FAQS = [
   },
   {
     q: 'Is the annual plan billed upfront?',
-    a: 'Yes, annual plans are billed in full at the start of the period. You get 2 months free compared to monthly billing — a 17% saving.',
+    a: 'Yes, annual plans are billed in full at the start of the period. You get 2 months free compared to monthly billing, a 17% saving.',
   },
   {
     q: 'Can I mix Personal and Business plans?',
-    a: 'No — plans are designed for either a personal brand or a registered business. Choose the track that fits your situation.',
+    a: 'No, plans are designed for either a personal brand or a registered business. Choose the track that fits your situation.',
   },
   {
     q: 'Do subscriptions include ad spend?',
@@ -63,7 +63,7 @@ export default function SubscriptionsPage() {
             World-class services. Monthly. No big upfront.
           </h1>
           <p className="font-sans text-gray-500 text-base max-w-xl leading-relaxed mb-6">
-            Choose your track — personal brand or business — and pick the plan that fits where you are now.
+            Choose your track, personal brand or business, and pick the plan that fits where you are now.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <BillingToggle value={billing} onChange={setBilling} />
@@ -137,7 +137,7 @@ export default function SubscriptionsPage() {
         {/* Comparison table */}
         <div className="mb-16">
           <h2 className="font-syne font-bold text-2xl text-gray-900 mb-6">
-            Full comparison — {track === 'personal' ? 'Personal Brand' : 'Business'} plans
+            Full comparison, {track === 'personal' ? 'Personal Brand' : 'Business'} plans
           </h2>
           <ComparisonTable plans={plans} currency={currency} billing={billing} />
         </div>

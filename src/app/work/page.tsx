@@ -17,7 +17,7 @@ export default function WorkPage() {
           <div className="max-w-7xl mx-auto">
             <span className="text-xs font-sans font-medium tracking-widest uppercase text-prescript-green mb-4 block">Case Studies</span>
             <h1 className="font-syne font-extrabold text-4xl md:text-5xl text-gray-900 tracking-tight mb-4 max-w-2xl">Work that moves businesses forward</h1>
-            <p className="font-sans text-base text-gray-500 max-w-xl leading-relaxed">A selection of projects across branding, technology, marketing, automation, and AI — built for businesses across Nigeria and beyond.</p>
+            <p className="font-sans text-base text-gray-500 max-w-xl leading-relaxed">A selection of projects across branding, technology, marketing, automation, and AI, built for businesses across Nigeria and beyond.</p>
           </div>
         </section>
         <WorkGrid />

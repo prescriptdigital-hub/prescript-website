@@ -31,7 +31,7 @@ const FAQS = [
   },
   {
     q: 'What makes Cortex different from a chatbot?',
-    a: 'A chatbot follows scripts. A Cortex AI agent thinks — it understands context, qualifies leads, books calls, and takes actions inside your systems. It\'s trained on your business and integrated with your CRM, WhatsApp, and workflows.',
+    a: 'A chatbot follows scripts. A Cortex AI agent thinks, it understands context, qualifies leads, books calls, and takes actions inside your systems. It\'s trained on your business and integrated with your CRM, WhatsApp, and workflows.',
   },
 ]
 
@@ -58,7 +58,7 @@ export default function PricingPage() {
               Invest in what grows your business.
             </h1>
             <p className="font-sans font-light text-gray-500 text-base max-w-xl leading-relaxed">
-              No hidden fees. No lock-ins beyond 3-month minimums on retainers. Two paths — subscriptions for individuals &amp; small businesses, packages for corporations.
+              No hidden fees. No lock-ins beyond 3-month minimums on retainers. Two paths, subscriptions for individuals &amp; small businesses, packages for corporations.
             </p>
           </div>
           <CurrencyToggle value={currency} onChange={setCurrency} />
@@ -70,7 +70,7 @@ export default function PricingPage() {
             <p className="text-xs font-sans text-prescript-green font-medium uppercase tracking-widest mb-2">Monthly Subscriptions</p>
             <p className="font-syne font-extrabold text-xl text-gray-900 mb-2">Individuals, Startups &amp; Small Businesses</p>
             <p className="font-sans text-sm text-gray-500 mb-4 leading-relaxed">
-              No big upfront. World-class services on a monthly plan — from $49/mo. Cancel after 3 months.
+              No big upfront. World-class services on a monthly plan, from $49/mo. Cancel after 3 months.
             </p>
             <a href="#subscriptions" className="text-sm font-sans font-medium text-prescript-green hover:underline">
               View subscription plans ↓
@@ -80,7 +80,7 @@ export default function PricingPage() {
             <p className="text-xs font-sans text-gray-400 font-medium uppercase tracking-widest mb-2">Enterprise Packages</p>
             <p className="font-syne font-extrabold text-xl text-gray-900 mb-2">Corporations &amp; Established Businesses</p>
             <p className="font-sans text-sm text-gray-500 mb-4 leading-relaxed">
-              One-time or retainer packages for companies that need the full stack — from $1,500.
+              One-time or retainer packages for companies that need the full stack, from $1,500.
             </p>
             <a href="#packages" className="text-sm font-sans font-medium text-gray-500 hover:underline">
               View enterprise packages ↓

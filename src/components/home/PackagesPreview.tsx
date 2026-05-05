@@ -30,7 +30,7 @@ const PACKAGES = [
     period: 'per month',
     featured: true,
     features: [
-      'Social media — 3 platforms',
+      'Social media, 3 platforms',
       'Meta + Google Ads management',
       '2 email campaigns/month',
       'WhatsApp automation',
@@ -67,7 +67,7 @@ export default function PackagesPreview() {
         For corporations &amp; established businesses.
       </h2>
       <p className="font-sans font-light text-gray-500 text-base max-w-2xl mb-10 leading-relaxed">
-        One-time or retainer packages built for companies that need the full stack — brand, tech,
+        One-time or retainer packages built for companies that need the full stack, brand, tech,
         marketing, automation, and AI working as a single system.
       </p>
 

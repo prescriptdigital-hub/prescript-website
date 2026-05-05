@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: 'Prescript Digital Solutions | We Build, Automate & Deploy AI Into Businesses',
   description:
-    'Nigeria-based digital agency serving Africa, America & Europe. Imprint, Forge, Surge, Flow & Cortex — five integrated services from branding to AI deployment.',
+    'Nigeria-based digital agency serving Africa, America & Europe. Imprint, Forge, Surge, Flow & Cortex, five integrated services from branding to AI deployment.',
   keywords: [
     'digital agency Nigeria',
     'AI deployment Africa',

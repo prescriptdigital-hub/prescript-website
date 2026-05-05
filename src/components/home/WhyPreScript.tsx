@@ -2,12 +2,12 @@ const REASONS = [
   {
     num: '01',
     title: 'Five services, one partner',
-    desc: 'No juggling five agencies. Prescript delivers every layer — brand, tech, marketing, automation, and AI — under one roof, in one coordinated system.',
+    desc: 'No juggling five agencies. Prescript delivers every layer, brand, tech, marketing, automation, and AI, under one roof, in one coordinated system.',
   },
   {
     num: '02',
     title: 'Flow-first by default',
-    desc: "Every engagement includes automation thinking. We don't just build things — we connect them so your business runs without manual effort.",
+    desc: "Every engagement includes automation thinking. We don't just build things, we connect them so your business runs without manual effort.",
   },
   {
     num: '03',
@@ -17,7 +17,7 @@ const REASONS = [
   {
     num: '04',
     title: '3-continent experience',
-    desc: "We've built for businesses in Nigeria, across Africa, in the US, and Europe. We understand what works in each market — and how to bridge them.",
+    desc: "We've built for businesses in Nigeria, across Africa, in the US, and Europe. We understand what works in each market, and how to bridge them.",
   },
 ]
 

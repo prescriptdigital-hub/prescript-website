@@ -35,8 +35,8 @@ export async function verifyPayment(
 ): Promise<boolean> {
   const url = process.env.NEXT_PUBLIC_PAYMENT_VERIFY_URL
   if (!url) {
-    // No worker configured yet — optimistic success in dev
-    console.log('[Payment verify — no worker URL]', { reference, provider })
+    // No worker configured yet, optimistic success in dev
+    console.log('[Payment verify, no worker URL]', { reference, provider })
     return true
   }
   try {

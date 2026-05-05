@@ -58,7 +58,7 @@ export const SERVICES: Service[] = [
     accentText: '#633806',
     tagline: 'Brand identities that make businesses look world-class.',
     description:
-      'Imprint is where your brand is born. We craft visual identities, content systems, and creative assets that communicate authority and trust — from your first logo to your full brand guide. Every deliverable is built to scale across digital and physical touchpoints globally.',
+      'Imprint is where your brand is born. We craft visual identities, content systems, and creative assets that communicate authority and trust, from your first logo to your full brand guide. Every deliverable is built to scale across digital and physical touchpoints globally.',
     meta: {
       from: '$500',
       turnaround: '7–14 days',
@@ -69,7 +69,7 @@ export const SERVICES: Service[] = [
       {
         title: 'Brand Identity System',
         description:
-          'Logo suite, color palette, typography, brand guide — a complete visual system that travels across every touchpoint.',
+          'Logo suite, color palette, typography, brand guide, a complete visual system that travels across every touchpoint.',
       },
       {
         title: 'Content Creation',
@@ -84,7 +84,7 @@ export const SERVICES: Service[] = [
       {
         title: 'Brand Messaging',
         description:
-          'Tagline, voice guide, elevator pitch, and messaging framework — so every word represents your brand.',
+          'Tagline, voice guide, elevator pitch, and messaging framework, so every word represents your brand.',
       },
       {
         title: 'Packaging & Print',
@@ -136,7 +136,7 @@ export const SERVICES: Service[] = [
       name: 'Forge',
       slug: 'forge',
       teaser:
-        'Once your brand is set, Forge builds the digital infrastructure — website, CRM, email, and more.',
+        'Once your brand is set, Forge builds the digital infrastructure, website, CRM, email, and more.',
     },
   },
   {
@@ -148,9 +148,9 @@ export const SERVICES: Service[] = [
     isCoreService: false,
     accentBg: '#E6F1FB',
     accentText: '#0C447C',
-    tagline: 'Your full digital infrastructure — built to last.',
+    tagline: 'Your full digital infrastructure, built to last.',
     description:
-      "Forge is your complete digital build-out. We design and develop websites, mobile apps, eCommerce stores, and integrate your CRM, email systems, and cloud hosting. Every platform we build is mobile-first, SEO-optimized, and ready to scale — whether you're in Lagos, London, or Los Angeles.",
+      "Forge is your complete digital build-out. We design and develop websites, mobile apps, eCommerce stores, and integrate your CRM, email systems, and cloud hosting. Every platform we build is mobile-first, SEO-optimized, and ready to scale, whether you're in Lagos, London, or Los Angeles.",
     meta: {
       from: '$800',
       turnaround: '14–45 days',
@@ -166,7 +166,7 @@ export const SERVICES: Service[] = [
       {
         title: 'Mobile App Development',
         description:
-          'React Native or Flutter apps for iOS and Android — from MVP to full product.',
+          'React Native or Flutter apps for iOS and Android, from MVP to full product.',
       },
       {
         title: 'eCommerce Stores',
@@ -181,7 +181,7 @@ export const SERVICES: Service[] = [
       {
         title: 'CRM Implementation',
         description:
-          'GoHighLevel, HubSpot, or Zoho — configured, customized, and ready to capture and close leads.',
+          'GoHighLevel, HubSpot, or Zoho, configured, customized, and ready to capture and close leads.',
       },
     ],
     process: [
@@ -193,7 +193,7 @@ export const SERVICES: Service[] = [
       {
         title: 'Design Mockups',
         description:
-          'High-fidelity Figma mockups for every screen — reviewed and approved before build begins.',
+          'High-fidelity Figma mockups for every screen, reviewed and approved before build begins.',
       },
       {
         title: 'Build & Test',
@@ -232,7 +232,7 @@ export const SERVICES: Service[] = [
       name: 'Surge',
       slug: 'surge',
       teaser:
-        'With your platform live, Surge drives the traffic — ads, social, email, and outdoor marketing.',
+        'With your platform live, Surge drives the traffic, ads, social, email, and outdoor marketing.',
     },
   },
   {
@@ -325,7 +325,7 @@ export const SERVICES: Service[] = [
       name: 'Flow',
       slug: 'flow',
       teaser:
-        'As leads come in through Surge, Flow automates the follow-up — so no lead ever slips through the cracks.',
+        'As leads come in through Surge, Flow automates the follow-up, so no lead ever slips through the cracks.',
     },
   },
   {
@@ -339,7 +339,7 @@ export const SERVICES: Service[] = [
     accentText: '#3C3489',
     tagline: 'Eliminate manual work. Let your business run itself.',
     description:
-      'Flow maps your operations and automates the repetitive. CRM workflows, payment sequences, lead follow-ups, onboarding, and WhatsApp automations — we build the systems that keep your business running while you focus on growth. Flow is our core service because without it, every other service underperforms.',
+      'Flow maps your operations and automates the repetitive. CRM workflows, payment sequences, lead follow-ups, onboarding, and WhatsApp automations, we build the systems that keep your business running while you focus on growth. Flow is our core service because without it, every other service underperforms.',
     meta: {
       from: '$1,200',
       turnaround: '1–3 weeks',
@@ -350,7 +350,7 @@ export const SERVICES: Service[] = [
       {
         title: 'Business Process Audit',
         description:
-          'Full workflow mapping and bottleneck identification — we find exactly where time and money are being lost.',
+          'Full workflow mapping and bottleneck identification, we find exactly where time and money are being lost.',
       },
       {
         title: 'Software Integration',
@@ -365,7 +365,7 @@ export const SERVICES: Service[] = [
       {
         title: 'Operations Automation',
         description:
-          'Invoices, client onboarding, portals, and task assignments — all running without manual input.',
+          'Invoices, client onboarding, portals, and task assignments, all running without manual input.',
       },
       {
         title: 'WhatsApp & Messaging Automation',
@@ -382,7 +382,7 @@ export const SERVICES: Service[] = [
       {
         title: 'Automation Blueprint',
         description:
-          'We design the full automation architecture — every trigger, action, and integration documented.',
+          'We design the full automation architecture, every trigger, action, and integration documented.',
       },
       {
         title: 'Build & Test',
@@ -419,7 +419,7 @@ export const SERVICES: Service[] = [
       name: 'Cortex',
       slug: 'cortex',
       teaser:
-        'Flow automates your workflows — Cortex deploys AI agents that think, respond, and act inside them.',
+        'Flow automates your workflows, Cortex deploys AI agents that think, respond, and act inside them.',
     },
   },
   {
@@ -431,9 +431,9 @@ export const SERVICES: Service[] = [
     isCoreService: true,
     accentBg: '#E1F5EE',
     accentText: '#085041',
-    tagline: 'AI agents deployed inside your business — working 24/7.',
+    tagline: 'AI agents deployed inside your business, working 24/7.',
     description:
-      'Cortex is our deepest core. We design, train, and deploy AI agents directly into your business systems — handling customer support, qualifying leads, booking appointments, and running intelligent workflows around the clock. Cortex agents are trained on your business knowledge and integrated with your CRM, WhatsApp, and operations stack.',
+      'Cortex is our deepest core. We design, train, and deploy AI agents directly into your business systems, handling customer support, qualifying leads, booking appointments, and running intelligent workflows around the clock. Cortex agents are trained on your business knowledge and integrated with your CRM, WhatsApp, and operations stack.',
     meta: {
       from: '$2,000',
       turnaround: '2–4 weeks',
@@ -459,12 +459,12 @@ export const SERVICES: Service[] = [
       {
         title: 'Custom AI Workflow',
         description:
-          'Bespoke AI systems built for your unique operations — from internal knowledge assistants to automated reporting.',
+          'Bespoke AI systems built for your unique operations, from internal knowledge assistants to automated reporting.',
       },
       {
         title: 'Cortex-to-CRM Integration',
         description:
-          'Every AI interaction is logged, tagged, and synced to your CRM — full visibility into every conversation.',
+          'Every AI interaction is logged, tagged, and synced to your CRM, full visibility into every conversation.',
       },
     ],
     process: [
@@ -476,7 +476,7 @@ export const SERVICES: Service[] = [
       {
         title: 'Agent Design & Training',
         description:
-          'We design the agent personality, knowledge base, and response logic — trained on your actual business data.',
+          'We design the agent personality, knowledge base, and response logic, trained on your actual business data.',
       },
       {
         title: 'Integration & Testing',
@@ -500,7 +500,7 @@ export const SERVICES: Service[] = [
       'GoHighLevel',
     ],
     results: [
-      '24/7 lead engagement — no more missed enquiries',
+      '24/7 lead engagement, no more missed enquiries',
       'Response in seconds, not hours',
       'Only warm, qualified leads reach your team',
       'Scales to thousands of conversations simultaneously',

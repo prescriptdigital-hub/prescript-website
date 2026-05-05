@@ -102,7 +102,7 @@ export default function ContactPage() {
               </button>
             </div>
 
-            {/* Calendly embed — always in DOM, hidden when not active */}
+            {/* Calendly embed, always in DOM, hidden when not active */}
             <div className={activeTab === 'book' ? 'block' : 'hidden'}>
               <div
                 className="calendly-inline-widget rounded-xl overflow-hidden border border-gray-100"
@@ -217,13 +217,13 @@ export default function ContactPage() {
                       {...register('service', { required: 'Please select a service' })}
                     >
                       <option value="" disabled>Select a service</option>
-                      <option value="imprint">Imprint — Branding &amp; Creative</option>
-                      <option value="forge">Forge — Digital &amp; Tech Platforms</option>
-                      <option value="surge">Surge — Digital Marketing</option>
-                      <option value="flow">Flow — Business Automation</option>
-                      <option value="cortex">Cortex — Agentic AI Deployment</option>
+                      <option value="imprint">Imprint, Branding &amp; Creative</option>
+                      <option value="forge">Forge, Digital &amp; Tech Platforms</option>
+                      <option value="surge">Surge, Digital Marketing</option>
+                      <option value="flow">Flow, Business Automation</option>
+                      <option value="cortex">Cortex, Agentic AI Deployment</option>
                       <option value="subscription">Subscription Plan</option>
-                      <option value="full">Full Package — All Five Services</option>
+                      <option value="full">Full Package, All Five Services</option>
                     </select>
                     {errors.service && (
                       <p className="text-xs text-red-500 mt-1">{errors.service.message}</p>
@@ -283,7 +283,7 @@ export default function ContactPage() {
                 We respond within 24 hours
               </p>
               <p className="font-sans text-sm text-prescript-green-dark leading-relaxed">
-                Every enquiry gets a personal response — not an automated reply.
+                Every enquiry gets a personal response, not an automated reply.
               </p>
             </div>
 

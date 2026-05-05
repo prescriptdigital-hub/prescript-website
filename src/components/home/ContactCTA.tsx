@@ -48,7 +48,7 @@ export default function ContactCTA() {
           Your business deserves a digital team that actually delivers
         </h2>
         <p className="font-sans text-gray-500 text-base text-center mb-8 leading-relaxed">
-          Tell us where you are — we&apos;ll show you how{' '}
+          Tell us where you are, we&apos;ll show you how{' '}
           <span className="text-prescript-green font-medium">Imprint</span>,{' '}
           Forge, Surge, Flow, and Cortex fit together for your business.
         </p>
@@ -109,12 +109,12 @@ export default function ContactCTA() {
                 <option value="" disabled>
                   Which service do you need most?
                 </option>
-                <option value="imprint">Imprint — Branding &amp; Creative</option>
-                <option value="forge">Forge — Digital &amp; Tech Platforms</option>
-                <option value="surge">Surge — Digital Marketing</option>
-                <option value="flow">Flow — Business Automation</option>
-                <option value="cortex">Cortex — Agentic AI Deployment</option>
-                <option value="full">Full Package — All Five Services</option>
+                <option value="imprint">Imprint, Branding &amp; Creative</option>
+                <option value="forge">Forge, Digital &amp; Tech Platforms</option>
+                <option value="surge">Surge, Digital Marketing</option>
+                <option value="flow">Flow, Business Automation</option>
+                <option value="cortex">Cortex, Agentic AI Deployment</option>
+                <option value="full">Full Package, All Five Services</option>
               </select>
               {errors.service && (
                 <p className="text-xs text-red-500 mt-1">Please select a service</p>

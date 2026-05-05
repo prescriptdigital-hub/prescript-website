@@ -58,8 +58,8 @@ const PREVIEW_PLANS = [
     features: [
       '20 graphics + 6 reels + 1 video/month',
       'Meta + Google Ads management',
-      'Flow — 4 automation workflows',
-      'Cortex — 1 AI agent (support or sales)',
+      'Flow, 4 automation workflows',
+      'Cortex, 1 AI agent (support or sales)',
       'Monthly strategy call (60 mins)',
     ],
     cta: 'Start with Scale',
@@ -77,7 +77,7 @@ export default function SubscriptionsPreview() {
               For individuals, startups &amp; small businesses.
             </h2>
             <p className="font-sans font-light text-gray-500 text-base max-w-2xl leading-relaxed">
-              No big upfront costs. World-class digital services on a monthly plan — start small, scale as you grow.
+              No big upfront costs. World-class digital services on a monthly plan, start small, scale as you grow.
             </p>
           </div>
           <Link
