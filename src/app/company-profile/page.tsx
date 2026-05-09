@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import PrintButton from './PrintButton'
+import dynamic from 'next/dynamic'
+const PrintButton = dynamic(() => import('./PrintButton'), { ssr: false })
 
 export const metadata: Metadata = {
   title: 'Company Profile, Prescript Digital Solutions',
