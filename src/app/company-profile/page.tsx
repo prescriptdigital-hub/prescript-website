@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
-const PrintButton = dynamic(() => import('./PrintButton'), { ssr: false })
 
 export const metadata: Metadata = {
   title: 'Company Profile, Prescript Digital Solutions',
@@ -14,7 +12,7 @@ export default function CompanyProfilePage() {
       {/* Print/Download bar - hidden when printing */}
       <div className="no-print bg-gray-50 border-b border-gray-200 px-6 py-3 flex items-center justify-between">
         <p className="text-sm text-gray-500">Company Profile 2025</p>
-        <PrintButton />
+        <p className="text-sm text-gray-400">Press Ctrl+P (or Cmd+P on Mac) to save as PDF</p>
       </div>
 
       {/* Profile Content */}
