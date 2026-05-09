@@ -1,5 +1,5 @@
-"use client"
 import type { Metadata } from 'next'
+import PrintButton from './PrintButton'
 
 export const metadata: Metadata = {
   title: 'Company Profile, Prescript Digital Solutions',
@@ -13,12 +13,7 @@ export default function CompanyProfilePage() {
       {/* Print/Download bar - hidden when printing */}
       <div className="no-print bg-gray-50 border-b border-gray-200 px-6 py-3 flex items-center justify-between">
         <p className="text-sm text-gray-500">Company Profile 2025</p>
-        <button
-          onClick={() => typeof window !== 'undefined' && window.print()}
-          className="bg-prescript-green text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-prescript-green-mid transition-colors"
-        >
-          Download PDF
-        </button>
+        <PrintButton />
       </div>
 
       {/* Profile Content */}
