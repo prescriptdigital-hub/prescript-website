@@ -23,6 +23,10 @@ next-env.d.ts
 *.pem
 Thumbs.db
 
+# Local tooling
+/.wrangler/
+/.playwright-mcp/
+
 # Debug logs
 npm-debug.log*
 yarn-debug.log*

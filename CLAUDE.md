@@ -40,10 +40,12 @@ npm run lint     # Run ESLint
 
 | Variable | Purpose | Where to set |
 |---|---|---|
-| `NEXT_PUBLIC_WEB3FORMS_KEY` | Web3Forms access key for contact form submissions | Cloudflare Pages Variables and Secrets |
-| `NEXT_PUBLIC_CRISP_ID` | Crisp live chat Website ID | Cloudflare Pages Variables and Secrets |
+| `NEXT_PUBLIC_PAYMENT_VERIFY_URL` | URL of the `prescript-payment-verify` Worker. If unset, `verifyPayment()` optimistically returns `true` (dev only). | Cloudflare Pages Variables and Secrets |
+| `NEXT_PUBLIC_TRACKER_URL` | URL of the `prescript-tracker` Worker, used by `/track` and `/admin`. | Cloudflare Pages Variables and Secrets |
 
-Both are optional at build time — the features gracefully degrade if the variables are absent (forms log to console; chat widget doesn't load).
+Both are set in production. `NEXT_PUBLIC_WEB3FORMS_KEY` is still present in Pages settings but is **no longer used** — the contact form now posts to Formspree (see Integrations).
+
+The contact form (Formspree) and live chat (Tawk.to) use hardcoded IDs in the code, not env vars.
 
 ---
 
@@ -53,16 +55,23 @@ Both are optional at build time — the features gracefully degrade if the varia
 ```
 /                        → src/app/page.tsx
 /services/[slug]         → src/app/services/[slug]/page.tsx  (imprint|forge|surge|flow|cortex)
+/about                   → src/app/about/page.tsx
+/company-profile         → src/app/company-profile/page.tsx  (print-to-PDF one-pager)
 /pricing                 → src/app/pricing/page.tsx
 /subscriptions           → src/app/subscriptions/page.tsx
-/contact                 → src/app/contact/page.tsx
+/work, /work/[slug]      → case studies (data in src/lib/cases.ts — currently placeholder)
+/articles, /articles/[slug] → articles (data in src/lib/posts.ts)
+/contact                 → src/app/contact/page.tsx  (RHF form + Calendly embed)
+/onboarding              → src/app/onboarding/page.tsx
+/track                   → public project-status lookup (tracker Worker)
+/admin, /admin/projects, /admin/team → password-gated admin (tracker Worker)
 ```
 
 ### Key Data Files
 - **`src/lib/services.ts`** — Single source of truth for all five service definitions (deliverables, process steps, tools, pricing, next-service links). The `SERVICES` array is used by both the home page and dynamic service pages. Any service content edits go here.
 - **`src/lib/pricing.ts`** — Pricing card data
 - **`src/lib/constants.ts`** — Shared constants (WhatsApp number, social links, etc.)
-- **`src/lib/submitForm.ts`** — Web3Forms submission function used by all contact forms
+- **`src/lib/submitForm.ts`** — `submitToWebhook()`, posts to Formspree (`formspree.io/f/maqaqvqg`); used by all contact forms
 
 ### Component Structure
 ```
@@ -117,24 +126,38 @@ Always capitalize. Always use exact names and descriptions:
 
 ## Integrations
 
-### Contact Form (Web3Forms)
-All contact forms call `submitToWebhook()` from `src/lib/submitForm.ts`. It posts to `https://api.web3forms.com/submit` and Web3Forms emails the submission to the address linked to the access key. No backend required.
+### Contact Form (Formspree)
+All contact forms call `submitToWebhook()` from `src/lib/submitForm.ts`. It POSTs JSON to `https://formspree.io/f/maqaqvqg`; Formspree emails the submission to the linked address. No backend required.
 
-### Live Chat (Crisp)
-Loaded in `src/app/layout.tsx` via `next/script` with `strategy="afterInteractive"`. The widget only renders when `NEXT_PUBLIC_CRISP_ID` is set. Find the Website ID in Crisp Dashboard → Website Settings → Setup & Integrations.
+### Live Chat (Tawk.to)
+Loaded in `src/app/layout.tsx` via an inline `next/script` (`strategy="afterInteractive"`). The Tawk.to property/widget ID is hardcoded in that script tag (`embed.tawk.to/<propertyId>/<widgetId>`). To change accounts, edit the `src` in `layout.tsx`.
+
+### Payments
+- Client: Paystack (NGN) + Flutterwave (USD) publishable keys are hardcoded in `src/lib/payment.ts`. SDKs are loaded in `layout.tsx`.
+- Verification: the `prescript-payment-verify` Worker (`workers/verify-payment.js`) checks each transaction server-side against the Paystack/Flutterwave APIs, creates a tracker record, and emails billing via Resend. Worker secrets: `PAYSTACK_SECRET_KEY`, `FLUTTERWAVE_SECRET_KEY`, `INTERNAL_KEY`, `TRACKER_URL`. `RESEND_API_KEY` is **not yet set** — billing emails are skipped until it is.
+
+### Project Tracker
+The `prescript-tracker` Worker (`workers/tracker.js`) backs `/track` (public status lookup by reference) and `/admin`, `/admin/projects`, `/admin/team` (password-gated). KV namespace `PROJECTS`; secrets `ADMIN_PASSWORD`, `INTERNAL_KEY`. Default admin password fallback in code is `prescript2026` if `config:admin_password` is unset in KV.
 
 ### Email
-`hello@prescriptdigital.com` is forwarded to Gmail via **Cloudflare Email Routing** (configured in Cloudflare dashboard → prescriptdigital.com → Email → Email Routing).
+`hello@prescriptdigital.com` is forwarded to Gmail via **Cloudflare Email Routing** (Cloudflare dashboard → prescriptdigital.com → Email → Email Routing).
 
 ---
 
-## Pending Setup (as of April 2025)
+## Deploys
 
-- [ ] Add `NEXT_PUBLIC_WEB3FORMS_KEY` in Cloudflare Pages Variables and Secrets, then redeploy
-- [ ] Find Crisp Website ID (Website Settings → Setup & Integrations) and add as `NEXT_PUBLIC_CRISP_ID` in Cloudflare Pages, then redeploy
-- [ ] Configure Crisp chatbot auto-replies with Prescript service information
-- [ ] Verify Cloudflare Email Routing is active and forwarding `hello@prescriptdigital.com` to Gmail
-- [ ] Optional: set up Gmail "Send as" via Brevo SMTP to reply from `hello@prescriptdigital.com`
+Cloudflare Pages builds from `main` on every push. The last successful production build is what's live. Note: a run of "Failed" deployments in the dashboard from ~May 2025 are **manual retries of one broken commit** (`d25528f`, a `/company-profile` static-generation timeout, fixed in `02dd101`) — not the current state. `npm run build` on `main` passes clean.
+
+## Pending Setup
+
+- [ ] Set `RESEND_API_KEY` on the `prescript-payment-verify` Worker so payment/billing emails send
+- [ ] Point `www.prescriptdigital.com` at Cloudflare Pages (currently serves a stale Hostinger site) — add `www` as a Pages custom domain or a redirect to the apex
+- [ ] Replace placeholder case studies in `src/lib/cases.ts` with real client work (or label them as samples)
+- [ ] Supply a proper brand logo asset (see below)
+
+## Logo / Brand Assets
+
+`public/prescriptcreatives_logo.png` (used in Navbar + Footer, and as favicon in `layout.tsx`) is a low-resolution raster with a baked-in maroon background that does not match the `#1D9E75` brand green. `public/favicon.svg` is a different mark again (a plain "P"). These should be unified — ideally a single transparent SVG wordmark/monogram in brand green.
 
 ---
 

@@ -68,15 +68,14 @@ NEXT_PUBLIC_INSTAGRAM=https://instagram.com/prescriptdigital
 NEXT_PUBLIC_LINKEDIN=https://linkedin.com/company/prescriptdigital
 ```
 
-## Deployment to Vercel
+## Deployment (Cloudflare Pages)
 
-1. Push this repo to GitHub
-2. Go to [vercel.com](https://vercel.com) → New Project
-3. Import your GitHub repository
-4. Add environment variables in the Vercel dashboard
-5. Deploy — Vercel auto-detects Next.js
+The site is hosted on **Cloudflare Pages** (project `prescript-website`), connected to this
+repo's `main` branch. Every push to `main` triggers a build (`npm run build`, output `out/`)
+and an automatic deploy to https://prescriptdigital.com — there is no manual deploy step.
 
-```bash
-# Or deploy via CLI
-npx vercel
-```
+- Environment variables are set in **Cloudflare Pages → Settings → Variables and Secrets**, not `.env.local`.
+- Two Cloudflare Workers back the payment and project-tracker features — see [`workers/`](workers/) and `CLAUDE.md`.
+- `next.config.js` uses `output: 'export'` + `trailingSlash: true` for a fully static build.
+
+See `CLAUDE.md` for the full deployment and integration notes.

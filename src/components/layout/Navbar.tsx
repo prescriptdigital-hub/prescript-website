@@ -46,13 +46,13 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={clsx(
-                  'text-sm font-sans transition-colors',
+                  'text-sm font-sans whitespace-nowrap transition-colors',
                   pathname === link.href
                     ? 'text-prescript-green underline underline-offset-4'
                     : 'text-gray-600 hover:text-prescript-green'
@@ -65,13 +65,13 @@ export default function Navbar() {
 
           {/* CTA + hamburger */}
           <div className="flex items-center gap-3">
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <Button variant="primary" size="sm" href="/contact">
                 Book a Free Call
               </Button>
             </div>
             <button
-              className="md:hidden p-2 text-gray-600"
+              className="lg:hidden p-2 text-gray-600"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Toggle menu"
               type="button"
@@ -91,7 +91,7 @@ export default function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className="overflow-hidden border-t border-gray-100 md:hidden"
+            className="overflow-hidden border-t border-gray-100 lg:hidden"
           >
             <nav className="flex flex-col px-4 py-4 gap-1 bg-white">
               {NAV_LINKS.map((link) => (
