@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'About Prescript Digital Solutions',
@@ -31,6 +33,7 @@ const STATS = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
+      <Navbar />
 
       {/* Hero */}
       <section className="border-b border-gray-100 px-6 py-20 max-w-5xl mx-auto">
@@ -157,6 +160,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <Footer />
     </div>
   )
 }
