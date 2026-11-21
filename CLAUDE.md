@@ -134,6 +134,7 @@ Loaded in `src/app/layout.tsx` via an inline `next/script` (`strategy="afterInte
 
 ### Payments
 - Client: Paystack (NGN) + Flutterwave (USD) publishable keys are hardcoded in `src/lib/payment.ts`. SDKs are loaded in `layout.tsx`.
+- PayPal (USD, alongside Flutterwave "Card"): live Client ID in `src/lib/payment.ts`; the SDK is loaded on demand. The worker captures the order server-side with secrets `PAYPAL_CLIENT_ID` / `PAYPAL_SECRET` (set `PAYPAL_ENV=sandbox` only for testing).
 - Verification: the `prescript-payment-verify` Worker (`workers/verify-payment.js`) checks each transaction server-side against the Paystack/Flutterwave APIs, creates a tracker record, and emails billing via Resend. Worker secrets: `PAYSTACK_SECRET_KEY`, `FLUTTERWAVE_SECRET_KEY`, `INTERNAL_KEY`, `TRACKER_URL`. `RESEND_API_KEY` is **not yet set** — billing emails are skipped until it is.
 
 ### Project Tracker

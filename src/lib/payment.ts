@@ -34,7 +34,9 @@ declare global {
   }
 }
 
-export const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ?? ''
+export const PAYPAL_CLIENT_ID =
+  process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ||
+  'BAAZJju5Uflqwat2C3tXCwEW_0cMxL8ksYBHPB_LkK5EFBgrX4q6_7rbNowzXTqBSegfJufT1CEJW5GS1Q'
 
 let paypalSdk: Promise<void> | null = null
 
