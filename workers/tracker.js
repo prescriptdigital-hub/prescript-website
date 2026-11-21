@@ -3,7 +3,7 @@
  * KV namespace: PROJECTS | Secrets: ADMIN_PASSWORD, INTERNAL_KEY
  */
 
-const ALLOWED_ORIGINS = ["https://prescriptdigital.com", "http://localhost:3000"]
+const ALLOWED_ORIGINS = ["https://prescriptdigital.com", "https://www.prescriptdigital.com", "http://localhost:3000"]
 const SUBSCRIPTION_NAMES = ["Seed","Grow","Thrive","Launch","Build","Scale","Dominate","Growth Engine","AI Business System"]
 const SUBSCRIPTION_STAGES = ["Onboarding","Account Setup","Strategy & Planning","Execution","Review & Reporting"]
 const PACKAGE_STAGES = ["Brief & Discovery","Strategy","Design & Build","Client Review","Delivery"]

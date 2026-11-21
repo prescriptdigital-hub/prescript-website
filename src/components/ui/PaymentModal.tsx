@@ -1,9 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { X, CheckCircle, Copy, Check } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { openPaystackPopup, openFlutterwavePopup, verifyPayment, generateRef } from '@/lib/payment'
+import {
+  openPaystackPopup, openFlutterwavePopup, verifyPayment, generateRef,
+  loadPayPalSdk, PAYPAL_CLIENT_ID,
+} from '@/lib/payment'
 import Button from './Button'
 import { COMPANY_INFO } from '@/lib/constants'
 
@@ -30,7 +33,53 @@ interface PaymentModalProps {
   onClose: () => void
 }
 
-type Stage = 'form' | 'processing' | 'success' | 'error' | 'bank-transfer'
+type Stage = 'form' | 'processing' | 'success' | 'error' | 'bank-transfer' | 'paypal'
+
+function PayPalCheckout({
+  planName, amountUSD, onApproved, onCancel, onFailed,
+}: {
+  planName: string
+  amountUSD: number
+  onApproved: (orderID: string) => void
+  onCancel: () => void
+  onFailed: () => void
+}) {
+  const container = useRef<HTMLDivElement>(null)
+  const handlers = useRef({ onApproved, onCancel, onFailed })
+  handlers.current = { onApproved, onCancel, onFailed }
+
+  useEffect(() => {
+    let buttons: ReturnType<NonNullable<Window['paypal']>['Buttons']> | null = null
+    let cancelled = false
+    loadPayPalSdk()
+      .then(() => {
+        if (cancelled || !container.current || !window.paypal) return
+        buttons = window.paypal.Buttons({
+          style: { layout: 'vertical', shape: 'rect', label: 'pay', height: 45 },
+          createOrder: (_data, actions) =>
+            actions.order.create({
+              purchase_units: [{
+                amount: { currency_code: 'USD', value: amountUSD.toFixed(2) },
+                description: `Prescript Digital: ${planName}`.slice(0, 127),
+                custom_id: planName.slice(0, 127),
+              }],
+              application_context: { brand_name: 'Prescript Digital', shipping_preference: 'NO_SHIPPING' },
+            }),
+          onApprove: async ({ orderID }) => handlers.current.onApproved(orderID),
+          onCancel: () => handlers.current.onCancel(),
+          onError: () => handlers.current.onFailed(),
+        })
+        return buttons.render(container.current)
+      })
+      .catch(() => handlers.current.onFailed())
+    return () => {
+      cancelled = true
+      buttons?.close().catch(() => {})
+    }
+  }, [planName, amountUSD])
+
+  return <div ref={container} className="min-h-[50px]" />
+}
 
 export default function PaymentModal({
   planName, amountUSD, amountNGN, currency, onClose,
@@ -41,13 +90,22 @@ export default function PaymentModal({
 
   const [stage, setStage] = useState<Stage>(exceedsLimit ? 'bank-transfer' : 'form')
   const [copied, setCopied] = useState(false)
+  const payPalAvailable = currency === 'usd' && PAYPAL_CLIENT_ID !== ''
+  const [method, setMethod] = useState<'card' | 'paypal'>('card')
+  const usePayPal = payPalAvailable && method === 'paypal'
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
   const displayAmount = currency === 'ngn'
     ? `₦${amountNGN.toLocaleString()}`
     : `$${amountUSD.toLocaleString()}`
-  const provider = currency === 'ngn' ? 'Paystack' : 'Flutterwave'
+  const provider = currency === 'ngn' ? 'Paystack' : usePayPal ? 'PayPal' : 'Flutterwave'
+
+  const onPayPalApproved = async (orderID: string) => {
+    setStage('processing')
+    const ok = await verifyPayment(orderID, 'paypal')
+    setStage(ok ? 'success' : 'error')
+  }
   const payRef = `PSC-${planName.toUpperCase().replace(/\s/g, '-')}-${generateRef().split('-')[1]}`
 
   const copyAccount = () => {
@@ -57,6 +115,10 @@ export default function PaymentModal({
   }
 
   const onSubmit = async (data: FormData) => {
+    if (usePayPal) {
+      setStage('paypal')
+      return
+    }
     setStage('processing')
 
     const handleSuccess = async (reference: string) => {
@@ -210,6 +272,28 @@ export default function PaymentModal({
           </div>
         )}
 
+        {/* PayPal */}
+        {stage === 'paypal' && (
+          <div>
+            <p className="font-syne font-extrabold text-xl text-gray-900 mb-1">{planName}</p>
+            <p className="font-sans text-2xl font-bold text-prescript-green mb-5">{displayAmount}</p>
+            <PayPalCheckout
+              planName={planName}
+              amountUSD={amountUSD}
+              onApproved={onPayPalApproved}
+              onCancel={() => setStage('form')}
+              onFailed={() => setStage('error')}
+            />
+            <button
+              type="button"
+              onClick={() => setStage('form')}
+              className="w-full text-center text-xs font-sans text-gray-400 hover:text-gray-600 mt-3"
+            >
+              ← Back
+            </button>
+          </div>
+        )}
+
         {/* Form */}
         {(stage === 'form' || stage === 'processing') && (
           <>
@@ -224,6 +308,27 @@ export default function PaymentModal({
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+              {payPalAvailable && (
+                <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Payment method">
+                  {(['card', 'paypal'] as const).map((m) => (
+                    <button
+                      key={m}
+                      type="button"
+                      role="radio"
+                      aria-checked={method === m}
+                      onClick={() => setMethod(m)}
+                      className={`py-2.5 rounded-lg border text-sm font-sans font-medium transition-colors ${
+                        method === m
+                          ? 'border-prescript-green bg-prescript-green-light text-prescript-green-dark'
+                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                      }`}
+                    >
+                      {m === 'card' ? 'Card' : 'PayPal'}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               <div>
                 <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
                   Full name <span className="text-red-400">*</span>
@@ -260,7 +365,9 @@ export default function PaymentModal({
                 className="w-full mt-1"
                 disabled={stage === 'processing'}
               >
-                {stage === 'processing' ? 'Opening checkout…' : `Pay ${displayAmount} →`}
+                {stage === 'processing'
+                  ? 'Opening checkout…'
+                  : usePayPal ? 'Continue to PayPal →' : `Pay ${displayAmount} →`}
               </Button>
 
               <p className="text-xs font-sans text-gray-400 text-center">

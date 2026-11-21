@@ -22,7 +22,35 @@ declare global {
       callback: (response: { transaction_id: number; status: string }) => void
       onclose: () => void
     }) => void
+    paypal?: {
+      Buttons: (config: {
+        style?: Record<string, string | number>
+        createOrder: (data: unknown, actions: { order: { create: (order: object) => Promise<string> } }) => Promise<string>
+        onApprove: (data: { orderID: string }) => Promise<void>
+        onCancel?: () => void
+        onError?: (err: unknown) => void
+      }) => { render: (el: HTMLElement) => Promise<void>; close: () => Promise<void> }
+    }
   }
+}
+
+export const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ?? ''
+
+let paypalSdk: Promise<void> | null = null
+
+export function loadPayPalSdk(): Promise<void> {
+  if (paypalSdk) return paypalSdk
+  paypalSdk = new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(PAYPAL_CLIENT_ID)}&currency=USD&intent=capture&components=buttons`
+    script.onload = () => resolve()
+    script.onerror = () => {
+      paypalSdk = null
+      reject(new Error('PayPal failed to load'))
+    }
+    document.body.appendChild(script)
+  })
+  return paypalSdk
 }
 
 export function generateRef(): string {
@@ -31,7 +59,7 @@ export function generateRef(): string {
 
 export async function verifyPayment(
   reference: string,
-  provider: 'paystack' | 'flutterwave'
+  provider: 'paystack' | 'flutterwave' | 'paypal'
 ): Promise<boolean> {
   const url = process.env.NEXT_PUBLIC_PAYMENT_VERIFY_URL
   if (!url) {

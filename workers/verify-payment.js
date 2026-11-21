@@ -8,7 +8,7 @@
  *   RESEND_API_KEY        — from resend.com (free, for billing notifications)
  */
 
-const ALLOWED_ORIGINS = ['https://prescriptdigital.com', 'http://localhost:3000']
+const ALLOWED_ORIGINS = ['https://prescriptdigital.com', 'https://www.prescriptdigital.com', 'http://localhost:3000']
 const BILLING_EMAIL = 'billing@prescriptdigital.com'
 
 function corsHeaders(origin) {
@@ -129,6 +129,46 @@ export default {
         await Promise.all([
           sendBillingEmail(env, { customerEmail, planName, reference, provider: 'Flutterwave', amount }),
           createProjectRecord(env, { customerEmail, customerName, planName, reference, provider: 'Flutterwave', amount }),
+        ])
+        return json({ success: true }, 200, origin)
+      }
+
+      return json({ success: false, error: 'Payment not successful' }, 400, origin)
+    }
+
+    // ── PayPal: capture server-side so the browser can't fake an approval ──
+    if (provider === 'paypal') {
+      if (!/^[A-Z0-9]{10,40}$/.test(reference)) {
+        return json({ success: false, error: 'Invalid order id' }, 400, origin)
+      }
+      const base = env.PAYPAL_ENV === 'sandbox' ? 'https://api-m.sandbox.paypal.com' : 'https://api-m.paypal.com'
+      const tokenRes = await fetch(`${base}/v1/oauth2/token`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${btoa(`${env.PAYPAL_CLIENT_ID}:${env.PAYPAL_SECRET}`)}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'grant_type=client_credentials',
+      })
+      const { access_token } = await tokenRes.json()
+      if (!access_token) return json({ success: false, error: 'PayPal auth failed' }, 502, origin)
+
+      const captureRes = await fetch(`${base}/v2/checkout/orders/${reference}/capture`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${access_token}`, 'Content-Type': 'application/json' },
+      })
+      const data = await captureRes.json()
+      const unit = data.purchase_units?.[0]
+      const capture = unit?.payments?.captures?.[0]
+
+      if (data.status === 'COMPLETED' && capture?.status === 'COMPLETED' && capture.amount?.currency_code === 'USD') {
+        const customerEmail = data.payer?.email_address ?? ''
+        const customerName = [data.payer?.name?.given_name, data.payer?.name?.surname].filter(Boolean).join(' ')
+        const planName = capture.custom_id ?? unit.custom_id ?? 'Unknown plan'
+        const amount = `$${capture.amount.value}`
+        await Promise.all([
+          sendBillingEmail(env, { customerEmail, planName, reference: capture.id, provider: 'PayPal', amount }),
+          createProjectRecord(env, { customerEmail, customerName, planName, reference: capture.id, provider: 'PayPal', amount }),
         ])
         return json({ success: true }, 200, origin)
       }
