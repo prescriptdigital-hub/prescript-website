@@ -1,0 +1,59 @@
+/* Prescript Digital design tokens v1.0, from brand/design_handoff_prescript_brand/tokens/.
+   Fonts are self-hosted by next/font in layout.tsx instead of the Google Fonts @import. */
+
+:root {
+  --pd-cream:   #EFEA8C;
+  --pd-brick:   #C24E4E;
+  --pd-oxblood: #3A1714;
+  --pd-paper:   #F7F4EC;
+  --pd-ink:     #141110;
+
+  --pd-brick-700: #A33E3E;
+  --pd-text-muted: #4A403B;
+  --pd-text-subtle: #6B605A;
+  --pd-line: #DED8C8;
+  --pd-surface: #FFFDF7;
+  --pd-surface-2: #E9E4D7;
+
+  --pd-iq-violet: #8B7CFF;
+  --pd-synq-mint: #2EE6A6;
+
+  --pd-error:   #B3123B;  --pd-error-bg:   #F9E3E8;
+  --pd-warning: #9A5B00;  --pd-warning-bg: #FBEFD9;
+  --pd-success: #1F7A4F;  --pd-success-bg: #E0F2E8;
+  --pd-info:    #2F5FC4;  --pd-info-bg:    #E3EBFA;
+
+  --pd-font-display: var(--font-exo2), 'Exo 2', system-ui, sans-serif;
+  --pd-font-body: var(--font-plex), 'IBM Plex Sans', system-ui, sans-serif;
+  --pd-font-mono: var(--font-jbmono), 'JetBrains Mono', ui-monospace, monospace;
+
+  --pd-h1: clamp(40px, 5vw, 64px);
+  --pd-h2: clamp(32px, 4vw, 48px);
+  --pd-h3: 36px;
+  --pd-h4: 28px;
+  --pd-h5: 22px;
+  --pd-h6: 14px;
+  --pd-body-lg: 18px;
+  --pd-body: 16px;
+  --pd-caption: 13px;
+  --pd-eyebrow: 12px;
+
+  --pd-space-1: 4px;  --pd-space-2: 8px;  --pd-space-3: 12px; --pd-space-4: 16px;
+  --pd-space-5: 24px; --pd-space-6: 32px; --pd-space-7: 48px; --pd-space-8: 64px;
+  --pd-space-9: 80px; --pd-space-10: 96px;
+
+  --pd-radius-0: 0;
+  --pd-radius-app: 22%;
+
+  --pd-ease-out: cubic-bezier(.2,.8,.2,1);
+  --pd-ease-settle: cubic-bezier(.3,1.4,.5,1);
+  --pd-dur-fast: 150ms; --pd-dur: 250ms; --pd-dur-logo: 900ms;
+}
+
+.pd-dot { display:inline-block; width:0.14em; height:0.14em; background:currentColor; margin-left:0.08em; }
+.pd-dot--brick { background: var(--pd-brick); }
+.pd-dot--cream { background: var(--pd-cream); }
+
+.pd-texture { position:relative; isolation:isolate; }
+.pd-texture::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:url('/brand/texture/prescript-weathered-texture-dark.svg') center/cover; opacity:.7; }

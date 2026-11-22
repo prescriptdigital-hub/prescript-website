@@ -25,15 +25,15 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl border border-gray-100 p-8 w-full max-w-sm shadow-sm">
+    <main className="min-h-screen bg-pd-paper flex items-center justify-center p-4">
+      <div className="bg-pd-surface rounded-2xl border border-pd-line p-8 w-full max-w-sm ">
         <div className="mb-6">
-          <p className="font-syne font-extrabold text-2xl text-gray-900 mb-1">Admin</p>
-          <p className="font-sans text-sm text-gray-400">Prescript Digital internal panel</p>
+          <p className="font-display font-light text-2xl text-pd-ink mb-1">Admin</p>
+          <p className="font-sans text-sm text-pd-subtle">Prescript Digital internal panel</p>
         </div>
         <div className="flex flex-col gap-4">
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && login()} placeholder="Admin password" className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent" />
-          {error && <p className="text-xs text-red-500">{error}</p>}
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && login()} placeholder="Admin password" className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent" />
+          {error && <p className="text-xs text-pd-error">{error}</p>}
           <Button variant="primary" size="lg" onClick={login} disabled={loading} className="w-full">{loading ? "Checking..." : "Sign in"}</Button>
         </div>
       </div>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Prescript Digital — Brand Identity Guidelines</title>
+<link rel="icon" href="../brand-assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200;300;400;500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Michroma&family=Rajdhani:wght@300;400&family=Orbitron:wght@400&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#F7F4EC;color:#141110;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#A33E3E;text-decoration:none}
+a:hover{color:#3A1714;text-decoration:underline}
+@keyframes pdA{from{transform:translateX(-46px);opacity:0}to{transform:none;opacity:1}}
+@keyframes pdB{from{transform:translateX(46px);opacity:0}to{transform:none;opacity:1}}
+@keyframes pdD{0%{transform:translateY(-70px);opacity:0}70%{transform:translateY(4px);opacity:1}100%{transform:none;opacity:1}}
+@keyframes pdW{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<div style="min-height:100vh">
+
+<header data-screen-label="00 Cover" style="position:relative;overflow:hidden;background:#C24E4E;color:#EFEA8C;min-height:88vh;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(20px,4vw,48px)">
+  <sc-if value="{{ texture }}" hint-placeholder-val="{{ true }}">
+    <img src="../brand-assets/texture/prescript-weathered-texture-dark.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.75;pointer-events:none">
+  </sc-if>
+  <div style="position:relative;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase">
+    <span>Prescript Digital Solutions Ltd</span>
+    <span>Brand Identity Guidelines — v1.0 — 2026</span>
+  </div>
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding:48px 0">
+    <sc-if value="{{ heroShadow }}" hint-placeholder-val="{{ true }}">
+      <img src="../brand-assets/svg/mark/prescript-mark-hero-shadow-on-brick.svg" alt="Prescript mark" style="width:min(240px,42vw);height:auto">
+    </sc-if>
+    <sc-if value="{{ noHeroShadow }}" hint-placeholder-val="{{ false }}">
+      <img src="../brand-assets/svg/mark/prescript-mark-full-colour-on-brick.svg" alt="Prescript mark" style="width:min(240px,42vw);height:auto">
+    </sc-if>
+    <img src="../brand-assets/svg/wordmark/prescript-wordmark-full-colour-on-brick.svg" alt="prescript digital" style="width:min(420px,70vw);height:auto">
+  </div>
+  <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+    <p style="margin:0;max-width:520px;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(20px,2.4vw,30px);line-height:1.25;letter-spacing:0.01em;text-wrap:pretty">Diagnose. Prescribe. Deliver.</p>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em">&lt; · &gt;</span>
+  </div>
+</header>
+
+<main style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+
+<section id="idea" data-screen-label="01 The Idea" style="padding:96px 0 64px;display:flex;flex-direction:column;gap:56px;border-bottom:1px solid #DED8C8">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px">
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">01 — The idea</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.02;letter-spacing:-0.01em;text-wrap:balance">A prescription, written in code.</h2>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#4A403B;text-wrap:pretty">A doctor doesn’t hand you every medicine on the shelf. They diagnose, then write one precise prescription. Prescript does the same for businesses: we look at what holds a business back, and prescribe the exact brand, platform, marketing, automation or AI it needs. Nothing more, nothing less.</p>
+    <p style="margin:0;font-size:18px;line-height:1.6;color:#4A403B;text-wrap:pretty">The mark draws that idea as a line of code, <span style="font-family:'JetBrains Mono',monospace">&lt; · &gt;</span>, turned 45° into a diamond.</p>
+  </div>
+  <div style="display:grid;gap:2px;background:#DED8C8;border:1px solid #DED8C8;align-content:start">
+    <div style="background:#F7F4EC;padding:24px;display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:28px;color:#C24E4E">&lt;</span>
+      <div><h3 style="margin:0 0 6px;font-family:'Exo 2',sans-serif;font-weight:400;font-size:20px">The opening bracket: diagnose</h3><p style="margin:0;line-height:1.55;color:#4A403B">We start by framing the real problem: the bottleneck, the lost lead, the brand that doesn’t earn trust. Every solution opens with understanding.</p></div>
+    </div>
+    <div style="background:#F7F4EC;padding:24px;display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:28px;color:#C24E4E">&gt;</span>
+      <div><h3 style="margin:0 0 6px;font-family:'Exo 2',sans-serif;font-weight:400;font-size:20px">The closing bracket: deliver</h3><p style="margin:0;line-height:1.55;color:#4A403B">We close the loop by building and shipping. The two strokes interlock but never touch: our expertise and the client’s business, working as one while each keeps its own shape.</p></div>
+    </div>
+    <div style="background:#F7F4EC;padding:24px;display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start">
+      <span style="width:18px;height:18px;background:#C24E4E;margin:10px 0 0 4px"></span>
+      <div><h3 style="margin:0 0 6px;font-family:'Exo 2',sans-serif;font-weight:400;font-size:20px">The square: the prescription</h3><p style="margin:0;line-height:1.55;color:#4A403B">The one precise answer at the centre of everything. It comes back as the full stop after the wordmark: decided, delivered, done. Execution is the product.</p></div>
+    </div>
+    <div style="background:#F7F4EC;padding:24px;display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:28px;color:#C24E4E">◇</span>
+      <div><h3 style="margin:0 0 6px;font-family:'Exo 2',sans-serif;font-weight:400;font-size:20px">The diamond: lasting value</h3><p style="margin:0;line-height:1.55;color:#4A403B">Together the brackets form a diamond, the shape of something valuable that holds under pressure. It is left slightly open, because a good prescription keeps improving.</p></div>
+    </div>
+  </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:#3A1714;border:1px solid #3A1714">
+    <div style="background:#C24E4E;color:#EFEA8C;padding:28px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em">&lt; DIAGNOSE</span><span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:26px;line-height:1.15">Find what really holds the business back.</span></div>
+    <div style="background:#C24E4E;color:#EFEA8C;padding:28px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em">· PRESCRIBE</span><span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:26px;line-height:1.15">Write the one precise solution: brand, platform, growth, automation or AI.</span></div>
+    <div style="background:#C24E4E;color:#EFEA8C;padding:28px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em">DELIVER &gt;</span><span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:26px;line-height:1.15">Build it, ship it, and keep it running.</span></div>
+  </div>
+</section>
+
+<section id="construction" data-screen-label="02 Construction" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:720px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">02 — Construction, clear space &amp; minimum size</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Built on a 100-unit square, rotated 45°.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+    <div style="position:relative;aspect-ratio:1;background-color:#3A1714;background-image:linear-gradient(rgba(239,234,140,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(239,234,140,0.12) 1px,transparent 1px);background-size:calc(100% / 12) calc(100% / 12);display:grid;place-items:center">
+      <img src="../brand-assets/svg/mark/prescript-mark-cream-on-dark.svg" alt="" style="width:74%;height:auto">
+      <span style="position:absolute;left:12px;bottom:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#EFEA8C;letter-spacing:0.06em">GRID 12 × 12 · 144 UNITS</span>
+    </div>
+    <div style="position:relative;aspect-ratio:1;background:#EFEA8C;display:grid;place-items:center">
+      <div style="position:relative;width:52%;outline:1px dashed #A33E3E;outline-offset:clamp(26px,4.6vw,40px)">
+        <img src="../brand-assets/svg/mark/prescript-mark-dark-on-cream.svg" alt="" style="display:block;width:100%;height:auto">
+      </div>
+      <div style="position:absolute;top:14px;left:14px;display:flex;gap:8px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A1714;letter-spacing:0.06em"><span style="width:12px;height:12px;background:#C24E4E"></span>X = CENTRE SQUARE · CLEAR SPACE = 2X</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;border:1px solid #DED8C8">
+      <div style="padding:20px;border-bottom:1px solid #DED8C8;display:grid;grid-template-columns:1fr auto;gap:12px"><span>Stroke weight</span><span style="font-family:'JetBrains Mono',monospace">19% of mark width</span></div>
+      <div style="padding:20px;border-bottom:1px solid #DED8C8;display:grid;grid-template-columns:1fr auto;gap:12px"><span>Interlock gap</span><span style="font-family:'JetBrains Mono',monospace">0.37 × stroke</span></div>
+      <div style="padding:20px;border-bottom:1px solid #DED8C8;display:grid;grid-template-columns:1fr auto;gap:12px"><span>Outer corner radius</span><span style="font-family:'JetBrains Mono',monospace">0.44 × stroke</span></div>
+      <div style="padding:20px;border-bottom:1px solid #DED8C8;display:grid;grid-template-columns:1fr auto;gap:12px"><span>Inner ends</span><span style="font-family:'JetBrains Mono',monospace">square cut</span></div>
+      <div style="padding:20px;border-bottom:1px solid #DED8C8;display:grid;grid-template-columns:1fr auto;gap:12px"><span>Centre square (X)</span><span style="font-family:'JetBrains Mono',monospace">12.5% of width</span></div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:14px">
+        <span style="font-weight:600">Minimum sizes</span>
+        <div style="display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><img src="../brand-assets/svg/mark/prescript-mark-small-size-cut.svg" alt="" style="width:16px;height:16px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px">Mark 16 px<br>small cut</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><img src="../brand-assets/svg/horizontal/prescript-horizontal-dark-on-cream.svg" alt="" style="width:120px;height:auto"><span style="font-family:'JetBrains Mono',monospace;font-size:11px">Horizontal 120 px / 30 mm</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><img src="../brand-assets/svg/stacked/prescript-stacked-dark-on-cream.svg" alt="" style="width:64px;height:auto"><span style="font-family:'JetBrains Mono',monospace;font-size:11px">Stacked 64 px / 18 mm</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="margin:0;max-width:760px;line-height:1.6;color:#4A403B">Below 32 px, use the <strong>small-size cut</strong>: wider interlock gap, tighter corners and a larger centre square so it stays readable at 16 px.</p>
+</section>
+
+<section id="logos" data-screen-label="03 Logo Set" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">03 — Logo set</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Four lockups. One system.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px;grid-column:1/-1">
+      <div style="background:#C24E4E;min-height:280px;display:grid;place-items:center;padding:48px"><img src="../brand-assets/svg/horizontal/prescript-horizontal-full-colour-on-brick.svg" alt="Horizontal lockup" style="width:min(640px,100%);height:auto"></div>
+      <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px">A · Primary horizontal lockup — default for web, documents, signage</figcaption>
+    </figure>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+      <div style="background:#3A1714;aspect-ratio:4/3;display:grid;place-items:center;padding:32px"><img src="../brand-assets/svg/stacked/prescript-stacked-cream-on-dark.svg" alt="Stacked lockup" style="width:62%;height:auto"></div>
+      <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px">B · Stacked / centred — posters, merch, square formats</figcaption>
+    </figure>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+      <div style="background:#EFEA8C;aspect-ratio:4/3;display:grid;place-items:center;padding:32px"><img src="../brand-assets/svg/mark/prescript-mark-dark-on-cream.svg" alt="Mark" style="width:42%;height:auto"></div>
+      <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px">C · Mark only — icon, avatar, favicon, pattern</figcaption>
+    </figure>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+      <div style="background:#F0ECE1;aspect-ratio:4/3;display:grid;place-items:center;padding:32px"><img src="../brand-assets/svg/wordmark/prescript-wordmark-dark-on-cream.svg" alt="Wordmark" style="width:86%;height:auto"></div>
+      <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px">D · Wordmark only — where the mark already appears nearby</figcaption>
+    </figure>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+      <div style="background:#C24E4E;aspect-ratio:4/3;display:grid;grid-template-columns:1fr 1fr;place-items:center;padding:24px;gap:16px;position:relative;overflow:hidden">
+        <img src="../brand-assets/svg/mark/prescript-mark-hero-shadow-on-brick.svg" alt="" style="width:80%;height:auto">
+        <img src="../brand-assets/svg/mark/prescript-mark-full-colour-on-brick.svg" alt="" style="width:80%;height:auto">
+      </div>
+      <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px">Hero mark with offset shadow (left) — heroes &amp; posters only. Flat mark (right) — everything else.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="versions" data-screen-label="04 Colour Versions" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">04 — Colour versions</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">The square carries the accent.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+    <sc-for list="{{ versions }}" as="v" hint-placeholder-count="5">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+        <div style="aspect-ratio:1;display:grid;place-items:center;padding:28px;background:{{ v.bg }};border:1px solid #E4DECF"><img src="{{ v.src }}" alt="{{ v.name }}" style="width:78%;height:auto"></div>
+        <figcaption style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ v.name }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B605A">{{ v.note }}</span></figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section id="icons" data-screen-label="05 Favicon & Avatars" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">05 — Favicon &amp; avatars</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Reads at 16 pixels.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+    <div style="background:#E9E4D7;padding:20px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;gap:2px">
+        <div style="background:#F7F4EC;padding:8px 14px;display:flex;gap:8px;align-items:center;font-size:12px;border-radius:8px 8px 0 0;min-width:0"><img src="../brand-assets/favicon/favicon-tile.svg" alt="" style="width:16px;height:16px;flex:none"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Prescript Digital</span></div>
+        <div style="padding:8px 14px;display:flex;gap:8px;align-items:center;font-size:12px;color:#6B605A"><img src="../brand-assets/favicon/favicon.svg" alt="" style="width:16px;height:16px;flex:none">Work</div>
+      </div>
+      <div style="display:flex;gap:24px;align-items:flex-end">
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><img src="../brand-assets/favicon/favicon-tile.svg" alt="" style="width:16px;height:16px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px">16</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><img src="../brand-assets/favicon/favicon-tile.svg" alt="" style="width:32px;height:32px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px">32</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><img src="../brand-assets/favicon/favicon-tile.svg" alt="" style="width:64px;height:64px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px">64</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><img src="../brand-assets/favicon/favicon.svg" alt="" style="width:32px;height:32px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px">SVG</span></div>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B605A">favicon.svg switches to cream in browser dark mode</span>
+    </div>
+    <div style="background:#E9E4D7;padding:20px;display:flex;gap:20px;align-items:center;justify-content:center;flex-wrap:wrap">
+      <img src="../brand-assets/svg/avatar/prescript-avatar-circle.svg" alt="" style="width:120px;height:120px">
+      <img src="../brand-assets/svg/avatar/prescript-avatar-square.svg" alt="" style="width:120px;height:120px">
+    </div>
+    <div style="background:#E9E4D7;padding:20px;display:flex;gap:20px;align-items:center;justify-content:center;flex-wrap:wrap">
+      <img src="../brand-assets/svg/avatar/prescript-avatar-circle-dark.svg" alt="" style="width:120px;height:120px">
+      <img src="../brand-assets/svg/avatar/prescript-avatar-square-dark.svg" alt="" style="width:120px;height:120px;border-radius:24px">
+    </div>
+  </div>
+</section>
+
+<section id="wordmark" data-screen-label="06 Wordmark Typeface" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">06 — Wordmark typeface</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Recommended: Exo 2 Light, tracked +110.</h2>
+    <p style="margin:0;line-height:1.6;color:#4A403B;text-wrap:pretty">Exo 2 is the closest match to the reference: squared curves, single-storey g, and a full weight range for the type system. The delivered wordmark is outlined and tracked by hand — never retype it.</p>
+  </div>
+  <div style="display:grid;gap:2px;background:#DED8C8;border:1px solid #DED8C8">
+    <sc-for list="{{ faces }}" as="f" hint-placeholder-count="4">
+      <div style="background:#F7F4EC;padding:28px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;align-items:center">
+        <div style="display:flex;align-items:baseline;gap:0.12em;font-size:clamp(26px,3.6vw,44px);color:#3A1714;min-width:0;flex-wrap:wrap"><span style="font-family:{{ f.family }};font-weight:{{ f.weight }};letter-spacing:{{ f.track }}">prescript digital</span><span style="width:0.14em;height:0.14em;background:#C24E4E;display:inline-block"></span></div>
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">{{ f.name }} <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#A33E3E">{{ f.tag }}</span></span><span style="font-size:14px;line-height:1.5;color:#4A403B">{{ f.note }}</span></div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="colour" data-screen-label="07 Colour" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">07 — Colour</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Lemon cream on brick. Oxblood for depth.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+    <sc-for list="{{ core }}" as="c" hint-placeholder-count="5">
+      <div style="display:flex;flex-direction:column;border:1px solid #E4DECF">
+        <div style="aspect-ratio:4/3;background:{{ c.hex }};padding:16px;display:flex;align-items:flex-end;color:{{ c.fg }};font-family:'Exo 2',sans-serif;font-size:22px;font-weight:300">{{ c.name }}</div>
+        <div style="padding:14px 16px;display:flex;flex-direction:column;gap:4px;font-family:'JetBrains Mono',monospace;font-size:12px;background:#FFFDF7"><span style="font-weight:500">{{ c.hex }}</span><span>RGB {{ c.rgb }}</span><span>CMYK {{ c.cmyk }}</span><span style="color:#6B605A">{{ c.role }}</span></div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <sc-for list="{{ scales }}" as="s" hint-placeholder-count="7">
+      <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:center">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px">{{ s.name }}</span>
+        <div style="display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:2px">
+          <sc-for list="{{ s.steps }}" as="t" hint-placeholder-count="10">
+            <div style="background:{{ t.hex }};color:{{ t.fg }};height:56px;padding:6px;display:flex;flex-direction:column;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;outline:{{ t.outline }};outline-offset:-2px"><span>{{ t.step }}</span><span style="overflow:hidden;text-overflow:ellipsis">{{ t.hex }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B605A;margin-top:6px">Outlined step = the brand value. Violet and mint are reserved for the software sub-brands.</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <h3 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:400;font-size:24px">Interface status colours</h3>
+    <p style="margin:0;max-width:760px;line-height:1.6;color:#4A403B;font-size:15px">Brick is a brand colour, not an error colour. Errors use a cooler crimson, and every status is always paired with an icon and a text label, never colour alone.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:24px">
+      <sc-for list="{{ status }}" as="s" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:{{ s.tint }};border-left:0;display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;padding:14px 16px">
+            <span style="width:28px;height:28px;background:{{ s.hex }};color:#FFFFFF;display:grid;place-items:center;font-weight:600;font-size:14px">{{ s.icon }}</span>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;color:{{ s.hex }}">{{ s.title }}</span><span style="font-size:14px;color:#2B2421">{{ s.msg }}</span></div>
+          </div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px">{{ s.name }} · {{ s.hex }} · text on paper {{ s.ratio }}:1</span>
+        </div>
+      </sc-for>
+    </div>
+    <h3 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:400;font-size:24px">Accessibility (WCAG 2.2)</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px">
+      <sc-for list="{{ contrast }}" as="k" hint-placeholder-count="12">
+        <div style="display:grid;grid-template-columns:96px 1fr;border:1px solid #E4DECF;background:#FFFDF7">
+          <div style="background:{{ k.bg }};color:{{ k.fg }};display:grid;place-items:center;font-family:'Exo 2',sans-serif;font-size:26px;font-weight:400;min-height:72px">Aa</div>
+          <div style="padding:10px 12px;display:flex;flex-direction:column;gap:3px;font-size:13px"><span>{{ k.label }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px">{{ k.ratio }} : 1 — <span style="color:{{ k.vcol }};font-weight:500">{{ k.verdict }}</span></span><span style="font-size:12px;color:#6B605A">{{ k.use }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:0;max-width:820px;line-height:1.6;color:#4A403B;font-size:15px">Cream on brick is the signature pairing but passes AA only for large text (24 px+, or 19 px bold) and the logo. For body copy on brick use white; on light grounds use Brick 700 or darker for text.</p>
+  </div>
+</section>
+
+<section id="texture" data-screen-label="08 Texture" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">08 — Weathered texture</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Craft lives in the ground, never in the logo.</h2>
+    <p style="margin:0;line-height:1.6;color:#4A403B">A reusable, transparent overlay. Place it over brick or oxblood for heroes, posters and social posts. Keep it under the type layer at 50–80% opacity.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+    <div style="position:relative;aspect-ratio:3/2;background:#C24E4E;overflow:hidden;display:grid;place-items:center"><img src="../brand-assets/texture/prescript-weathered-texture-dark.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.8"><img src="../brand-assets/svg/mark/prescript-mark-hero-shadow-on-brick.svg" alt="" style="position:relative;width:30%"><span style="position:absolute;left:12px;bottom:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#EFEA8C">texture-dark · on brick</span></div>
+    <div style="position:relative;aspect-ratio:3/2;background:#3A1714;overflow:hidden;display:grid;place-items:center"><img src="../brand-assets/texture/prescript-weathered-texture-light.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35"><img src="../brand-assets/svg/mark/prescript-mark-hero-shadow-on-dark.svg" alt="" style="position:relative;width:30%"><span style="position:absolute;left:12px;bottom:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#EFEA8C">texture-light · on oxblood</span></div>
+  </div>
+</section>
+
+<section id="type" data-screen-label="09 Typography" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">09 — Typography</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Engineering meets craft.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+    <div style="border:1px solid #DED8C8;padding:24px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:64px;line-height:1">Aa</span><span style="font-weight:600">Exo 2 — Display</span><span style="font-size:14px;color:#4A403B">Light 300 / Regular 400. Headlines, wordmarks, numerals.</span></div>
+    <div style="border:1px solid #DED8C8;padding:24px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:64px;line-height:1">Aa</span><span style="font-weight:600">IBM Plex Sans — Body</span><span style="font-size:14px;color:#4A403B">Regular 400 / Medium 500 / SemiBold 600. Body, UI, documents.</span></div>
+    <div style="border:1px solid #DED8C8;padding:24px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'JetBrains Mono',monospace;font-size:64px;line-height:1">Aa</span><span style="font-weight:600">JetBrains Mono — Tech</span><span style="font-size:14px;color:#4A403B">Labels, code, data, eyebrows. Uppercase +8% tracking.</span></div>
+  </div>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #DED8C8">
+    <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="10">
+      <div style="display:grid;grid-template-columns:minmax(120px,180px) minmax(0,1fr);gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid #DED8C8">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B605A;line-height:1.5">{{ t.label }}<br>{{ t.spec }}</span>
+        <span style="font-family:{{ t.family }};font-size:{{ t.size }};font-weight:{{ t.weight }};line-height:{{ t.lh }};letter-spacing:{{ t.ls }};text-transform:{{ t.tt }};text-wrap:pretty;min-width:0">{{ t.sample }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+    <span style="background:#C24E4E;color:#FFFFFF;padding:14px 22px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;display:flex;gap:10px;align-items:center">Book a free call <span style="width:7px;height:7px;background:#EFEA8C"></span></span>
+    <span style="background:#3A1714;color:#EFEA8C;padding:14px 22px;font-weight:600;font-size:15px">Start a project</span>
+    <span style="border:1.5px solid #3A1714;color:#3A1714;padding:12.5px 20.5px;font-weight:600;font-size:15px">See our work</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#A33E3E;text-transform:uppercase;letter-spacing:0.08em">Learn more →</span>
+  </div>
+</section>
+
+<section id="family" data-screen-label="10 Brand Family" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">10 — Brand family</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">One mark. The square changes colour.</h2>
+    <p style="margin:0;line-height:1.6;color:#4A403B">The master brand never changes. Studio and its five services use brick. Software products take their own accent — violet for PRESCRIPT IQ™, mint for PRESYNQ™ — in the centre square and the full stop only.</p>
+  </div>
+  <div style="background:#3A1714;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:36px">
+    <img src="../brand-assets/svg/horizontal/prescript-horizontal-cream-on-dark.svg" alt="prescript digital" style="width:min(420px,100%);height:auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;background:rgba(239,234,140,0.18)">
+      <div style="background:#3A1714;padding:24px 0 24px;display:flex;flex-direction:column;gap:20px;padding-right:24px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#EFEA8C;opacity:0.9">DONE-FOR-YOU AGENCY</span>
+        <img src="../brand-assets/svg/family/studio-on-dark.svg" alt="prescript studio" style="width:min(320px,100%);height:auto">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid rgba(239,234,140,0.18)">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#E79B98">{{ s.n }}</span>
+              <img src="{{ s.src }}" alt="{{ s.name }}" style="height:22px;width:auto;justify-self:start">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#EFEA8C;text-transform:uppercase;letter-spacing:0.06em">{{ s.role }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#3A1714;padding:24px 0 24px 24px;display:flex;flex-direction:column;gap:20px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#EFEA8C;opacity:0.9">SOFTWARE PRODUCTS</span>
+        <img src="../brand-assets/svg/family/software-on-dark.svg" alt="prescript software" style="width:min(360px,100%);height:auto">
+        <div style="display:flex;flex-direction:column;gap:14px;padding:16px 0;border-top:1px solid rgba(239,234,140,0.18)">
+          <img src="../brand-assets/svg/family/prescript-iq-on-dark.svg" alt="PRESCRIPT IQ" style="height:40px;width:auto;align-self:flex-start">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#B3A9FF;letter-spacing:0.08em">PRESCRIPT IQ™ — THINK · DECIDE · PLAN</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;padding:16px 0;border-top:1px solid rgba(239,234,140,0.18)">
+          <img src="../brand-assets/svg/family/presynq-on-dark.svg" alt="PRESYNQ" style="height:40px;width:auto;align-self:flex-start">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#2EE6A6;letter-spacing:0.08em">PRESYNQ™ — CONNECT · AUTOMATE · EXECUTE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="personality" data-screen-label="11 Personality" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">11 — Personality &amp; voice</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Precise. Confident. Modern. Engineering meets craft.</h2>
+    <p style="margin:0;line-height:1.6;color:#4A403B">We sound like senior engineers who care about craft: short sentences, concrete outcomes, no hype. Honest over impressive.</p>
+  </div>
+  <div style="display:grid;gap:2px;background:#DED8C8;border:1px solid #DED8C8">
+    <sc-for list="{{ voice }}" as="v" hint-placeholder-count="4">
+      <div style="background:#F7F4EC;padding:18px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+        <span style="font-weight:600">{{ v.trait }}</span>
+        <span style="font-size:14px;line-height:1.5"><span style="color:#1F7A4F;font-family:'JetBrains Mono',monospace;font-size:11px">SAY</span> {{ v.say }}<br><span style="color:#A33E3E;font-family:'JetBrains Mono',monospace;font-size:11px">NOT</span> <span style="color:#6B605A">{{ v.not }}</span></span>
+      </div>
+    </sc-for>
+    <div style="background:#F7F4EC;padding:18px 20px;font-size:14px;line-height:1.5"><strong>Visual clichés we avoid:</strong> globes, circuit boards, light bulbs, glowing brains, stock handshakes, gradient meshes.</div>
+  </div>
+</section>
+
+<section id="usage" data-screen-label="12 In Use" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:48px">
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">12 — Colour, type &amp; imagery in use</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">How it all comes together.</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <h3 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:400;font-size:24px">Colour proportions</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-weight:600">Brand &amp; marketing</span>
+        <div style="display:flex;height:72px;font-family:'JetBrains Mono',monospace;font-size:11px">
+          <div style="flex:55;background:#C24E4E;color:#FFFFFF;padding:8px">BRICK 55%</div><div style="flex:20;background:#3A1714;color:#EFEA8C;padding:8px">OXBLOOD 20</div><div style="flex:15;background:#EFEA8C;color:#3A1714;padding:8px">CREAM 15</div><div style="flex:10;background:#F7F4EC;border:1px solid #DED8C8;color:#141110;padding:8px">10</div>
+        </div>
+        <span style="font-size:14px;color:#4A403B">Heroes, social, posters, decks. Brick leads; cream carries the type.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-weight:600">Website &amp; product</span>
+        <div style="display:flex;height:72px;font-family:'JetBrains Mono',monospace;font-size:11px">
+          <div style="flex:60;background:#F7F4EC;border:1px solid #DED8C8;color:#141110;padding:8px">PAPER 60%</div><div style="flex:22;background:#141110;color:#F7F4EC;padding:8px">INK 22</div><div style="flex:10;background:#3A1714;color:#EFEA8C;padding:8px">10</div><div style="flex:8;background:#C24E4E;color:#FFFFFF;padding:8px">8</div>
+        </div>
+        <span style="font-size:14px;color:#4A403B">Reading surfaces stay calm. Brick is saved for actions and the square.</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <h3 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:400;font-size:24px">Text on every ground</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+      <div style="background:#C24E4E;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:300px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#EFEA8C">ON BRICK</span>
+        <span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:34px;line-height:1.05;color:#EFEA8C">Headlines in cream</span>
+        <span style="font-size:15px;line-height:1.55;color:#FFFFFF">Body copy in white, never cream, so it passes AA at every size.</span>
+        <span style="margin-top:auto;align-self:flex-start;background:#3A1714;color:#EFEA8C;padding:12px 18px;font-weight:600;font-size:14px">Oxblood button</span>
+      </div>
+      <div style="background:#3A1714;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:300px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#EFEA8C">ON OXBLOOD</span>
+        <span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:34px;line-height:1.05;color:#EFEA8C">Headlines in cream</span>
+        <span style="font-size:15px;line-height:1.55;color:#F7F4EC">Body in paper. Links in cream, underlined.</span>
+        <span style="margin-top:auto;align-self:flex-start;background:#C24E4E;color:#FFFFFF;padding:12px 18px;font-weight:600;font-size:14px">Brick button</span>
+      </div>
+      <div style="background:#F7F4EC;border:1px solid #DED8C8;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:300px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#A33E3E">ON PAPER</span>
+        <span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:34px;line-height:1.05;color:#141110">Headlines in ink</span>
+        <span style="font-size:15px;line-height:1.55;color:#4A403B">Body in warm grey. <span style="color:#A33E3E;text-decoration:underline">Links in Brick 700</span>.</span>
+        <span style="margin-top:auto;align-self:flex-start;background:#C24E4E;color:#FFFFFF;padding:12px 18px;font-weight:600;font-size:14px">Brick button</span>
+      </div>
+      <div style="background:#EFEA8C;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:300px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#3A1714">ON CREAM</span>
+        <span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:34px;line-height:1.05;color:#3A1714">Headlines in oxblood</span>
+        <span style="font-size:15px;line-height:1.55;color:#3A1714">Short body in oxblood. Use cream grounds for highlights, not long reads.</span>
+        <span style="margin-top:auto;align-self:flex-start;background:#3A1714;color:#EFEA8C;padding:12px 18px;font-weight:600;font-size:14px">Oxblood button</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <h3 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:400;font-size:24px">Imagery</h3>
+    <p style="margin:0;max-width:760px;line-height:1.6;color:#4A403B">Real people doing real work, in natural light. Show the craft: hands, whiteboards, screens, the moment a problem gets solved. Images are either shown as they are, or as a brick/oxblood duotone for brand moments.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px"><div style="aspect-ratio:4/5;background-color:#E9E4D7;background-image:repeating-linear-gradient(135deg,rgba(58,23,20,0.07) 0 2px,transparent 2px 12px);display:grid;place-items:center;padding:16px;text-align:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A1714">PHOTO · TEAM AT WORK<br>natural light, candid</span></div><figcaption style="font-size:14px"><strong style="color:#1F7A4F">USE</strong> Candid, unposed team and client moments</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px"><div style="aspect-ratio:4/5;background-color:#E9E4D7;background-image:repeating-linear-gradient(135deg,rgba(58,23,20,0.07) 0 2px,transparent 2px 12px);display:grid;place-items:center;padding:16px;text-align:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A1714">PHOTO · CLOSE-UP<br>hands, sketches, screens</span></div><figcaption style="font-size:14px"><strong style="color:#1F7A4F">USE</strong> Close crops that show craft and detail</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px"><div style="aspect-ratio:4/5;position:relative;background-color:#E9E4D7;background-image:repeating-linear-gradient(135deg,rgba(58,23,20,0.07) 0 2px,transparent 2px 12px);display:grid;place-items:center;padding:16px;text-align:center;overflow:hidden"><div style="position:absolute;inset:0;background:#C24E4E;mix-blend-mode:multiply"></div><span style="position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;color:#EFEA8C">PHOTO · DUOTONE<br>oxblood shadows → cream highlights</span></div><figcaption style="font-size:14px"><strong style="color:#1F7A4F">USE</strong> Duotone for heroes and social posts</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px"><div style="aspect-ratio:4/5;position:relative;background-color:#E9E4D7;background-image:repeating-linear-gradient(135deg,rgba(58,23,20,0.07) 0 2px,transparent 2px 12px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden"><span style="position:absolute;top:16px;left:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A1714;text-align:center">PHOTO · ANY</span><div style="background:#3A1714;padding:18px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:22px;color:#EFEA8C;line-height:1.1">Text sits on a solid band</span><span style="font-size:13px;color:#F7F4EC">Never directly on a busy photo.</span></div></div><figcaption style="font-size:14px"><strong style="color:#1F7A4F">USE</strong> Solid oxblood or brick band for text over images</figcaption></figure>
+    </div>
+    <div style="background:#FFFDF7;border:1px solid #E4DECF;padding:16px 20px;font-size:14px;line-height:1.6"><strong style="color:#A33E3E">AVOID</strong> Stock handshakes, globes, circuit boards, light bulbs, glowing robot heads, neon gradients, and text placed directly on busy photos.</div>
+  </div>
+</section>
+
+<section id="web" data-screen-label="13 Logo for Web" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">13 — Logo for the web</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">The right file for every slot.</h2>
+    <p style="margin:0;line-height:1.6;color:#4A403B">Every web file is a transparent SVG. The auto-theme files switch from oxblood to cream when the visitor's device is in dark mode, so one file serves both.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="border:1px solid #DED8C8;display:flex;flex-direction:column">
+        <div style="background:#FFFFFF;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px"><img src="../brand-assets/web/prescript-logo-auto-theme.svg" alt="" style="height:28px"><span style="display:flex;gap:16px;font-size:13px;color:#141110"><span>Work</span><span>About</span></span></div>
+        <div style="background:#141110;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px"><img src="../brand-assets/svg/horizontal/prescript-horizontal-cream-on-dark.svg" alt="" style="height:28px"><span style="display:flex;gap:16px;font-size:13px;color:#F7F4EC"><span>Work</span><span>About</span></span></div>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">Desktop header · horizontal · 28–36 px tall<br>prescript-logo-auto-theme.svg</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="border:1px solid #DED8C8;display:flex;gap:12px;padding:12px;background:#E9E4D7;justify-content:center">
+        <div style="width:150px;background:#F7F4EC;border-radius:16px;overflow:hidden"><div style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #DED8C8"><img src="../brand-assets/web/prescript-mark-auto-theme.svg" alt="" style="width:26px"><span style="display:flex;flex-direction:column;gap:4px"><span style="width:18px;height:2px;background:#141110"></span><span style="width:18px;height:2px;background:#141110"></span></span></div><div style="height:80px"></div></div>
+        <div style="width:150px;background:#C24E4E;border-radius:16px;overflow:hidden"><div style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(239,234,140,0.3)"><img src="../brand-assets/svg/mark/prescript-mark-full-colour-on-brick.svg" alt="" style="width:26px"><span style="display:flex;flex-direction:column;gap:4px"><span style="width:18px;height:2px;background:#EFEA8C"></span><span style="width:18px;height:2px;background:#EFEA8C"></span></span></div><div style="height:80px"></div></div>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">Mobile header · mark only · 24–32 px<br>prescript-mark-auto-theme.svg</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="border:1px solid #DED8C8;background:#E9E4D7;padding:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:2px"><div style="background:#FFFFFF;padding:8px 12px;border-radius:8px 8px 0 0;display:flex;gap:8px;align-items:center;font-size:12px"><img src="../brand-assets/favicon/favicon-tile.svg" alt="" style="width:16px">Prescript Digital</div><div style="background:#2B2421;color:#F7F4EC;padding:8px 12px;border-radius:8px 8px 0 0;display:flex;gap:8px;align-items:center;font-size:12px"><img src="../brand-assets/favicon/favicon-tile.svg" alt="" style="width:16px">Dark tab</div></div>
+        <div style="display:flex;gap:18px;align-items:flex-end">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><img src="../brand-assets/favicon/apple-touch-icon.png" alt="" style="width:60px;height:60px;border-radius:14px"><span style="font-size:11px">Prescript</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><img src="../brand-assets/svg/avatar/prescript-avatar-circle.svg" alt="" style="width:60px;height:60px"><span style="font-size:11px">Android</span></div>
+        </div>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">Favicon 16/32 · home screen 180 · Android 192/512<br>favicon.ico · favicon.svg · apple-touch-icon.png</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="border:1px solid #DED8C8;background:#FFFFFF;padding:14px;display:flex;flex-direction:column;gap:0">
+        <div style="border:1px solid #E4DECF;border-radius:10px;overflow:hidden"><img src="../brand-assets/web/og-image-1200x630.png" alt="" style="display:block;width:100%;aspect-ratio:1200/630;object-fit:cover"><div style="padding:10px 12px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11px;color:#6B605A">prescriptdigital.com</span><span style="font-size:14px;font-weight:600">Prescript Digital Solutions</span></div></div>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">Link share preview (WhatsApp, LinkedIn, X)<br>og-image-1200x630.png</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="border:1px solid #DED8C8;background:#3A1714;padding:32px 20px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+        <img src="../brand-assets/svg/stacked/prescript-stacked-cream-on-dark.svg" alt="" style="height:96px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#EFEA8C;letter-spacing:0.08em">© 2026 PRESCRIPT DIGITAL SOLUTIONS LTD</span>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">Footer · stacked or horizontal on oxblood<br>prescript-stacked-cream-on-dark.svg</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="border:1px solid #DED8C8;background:#F7F4EC;padding:32px 20px;display:flex;gap:28px;align-items:center;justify-content:center;min-height:180px">
+        <img src="../brand-assets/web/prescript-loader.svg" alt="Loading" style="width:56px">
+        <span style="font-size:14px;color:#4A403B">Preparing your prescription…</span>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">Loader · animated SVG, loops<br>prescript-loader.svg</span>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+    <div style="border:1px solid #DED8C8;display:flex;flex-direction:column">
+      <sc-for list="{{ webSpecs }}" as="w" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:12px;padding:12px 16px;border-bottom:1px solid #DED8C8;font-size:14px"><span>{{ w.slot }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;word-break:break-all">{{ w.file }}</span></div>
+      </sc-for>
+    </div>
+    <pre style="margin:0;background:#141110;color:#EFEA8C;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;overflow:auto;white-space:pre">{{ headSnippet }}</pre>
+  </div>
+</section>
+
+<section id="applications" data-screen-label="14 Applications" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:48px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">14 — Applications</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">The system at work.</h2>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px">A · Navigation bar</span>
+    <div style="background:#141110;color:#F7F4EC;padding:16px clamp(16px,3vw,32px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <img src="../brand-assets/svg/horizontal/prescript-horizontal-cream-on-dark.svg" alt="Prescript Digital" style="height:30px;width:auto">
+      <nav style="display:flex;gap:28px;font-size:14px;flex-wrap:wrap;align-items:center">
+        <span style="color:#EFEA8C;display:flex;gap:6px;align-items:center"><span style="width:5px;height:5px;background:#C24E4E"></span>Studio</span><span>Software</span><span>Work</span><span>Pricing</span><span>Articles</span>
+      </nav>
+      <span style="background:#C24E4E;color:#FFFFFF;padding:10px 16px;font-weight:600;font-size:14px;display:flex;gap:8px;align-items:center">Book a free call <span style="width:6px;height:6px;background:#EFEA8C"></span></span>
+    </div>
+    <div style="background:#F7F4EC;border:1px solid #DED8C8;color:#141110;padding:16px clamp(16px,3vw,32px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <img src="../brand-assets/svg/horizontal/prescript-horizontal-dark-on-cream.svg" alt="Prescript Digital" style="height:30px;width:auto">
+      <nav style="display:flex;gap:28px;font-size:14px;flex-wrap:wrap"><span>Studio</span><span>Software</span><span>Work</span><span>Pricing</span><span>Articles</span></nav>
+      <span style="background:#3A1714;color:#EFEA8C;padding:10px 16px;font-weight:600;font-size:14px">Book a free call</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,3fr) minmax(240px,1fr);gap:24px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">B · Website hero — desktop</span>
+      <div style="border:1px solid #CFC8B8;background:#E9E4D7;border-radius:10px;overflow:hidden">
+        <div style="padding:10px 14px;display:flex;gap:6px;align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:#CFC8B8"></span><span style="width:10px;height:10px;border-radius:50%;background:#CFC8B8"></span><span style="width:10px;height:10px;border-radius:50%;background:#CFC8B8"></span><span style="margin-left:12px;background:#F7F4EC;padding:4px 12px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:11px;display:flex;gap:6px;align-items:center"><img src="../brand-assets/favicon/favicon-tile.svg" alt="" style="width:12px;height:12px">prescriptdigital.com</span></div>
+        <div style="position:relative;background:#C24E4E;color:#EFEA8C;aspect-ratio:16/9;overflow:hidden;display:flex;flex-direction:column">
+          <img src="../brand-assets/texture/prescript-weathered-texture-dark.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.65">
+          <div style="position:relative;display:flex;justify-content:space-between;align-items:center;padding:3% 4%;gap:12px">
+            <img src="../brand-assets/svg/horizontal/prescript-horizontal-full-colour-on-brick.svg" alt="" style="height:clamp(14px,2.2vw,26px);width:auto">
+            <div style="display:flex;gap:clamp(8px,2vw,24px);font-size:clamp(9px,1.1vw,13px);color:#FFFFFF"><span>Studio</span><span>Software</span><span>Work</span><span>About</span></div>
+          </div>
+          <div style="position:relative;flex:1;display:grid;grid-template-columns:1.3fr 1fr;align-items:center;padding:0 4% 4%;gap:4%">
+            <div style="display:flex;flex-direction:column;gap:clamp(8px,1.6vw,20px)">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:clamp(8px,0.9vw,11px);letter-spacing:0.1em">BRAND · TECH · GROWTH · AUTOMATION · AI</span>
+              <h1 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(20px,4.2vw,56px);line-height:1;letter-spacing:-0.01em">We build, automate &amp; deploy AI into businesses<span style="display:inline-block;width:0.14em;height:0.14em;background:#EFEA8C;margin-left:0.08em"></span></h1>
+              <div style="display:flex;gap:10px"><span style="background:#3A1714;color:#EFEA8C;padding:clamp(5px,0.8vw,12px) clamp(8px,1.4vw,18px);font-size:clamp(9px,1vw,13px);font-weight:600">Book a free call</span><span style="border:1px solid #FFFFFF;color:#FFFFFF;padding:clamp(5px,0.8vw,12px) clamp(8px,1.4vw,18px);font-size:clamp(9px,1vw,13px);font-weight:600">See our work</span></div>
+            </div>
+            <img src="../brand-assets/svg/mark/prescript-mark-hero-shadow-on-brick.svg" alt="" style="width:80%;justify-self:center">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">C · Website hero — mobile</span>
+      <div style="border:8px solid #141110;border-radius:32px;overflow:hidden;max-width:300px;width:100%">
+        <div style="position:relative;background:#C24E4E;color:#EFEA8C;aspect-ratio:9/19;overflow:hidden;display:flex;flex-direction:column;padding:18px">
+          <img src="../brand-assets/texture/prescript-weathered-texture-dark.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.65">
+          <div style="position:relative;display:flex;justify-content:space-between;align-items:center"><img src="../brand-assets/svg/mark/prescript-mark-full-colour-on-brick.svg" alt="" style="width:32px"><span style="display:flex;flex-direction:column;gap:5px"><span style="width:22px;height:2px;background:#EFEA8C"></span><span style="width:22px;height:2px;background:#EFEA8C"></span></span></div>
+          <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px">
+            <img src="../brand-assets/svg/mark/prescript-mark-hero-shadow-on-brick.svg" alt="" style="width:46%">
+            <h1 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:30px;line-height:1.02">We build, automate &amp; deploy AI into businesses<span style="display:inline-block;width:0.14em;height:0.14em;background:#EFEA8C;margin-left:0.08em"></span></h1>
+            <span style="font-size:13px;line-height:1.5;color:#FFFFFF">Brand, platforms, marketing, automation and AI agents — one integrated team.</span>
+          </div>
+          <span style="position:relative;background:#3A1714;color:#EFEA8C;padding:14px;font-size:14px;font-weight:600;text-align:center">Book a free call</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px">D · Business card — front &amp; back (85 × 55 mm)</span>
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <div style="position:relative;width:min(400px,100%);aspect-ratio:85/55;background:#C24E4E;overflow:hidden;display:grid;place-items:center;box-shadow:0 18px 40px -20px rgba(58,23,20,0.6)">
+        <img src="../brand-assets/texture/prescript-weathered-texture-dark.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.6">
+        <img src="../brand-assets/svg/stacked/prescript-stacked-full-colour-on-brick.svg" alt="" style="position:relative;width:44%">
+      </div>
+      <div style="width:min(400px,100%);aspect-ratio:85/55;background:#F7F4EC;padding:7%;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 18px 40px -20px rgba(58,23,20,0.6)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Exo 2',sans-serif;font-size:20px;font-weight:400;color:#3A1714">Adaeze Okafor</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#A33E3E">FOUNDER &amp; CREATIVE DIRECTOR</span></div><img src="../brand-assets/svg/mark/prescript-mark-dark-on-cream.svg" alt="" style="width:34px"></div>
+        <div style="display:flex;flex-direction:column;gap:3px;font-size:12px;color:#3A1714;font-family:'JetBrains Mono',monospace"><span>+234 703 005 7040</span><span>hello@prescriptdigital.com</span><span>prescriptdigital.com</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">E · Letterhead (A4)</span>
+      <div style="background:#FFFDF7;aspect-ratio:210/297;padding:9%;display:flex;flex-direction:column;gap:6%;box-shadow:0 18px 40px -24px rgba(58,23,20,0.5);border:1px solid #E4DECF">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><img src="../brand-assets/svg/horizontal/prescript-horizontal-dark-on-cream.svg" alt="" style="width:52%"><span style="font-family:'JetBrains Mono',monospace;font-size:8px;line-height:1.6;color:#6B605A;text-align:right">22 NOVEMBER 2026<br>REF PD/26/114</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:10px;line-height:1.6;color:#2B2421">
+          <span>Dear Mr Bello,</span>
+          <span>Thank you for taking the time to walk us through your operations last week. As discussed, we propose a three-phase engagement covering brand, platform and automation.</span>
+          <span>Our full scope and timeline are attached. We will follow up on Thursday.</span>
+          <span>Warm regards,<br><strong>Adaeze Okafor</strong></span>
+        </div>
+        <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #E4DECF;padding-top:8px;font-family:'JetBrains Mono',monospace;font-size:7px;color:#6B605A;gap:8px;flex-wrap:wrap"><span>Prescript Digital Solutions Ltd</span><span style="display:flex;gap:4px;align-items:center">prescriptdigital.com<span style="width:5px;height:5px;background:#C24E4E"></span></span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px">F · Email signature</span>
+        <div style="background:#FFFFFF;border:1px solid #E4DECF;padding:20px;display:flex;flex-direction:column;gap:14px">
+          <span style="font-size:14px;color:#2B2421">Talk soon,</span>
+          <div style="display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:center;border-top:1px solid #E4DECF;padding-top:14px">
+            <img src="../brand-assets/svg/avatar/prescript-avatar-square.svg" alt="" style="width:56px;height:56px">
+            <div style="display:flex;flex-direction:column;gap:2px;font-size:13px;color:#2B2421;min-width:0"><span style="font-family:'Exo 2',sans-serif;font-size:17px;color:#3A1714">Tunde Adebayo</span><span style="color:#A33E3E;font-size:12px">Head of Forge — Prescript Studio</span><span style="font-size:12px;color:#6B605A">+234 703 005 7040 · prescriptdigital.com</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px">G · LinkedIn banner (1584 × 396)</span>
+        <div style="position:relative;aspect-ratio:4/1;background:#3A1714;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:0 6%;gap:6%">
+          <img src="../brand-assets/texture/prescript-weathered-texture-light.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.3">
+          <span style="position:relative;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(14px,2.2vw,28px);color:#EFEA8C;line-height:1.1">Diagnose. Prescribe.<br>Deliver<span style="display:inline-block;width:0.14em;height:0.14em;background:#C24E4E;margin-left:0.08em"></span></span>
+          <img src="../brand-assets/svg/mark/prescript-mark-hero-shadow-on-dark.svg" alt="" style="position:relative;height:72%">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:12px;width:min(400px,100%)">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">H · Instagram post (1080 × 1080)</span>
+      <div style="position:relative;aspect-ratio:1;background:#C24E4E;overflow:hidden;padding:9%;display:flex;flex-direction:column;justify-content:space-between;color:#EFEA8C">
+        <img src="../brand-assets/texture/prescript-weathered-texture-dark.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7">
+        <span style="position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em">05 / CORTEX — AI DEPLOYMENT</span>
+        <span style="position:relative;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(28px,4.4vw,44px);line-height:1.02">Your best employee never sleeps<span style="display:inline-block;width:0.14em;height:0.14em;background:#EFEA8C;margin-left:0.08em"></span></span>
+        <div style="position:relative;display:flex;justify-content:space-between;align-items:center"><img src="../brand-assets/svg/horizontal/prescript-horizontal-full-colour-on-brick.svg" alt="" style="height:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px">@prescriptdigital</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;width:min(260px,100%)">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">I · Instagram story (1080 × 1920)</span>
+      <div style="position:relative;aspect-ratio:9/16;background:#3A1714;overflow:hidden;padding:12% 10%;display:flex;flex-direction:column;justify-content:space-between;color:#EFEA8C">
+        <img src="../brand-assets/texture/prescript-weathered-texture-light.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.3">
+        <img src="../brand-assets/svg/mark/prescript-mark-cream-on-dark.svg" alt="" style="position:relative;width:26%">
+        <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#2EE6A6">PRESYNQ™ — NOW LIVE</span><span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:28px;line-height:1.04">Connect. Automate. Execute<span style="display:inline-block;width:0.14em;height:0.14em;background:#2EE6A6;margin-left:0.08em"></span></span></div>
+        <span style="position:relative;background:#EFEA8C;color:#3A1714;padding:12px;text-align:center;font-size:13px;font-weight:600">Swipe up to try it</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;flex:1;min-width:min(420px,100%)">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">J · Pitch deck — title slide (16:9)</span>
+      <div style="position:relative;aspect-ratio:16/9;background:#C24E4E;overflow:hidden;padding:6%;display:grid;grid-template-columns:1.4fr 1fr;gap:4%;color:#EFEA8C">
+        <img src="../brand-assets/texture/prescript-weathered-texture-dark.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.6">
+        <div style="position:relative;display:flex;flex-direction:column;justify-content:space-between">
+          <img src="../brand-assets/svg/horizontal/prescript-horizontal-full-colour-on-brick.svg" alt="" style="width:62%">
+          <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(20px,3vw,40px);line-height:1.02">Growth, prescribed<span style="display:inline-block;width:0.14em;height:0.14em;background:#EFEA8C;margin-left:0.08em"></span></span><span style="font-family:'JetBrains Mono',monospace;font-size:clamp(8px,0.9vw,11px);letter-spacing:0.08em;color:#FFFFFF">INVESTOR BRIEFING · Q1 2027</span></div>
+        </div>
+        <img src="../brand-assets/svg/mark/prescript-mark-hero-shadow-on-brick.svg" alt="" style="position:relative;width:100%;align-self:center">
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px">K · Logo animation concept</span>
+      <div style="background:#C24E4E;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;position:relative;overflow:hidden">
+        {{ animation }}
+        <button onClick="{{ replay }}" style="position:absolute;right:12px;bottom:12px;background:#3A1714;color:#EFEA8C;border:0;padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;cursor:pointer">REPLAY ↻</button>
+      </div>
+    </div>
+    <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px;background:#DED8C8;border:1px solid #DED8C8">
+      <li style="background:#F7F4EC;padding:16px 20px;display:grid;grid-template-columns:72px 1fr;gap:12px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A33E3E">0–900ms</span><span>The two brackets slide in from either side and interlock.</span></li>
+      <li style="background:#F7F4EC;padding:16px 20px;display:grid;grid-template-columns:72px 1fr;gap:12px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A33E3E">900ms</span><span>The centre square drops in last with a short settle — the prescription lands.</span></li>
+      <li style="background:#F7F4EC;padding:16px 20px;display:grid;grid-template-columns:72px 1fr;gap:12px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A33E3E">1.3s</span><span>The wordmark fades up; its full stop lands in sync with the square.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="rules" data-screen-label="15 Do's and Don'ts" style="padding:80px 0;border-bottom:1px solid #DED8C8;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">15 — Do's &amp; don'ts</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Protect the mark.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+    <sc-for list="{{ rules }}" as="r" hint-placeholder-count="8">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="aspect-ratio:1;background:{{ r.bg }};display:grid;place-items:center;overflow:hidden;position:relative;border:1px solid #E4DECF">
+          <img src="{{ r.src }}" alt="" style="width:46%;transform:{{ r.tf }};filter:{{ r.filter }};box-shadow:{{ r.shadow }}">
+        </div>
+        <figcaption style="display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.4"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:{{ r.col }};padding-top:2px">{{ r.tag }}</span><span>{{ r.text }}</span></figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section id="downloads" data-screen-label="16 Downloads" style="padding:80px 0 120px;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A33E3E">16 — Asset library</span>
+    <h2 style="margin:0;font-family:'Exo 2',sans-serif;font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.05">Every file, ready for the web.</h2>
+    <p style="margin:0;max-width:760px;line-height:1.6;color:#4A403B">All logos are outlined, transparent SVGs (no background) with transparent PNG exports. See the <a href="Prescript Brand Sheet.dc.html">one-page brand sheet</a> for a printable summary.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:#DED8C8;border:1px solid #DED8C8">
+    <sc-for list="{{ downloads }}" as="d" hint-placeholder-count="8">
+      <div style="background:#F7F4EC;padding:20px;display:flex;flex-direction:column;gap:10px">
+        <span style="font-weight:600">{{ d.group }}</span>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <sc-for list="{{ d.files }}" as="f" hint-placeholder-count="3">
+            <a href="{{ f.href }}" download="" style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;word-break:break-all">{{ f.name }}</a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</main>
+
+<footer style="background:#141110;color:#EFEA8C;padding:40px clamp(20px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+  <img src="../brand-assets/svg/horizontal/prescript-horizontal-cream-on-dark.svg" alt="Prescript Digital" style="height:32px;width:auto">
+  <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em">© 2026 PRESCRIPT DIGITAL SOLUTIONS LTD</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;texture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Cover&quot;},&quot;heroShadow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Cover&quot;},&quot;animSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.25,&quot;max&quot;:2,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;×&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const H2R = h => [1,3,5].map(i => parseInt(h.slice(i,i+2),16));
+const R2H = a => '#' + a.map(v => Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join('').toUpperCase();
+const lin = c => { c/=255; return c<=0.04045? c/12.92 : Math.pow((c+0.055)/1.055,2.4); };
+const unlin = c => 255*(c<=0.0031308? 12.92*c : 1.055*Math.pow(c,1/2.4)-0.055);
+const lum = h => { const [r,g,b]=H2R(h).map(lin); return 0.2126*r+0.7152*g+0.0722*b; };
+const ratio = (a,b) => { const x=lum(a), y=lum(b); return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05); };
+function toLab(h){ const [r,g,b]=H2R(h).map(lin); const l=Math.cbrt(0.4122214708*r+0.5363325363*g+0.0514459929*b), m=Math.cbrt(0.2119034982*r+0.6806995451*g+0.1073969566*b), s=Math.cbrt(0.0883024619*r+0.2817188376*g+0.6299787005*b); return [0.2104542553*l+0.7936177850*m-0.0040720468*s, 1.9779984951*l-2.4285922050*m+0.4505937099*s, 0.0259040371*l+0.7827717662*m-0.8086757660*s]; }
+function fromLab([L,a,b]){ const l=(L+0.3963377774*a+0.2158037573*b)**3, m=(L-0.1055613458*a-0.0638541728*b)**3, s=(L-0.0894841775*a-1.2914855480*b)**3; return R2H([4.0767416621*l-3.3077115913*m+0.2309699292*s, -1.2684380046*l+2.6097574011*m-0.3413193965*s, -0.0041960863*l-0.7034186147*m+1.7076147010*s].map(unlin)); }
+function scale(hex, baseIdx){ const [L,a,b]=toLab(hex); const out=[]; for (let i=0;i<10;i++){ let t; if (i<baseIdx){ const k=(baseIdx-i)/baseIdx; t=[L+(0.985-L)*k, a*(1-k*0.85), b*(1-k*0.85)]; } else if (i>baseIdx){ const k=(i-baseIdx)/(9-baseIdx); t=[L+(0.16-L)*k, a*(1-k*0.35), b*(1-k*0.35)]; } else t=[L,a,b]; out.push(i===baseIdx?hex:fromLab(t)); } return out; }
+const STEPS=['50','100','200','300','400','500','600','700','800','900'];
+const cmyk = h => { const [r,g,b]=H2R(h).map(v=>v/255); const k=1-Math.max(r,g,b); if (k>=1) return '0 0 0 100'; return [(1-r-k)/(1-k),(1-g-k)/(1-k),(1-b-k)/(1-k),k].map(v=>Math.round(v*100)).join(' '); };
+const fgFor = h => ratio(h,'#FFFFFF') >= ratio(h,'#141110') ? '#FFFFFF' : '#141110';
+
+class Component extends DCLogic {
+  state = { anim: 0 };
+  componentDidMount(){ this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) this.setState(s => ({anim: s.anim+1})); }), {threshold:0.6}); setTimeout(()=>{ const el=document.getElementById('pd-anim'); if (el) this.io.observe(el); }, 300); }
+  componentWillUnmount(){ this.io && this.io.disconnect(); }
+  anim(){
+    const e = React.createElement, sp = this.props.animSpeed ?? 1, d = s => (s/sp)+'s';
+    const A='M0 12A12 12 0 0 1 12 0L63 0L63 27L27 27L27 100L0 100Z', B='M100 88A12 12 0 0 1 88 100L37 100L37 73L73 73L73 0L100 0Z';
+    const rot = {transform:'translate(72 72) rotate(-45) translate(-50 -50)', fill:'#EFEA8C'};
+    return e('div', {key:this.state.anim, id:'pd-anim', style:{display:'flex',flexDirection:'column',alignItems:'center',gap:24}},
+      e('svg', {viewBox:'0 0 144 144', width:150, height:150, style:{overflow:'visible'}},
+        e('g', {style:{animation:`pdA ${d(0.9)} cubic-bezier(.2,.8,.2,1) both`}}, e('g', rot, e('path',{d:A}))),
+        e('g', {style:{animation:`pdB ${d(0.9)} cubic-bezier(.2,.8,.2,1) both`}}, e('g', rot, e('path',{d:B}))),
+        e('rect', {x:63,y:63,width:18,height:18,fill:'#EFEA8C', style:{animation:`pdD ${d(0.45)} ${d(0.9)} cubic-bezier(.3,1.4,.5,1) both`}})),
+      e('img', {src:'../brand-assets/svg/wordmark/prescript-wordmark-full-colour-on-brick.svg', alt:'', style:{width:220, animation:`pdW ${d(0.5)} ${d(1.3)} ease-out both`}}));
+  }
+  renderVals() {
+    const C = {cream:'#EFEA8C', brick:'#C24E4E', ox:'#3A1714', paper:'#F7F4EC', ink:'#141110', violet:'#8B7CFF', mint:'#2EE6A6'};
+    const sc = { cream: scale(C.cream,3), brick: scale(C.brick,5), ox: scale(C.ox,9), neutral: scale('#8A817A',5), violet: scale(C.violet,4), mint: scale(C.mint,3) };
+    sc.neutral[0]=C.paper; sc.neutral[9]=C.ink;
+    const mk = (name, arr, base) => ({ name, steps: arr.map((hex,i)=>({hex, step:STEPS[i], fg:fgFor(hex), outline: hex===base ? '2px solid '+fgFor(hex) : 'none'})) });
+    const scales = [mk('Cream',sc.cream,C.cream), mk('Brick',sc.brick,C.brick), mk('Oxblood',sc.ox,C.ox), mk('Neutral',sc.neutral,null), mk('IQ Violet',sc.violet,C.violet), mk('Synq Mint',sc.mint,C.mint)];
+    const core = [
+      {name:'Lemon Cream', hex:C.cream, role:'Mark, wordmark, headlines'},
+      {name:'Brick', hex:C.brick, role:'Brand ground, accent square'},
+      {name:'Oxblood', hex:C.ox, role:'Depth, dark mode'},
+      {name:'Paper', hex:C.paper, role:'Light ground, documents'},
+      {name:'Ink', hex:C.ink, role:'Text, UI dark'},
+    ].map(c => ({...c, fg:fgFor(c.hex), rgb:H2R(c.hex).join(' '), cmyk:cmyk(c.hex)}));
+    const brick700 = sc.brick[7], violet700 = sc.violet[7], mint800 = sc.mint[8];
+    const pairs = [
+      [C.cream,C.brick,'Cream on Brick','Logo, headlines 24px+'],
+      ['#FFFFFF',C.brick,'White on Brick','Body copy & buttons on brick'],
+      [C.ink,C.brick,'Ink on Brick','Large text only'],
+      [C.cream,C.ox,'Cream on Oxblood','All text sizes'],
+      [C.brick,C.ox,'Brick on Oxblood','Accent square only, not text'],
+      [C.ox,C.cream,'Oxblood on Cream','All text sizes'],
+      [C.ink,C.paper,'Ink on Paper','All text sizes'],
+      [C.brick,C.paper,'Brick on Paper','Large text, icons'],
+      [brick700,C.paper,'Brick 700 on Paper','Links, labels, body'],
+      [C.violet,C.ink,'Violet on Ink','IQ UI on dark'],
+      [C.mint,C.ink,'Mint on Ink','PRESYNQ UI on dark'],
+      [violet700,C.paper,'Violet 700 on Paper','IQ text on light'],
+      [mint800,C.paper,'Mint 800 on Paper','PRESYNQ text on light'],
+    ];
+    const status = [
+      {name:'Error', hex:'#B3123B', tint:'#F9E3E8', icon:'✕', title:'Payment failed', msg:'Your card was declined. Try another method.'},
+      {name:'Warning', hex:'#9A5B00', tint:'#FBEFD9', icon:'!', title:'Trial ends in 3 days', msg:'Add billing details to keep your agents running.'},
+      {name:'Success', hex:'#1F7A4F', tint:'#E0F2E8', icon:'✓', title:'Automation live', msg:'Flow is now handling new leads.'},
+      {name:'Info', hex:'#2F5FC4', tint:'#E3EBFA', icon:'i', title:'New report ready', msg:'Your monthly Surge report is available.'},
+    ].map(s => ({...s, ratio: ratio(s.hex, C.paper).toFixed(1)}));
+    const contrast = pairs.map(([fg,bg,label,use]) => { const r=ratio(fg,bg); const verdict = r>=7?'AAA':r>=4.5?'AA':r>=3?'AA Large':'Decorative only'; return {fg,bg,label,use,ratio:r.toFixed(2),verdict,vcol: r>=4.5?'#1F7A4F': r>=3?'#9A6A00':'#A33E3E'}; });
+    const v = '../brand-assets/svg/';
+    const versions = [
+      {name:'Full colour on brick', src:v+'mark/prescript-mark-full-colour-on-brick.svg', bg:C.brick, note:'Primary · cream on #C24E4E'},
+      {name:'Cream on dark', src:v+'mark/prescript-mark-cream-on-dark.svg', bg:C.ox, note:'Brick square accent'},
+      {name:'Dark on cream', src:v+'mark/prescript-mark-dark-on-cream.svg', bg:C.cream, note:'Oxblood + brick square'},
+      {name:'One colour — black', src:v+'mark/prescript-mark-black.svg', bg:'#FFFFFF', note:'Fax, stamps, engraving'},
+      {name:'One colour — white', src:v+'mark/prescript-mark-white.svg', bg:'#2B2421', note:'Photography, reversed print'},
+    ];
+    const faces = [
+      {name:'Exo 2 Light', tag:'RECOMMENDED', family:"'Exo 2',sans-serif", weight:300, track:'0.11em', note:'Closest to the reference. Squared curves, single-storey g, full weight range from Thin to Black.'},
+      {name:'Michroma', tag:'ALTERNATIVE', family:"'Michroma',sans-serif", weight:400, track:'0.04em', note:'Very wide and architectural. Bold presence, but only one weight and heavy at small sizes.'},
+      {name:'Rajdhani Light', tag:'ALTERNATIVE', family:"'Rajdhani',sans-serif", weight:300, track:'0.12em', note:'Condensed and technical, with Indic heritage. Compact, but less premium at display sizes.'},
+      {name:'Orbitron', tag:'NOT ADVISED', family:"'Orbitron',sans-serif", weight:400, track:'0.08em', note:'Strongly sci-fi. Dates quickly and is overused in tech.'},
+    ];
+    const typeScale = [
+      {label:'H1 · Exo 2 Light', spec:'64/1.02 · −1%', family:"'Exo 2',sans-serif", size:'clamp(40px,5vw,64px)', weight:300, lh:1.02, ls:'-0.01em', tt:'none', sample:'Diagnose. Prescribe.'},
+      {label:'H2 · Exo 2 Light', spec:'48/1.05', family:"'Exo 2',sans-serif", size:'clamp(32px,4vw,48px)', weight:300, lh:1.05, ls:'0', tt:'none', sample:'The right solution, precisely.'},
+      {label:'H3 · Exo 2 Regular', spec:'36/1.1', family:"'Exo 2',sans-serif", size:'36px', weight:400, lh:1.1, ls:'0', tt:'none', sample:'Five services, one operation'},
+      {label:'H4 · Exo 2 Regular', spec:'28/1.15', family:"'Exo 2',sans-serif", size:'28px', weight:400, lh:1.15, ls:'0', tt:'none', sample:'Forge — Digital & Tech Platforms'},
+      {label:'H5 · Plex Sans SemiBold', spec:'22/1.25', family:"'IBM Plex Sans',sans-serif", size:'22px', weight:600, lh:1.25, ls:'0', tt:'none', sample:'Execution is the product'},
+      {label:'H6 · Mono Medium', spec:'14/1.3 · +8% · caps', family:"'JetBrains Mono',monospace", size:'14px', weight:500, lh:1.3, ls:'0.08em', tt:'uppercase', sample:'Agentic AI deployment'},
+      {label:'Body L · Plex Sans', spec:'18/1.6', family:"'IBM Plex Sans',sans-serif", size:'18px', weight:400, lh:1.6, ls:'0', tt:'none', sample:'We map your operations and eliminate the manual work, so your business keeps moving even when you step back.'},
+      {label:'Body · Plex Sans', spec:'16/1.6', family:"'IBM Plex Sans',sans-serif", size:'16px', weight:400, lh:1.6, ls:'0', tt:'none', sample:'Websites, web apps, custom platforms and mobile products — the digital infrastructure your business runs on.'},
+      {label:'Caption · Plex Sans', spec:'13/1.45', family:"'IBM Plex Sans',sans-serif", size:'13px', weight:400, lh:1.45, ls:'0', tt:'none', sample:'Fig. 3 — Lead response time before and after Cortex deployment.'},
+      {label:'Button · Plex SemiBold', spec:'15/1 · sentence case', family:"'IBM Plex Sans',sans-serif", size:'15px', weight:600, lh:1, ls:'0', tt:'none', sample:'Book a free call'},
+    ];
+    const services = [['01','imprint','Branding'],['02','forge','Tech platforms'],['03','surge','Marketing'],['04','flow','Automation'],['05','cortex','AI deployment']].map(([n,s,r])=>({n, name:s, role:r, src:v+'family/'+s+'-on-dark.svg'}));
+    const voice = [
+      {trait:'Precise', say:'Cut response time from 6 hours to 4 minutes.', not:'Revolutionising customer experience.'},
+      {trait:'Confident', say:'We will ship this in six weeks.', not:'We hope to maybe deliver soon.'},
+      {trait:'Honest', say:'You don\'t need an app yet. Fix the funnel first.', not:'Absolutely, let\'s build everything!'},
+      {trait:'Prescriptive', say:'Here is what we recommend, and why.', not:'We can do whatever you like.'},
+    ];
+    const m = v+'mark/prescript-mark-';
+    const rules = [
+      {tag:'DO', col:'#1F7A4F', text:'Cream mark on brick — the signature.', src:m+'full-colour-on-brick.svg', bg:C.brick, tf:'none', filter:'none', shadow:'none'},
+      {tag:'DO', col:'#1F7A4F', text:'Use the small-size cut below 32 px.', src:m+'small-size-cut.svg', bg:C.cream, tf:'scale(0.5)', filter:'none', shadow:'none'},
+      {tag:'DO', col:'#1F7A4F', text:'Keep 2X clear space on all sides.', src:m+'cream-on-dark.svg', bg:C.ox, tf:'scale(0.8)', filter:'none', shadow:'none'},
+      {tag:'DON\'T', col:'#A33E3E', text:'Stretch or distort the mark.', src:m+'dark-on-cream.svg', bg:C.paper, tf:'scaleX(1.45)', filter:'none', shadow:'none'},
+      {tag:'DON\'T', col:'#A33E3E', text:'Rotate it — the 45° is built in.', src:m+'dark-on-cream.svg', bg:C.paper, tf:'rotate(45deg)', filter:'none', shadow:'none'},
+      {tag:'DON\'T', col:'#A33E3E', text:'Recolour outside the palette.', src:m+'full-colour-on-brick.svg', bg:'#2B5DA8', tf:'none', filter:'hue-rotate(140deg) saturate(2)', shadow:'none'},
+      {tag:'DON\'T', col:'#A33E3E', text:'Add glows, drop shadows or texture inside the logo.', src:m+'full-colour-on-brick.svg', bg:C.brick, tf:'none', filter:'drop-shadow(0 0 12px #FFF) blur(0.6px)', shadow:'none'},
+      {tag:'DON\'T', col:'#A33E3E', text:'Place cream on light or low-contrast grounds.', src:m+'full-colour-on-brick.svg', bg:'#F2EFD8', tf:'none', filter:'none', shadow:'none'},
+    ];
+    const f = (p) => ({name:p.split('/').pop(), href:'../brand-assets/'+p});
+    const vs = ['full-colour-on-brick','cream-on-dark','dark-on-cream','black','white'];
+    const downloads = [
+      {group:'Primary horizontal — SVG', files: vs.map(k=>f(`svg/horizontal/prescript-horizontal-${k}.svg`))},
+      {group:'Stacked — SVG', files: vs.map(k=>f(`svg/stacked/prescript-stacked-${k}.svg`))},
+      {group:'Mark — SVG', files: [...vs.map(k=>f(`svg/mark/prescript-mark-${k}.svg`)), f('svg/mark/prescript-mark-hero-shadow-on-brick.svg'), f('svg/mark/prescript-mark-hero-shadow-on-dark.svg'), f('svg/mark/prescript-mark-small-size-cut.svg')]},
+      {group:'Wordmark — SVG', files: vs.map(k=>f(`svg/wordmark/prescript-wordmark-${k}.svg`))},
+      {group:'Favicon & web', files: ['favicon.ico','favicon.svg','favicon-tile.svg','favicon-16x16.png','favicon-32x32.png','favicon-48x48.png','apple-touch-icon.png','android-chrome-192x192.png','android-chrome-512x512.png','safari-pinned-tab.svg','site.webmanifest','HEAD-SNIPPET.html'].map(n=>f('favicon/'+n))},
+      {group:'Avatars', files: ['square','circle','square-dark','circle-dark'].map(k=>f(`svg/avatar/prescript-avatar-${k}.svg`)).concat([f('png/avatar-square-1080.png'), f('png/avatar-circle-1080.png')])},
+      {group:'Brand family — SVG', files: ['studio','imprint','forge','surge','flow','cortex','software','prescript-iq','presynq'].flatMap(k=>[f(`svg/family/${k}-on-dark.svg`), f(`svg/family/${k}-on-light.svg`)])},
+      {group:'Texture & motion', files: [f('texture/prescript-weathered-texture-dark.svg'), f('texture/prescript-weathered-texture-light.svg'), f('texture/prescript-weathered-texture-2048.png'), f('motion/prescript-logo-animation.svg')]},
+      {group:'Transparent PNG (2400 px / 1024 px)', files: vs.flatMap(k=>[f(`png/prescript-horizontal-${k}.png`), f(`png/prescript-stacked-${k}.png`), f(`png/prescript-mark-${k}.png`)])},
+    ];
+    downloads.splice(5, 0, {group:'Web kit', files: ['prescript-logo-auto-theme.svg','prescript-mark-auto-theme.svg','prescript-loader.svg','og-image-1200x630.svg','og-image-1200x630.png'].map(n=>f('web/'+n))});
+    const webSpecs = [
+      {slot:'Desktop header', file:'web/prescript-logo-auto-theme.svg'},
+      {slot:'Mobile header', file:'web/prescript-mark-auto-theme.svg'},
+      {slot:'Header on brick', file:'svg/horizontal/prescript-horizontal-full-colour-on-brick.svg'},
+      {slot:'Footer (dark)', file:'svg/stacked/prescript-stacked-cream-on-dark.svg'},
+      {slot:'Favicon', file:'favicon/favicon.ico + favicon.svg'},
+      {slot:'iOS home screen', file:'favicon/apple-touch-icon.png'},
+      {slot:'Android / PWA', file:'favicon/android-chrome-192 + 512.png'},
+      {slot:'Link previews', file:'web/og-image-1200x630.png'},
+      {slot:'Loading state', file:'web/prescript-loader.svg'},
+      {slot:'Email header', file:'png/prescript-horizontal-dark-on-cream.png (320 px wide)'},
+    ];
+    const headSnippet = '<link rel="icon" href="/favicon.ico" sizes="48x48">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n<link rel="manifest" href="/site.webmanifest">\n<meta name="theme-color" content="#C24E4E">\n<meta property="og:image" content="/og-image-1200x630.png">\n\n<a href="/" aria-label="Prescript Digital home">\n  <img src="/prescript-logo-auto-theme.svg"\n       alt="Prescript Digital" height="32">\n</a>';
+    const heroShadow = this.props.heroShadow ?? true;
+    return { status, webSpecs, headSnippet, texture: this.props.texture ?? true, heroShadow, noHeroShadow: !heroShadow, versions, faces, core, scales, contrast, typeScale, services, voice, rules, downloads, animation: this.anim(), replay: () => this.setState(s => ({anim: s.anim+1})) };
+  }
+}
+</script>
+</body>
+</html>

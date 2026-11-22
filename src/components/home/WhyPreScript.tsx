@@ -24,17 +24,17 @@ const REASONS = [
 export default function WhyPreScript() {
   return (
     <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="font-syne font-extrabold text-3xl lg:text-4xl tracking-tighter text-gray-900 mb-10">
+      <h2 className="font-display font-light text-3xl lg:text-4xl tracking-tighter text-pd-ink mb-10">
         Why Prescript?
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {REASONS.map((r) => (
-          <div key={r.num} className="bg-gray-50 rounded-xl p-5">
-            <p className="font-syne font-extrabold text-3xl text-prescript-green leading-none mb-2">
+          <div key={r.num} className="bg-pd-paper rounded-xl p-5">
+            <p className="font-display font-light text-3xl text-pd-brick-700 leading-none mb-2">
               {r.num}
             </p>
-            <p className="font-sans font-semibold text-base text-gray-800 my-1">{r.title}</p>
-            <p className="font-sans text-sm text-gray-500 leading-relaxed">{r.desc}</p>
+            <p className="font-sans font-semibold text-base text-pd-ink my-1">{r.title}</p>
+            <p className="font-sans text-sm text-pd-muted leading-relaxed">{r.desc}</p>
           </div>
         ))}
       </div>

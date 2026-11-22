@@ -9,8 +9,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Prescript Digital Solutions** — a Lagos-based digital agency website serving Nigeria, Pan-Africa, North America, and Europe. The site markets five integrated services: Imprint (Branding), Forge (Tech Platforms), Surge (Marketing), Flow (Automation), and Cortex (AI Deployment).
 
 **Live site:** prescriptdigital.com  
-**Deployment:** Cloudflare Pages (static export, auto-deploys from `main` branch on GitHub)  
-**Brand color:** `#1D9E75` (Prescript Green) — available as `text-prescript-green`, `bg-prescript-green`, etc.
+**Deployment:** Cloudflare Pages (static export, auto-deploys from `main` branch on GitHub)
+
+---
+
+## BRAND: the source of truth is `brand/`
+
+`brand/design_handoff_prescript_brand/` is the official Prescript brand guide (Identity v1.0). **Read its `README.md` before any UI, copy or design change.** It overrides anything else in this file about look and feel.
+
+- Colours, fonts and spacing come ONLY from tokens: Tailwind `pd-*` classes (`tailwind.config.ts`) or `--pd-*` CSS variables (`src/app/prescript-tokens.css`). Never hard-code hex values in components.
+- Logo files are served from `public/brand/` (copied from `brand/.../brand-assets/`). Never redraw, retype or recolour the logo. The site has no dark mode, so the header uses the fixed `svg/horizontal/prescript-horizontal-dark-on-cream.svg` (not the auto-theme file, which turns cream on dark-mode devices).
+- Fonts: Exo 2 300 headlines (`font-display font-light`) · IBM Plex Sans body (`font-sans`) · JetBrains Mono labels and eyebrows (`font-mono`). Loaded via `next/font` in `layout.tsx`.
+- Square corners on all UI (the Tailwind radius scale is 0; only `rounded-full` circles and `rounded-app` icon tiles remain). Flat, no UI drop shadows.
+- Cream on brick only for the logo and text ≥ 24px; body text on brick is white.
+- Brick `#C24E4E` is the brand, not an error colour. Errors use `pd-error` `#B3123B` with an icon and label.
+- Violet `#8B7CFF` = PRESCRIPT IQ™ only. Mint `#2EE6A6` = PRESYNQ™ only. Never on master or Studio pages.
+- Weathered texture (`.pd-texture`): hero and social backgrounds only, never behind body text, never on the logo.
+- Signature square full stop (`.pd-dot`): at most one headline per screen.
+- Tagline "Diagnose. Prescribe. Deliver." Voice: precise, confident, honest, no hype. No gradients, globes, circuit boards, light bulbs or robot heads.
 
 ---
 
@@ -91,22 +107,12 @@ src/components/
 
 ## Design System
 
-### Typography
-- **Headings/display:** `font-syne font-extrabold` (Syne 800) — use `tracking-tighter` for large headings
-- **Body:** `font-sans` (DM Sans) — `font-light` for paragraphs, `font-medium` for labels
-- **Section labels:** uppercase, wide tracking, small, green — use `<SectionLabel>` component
-
-### Colors (Tailwind)
-- `prescript-green` → `#1D9E75`
-- `prescript-green-light` → `#E1F5EE`
-- `prescript-green-dark` → `#085041`
-- `prescript-green-mid` → `#0F6E56`
-- Accent backgrounds per service: Amber `#FAEEDA`, Blue `#E6F1FB`, Purple `#EEEDFE`
-
-### Card Conventions
-- Default: white bg, `border border-gray-100`, `rounded-xl`
-- Featured/highlighted: `border-[1.5px] border-prescript-green`
-- No heavy box shadows — keep it flat and clean
+See **BRAND** above and `brand/design_handoff_prescript_brand/README.md`. Quick map of Tailwind tokens:
+- Grounds: `bg-pd-paper` (page), `bg-pd-surface` (cards), `bg-pd-surface-2`, `bg-pd-brick` (hero/brand), `bg-pd-oxblood` (dark sections/footer), `bg-pd-ink`
+- Text: `text-pd-ink`, `text-pd-muted` (body on paper), `text-pd-subtle` (captions), `text-pd-brick-700` (links/labels on light), `text-pd-cream` (headlines on brick/oxblood)
+- Lines: `border-pd-line`
+- `<Button>` variants: `primary` (brick), `secondary` (oxblood/cream), `outline` (ghost)
+- Cards: `bg-pd-surface border border-pd-line`, square, no shadow
 
 ---
 
@@ -154,11 +160,10 @@ Cloudflare Pages builds from `main` on every push. The last successful productio
 - [ ] Set `RESEND_API_KEY` on the `prescript-payment-verify` Worker so payment/billing emails send
 - [ ] Point `www.prescriptdigital.com` at Cloudflare Pages (currently serves a stale Hostinger site) — add `www` as a Pages custom domain or a redirect to the apex
 - [ ] Replace placeholder case studies in `src/lib/cases.ts` with real client work (or label them as samples)
-- [ ] Supply a proper brand logo asset (see below)
 
 ## Logo / Brand Assets
 
-`public/prescriptcreatives_logo.png` (used in Navbar + Footer, and as favicon in `layout.tsx`) is a low-resolution raster with a baked-in maroon background that does not match the `#1D9E75` brand green. `public/favicon.svg` is a different mark again (a plain "P"). These should be unified — ideally a single transparent SVG wordmark/monogram in brand green.
+All logos, favicons, the OG image and the texture come from `brand/design_handoff_prescript_brand/brand-assets/`, installed into `public/brand/` (full kit) and the `public/` root (favicons, `site.webmanifest`, `og-image-1200x630.png`). To update an asset, replace it in `brand/` first, then copy it to `public/`.
 
 ---
 

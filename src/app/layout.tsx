@@ -1,21 +1,32 @@
-import type { Metadata } from 'next'
-import { Syne, DM_Sans } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Exo_2, IBM_Plex_Sans, JetBrains_Mono } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 
-const syne = Syne({
+const exo2 = Exo_2({
   subsets: ['latin'],
-  weight: ['700', '800'],
-  variable: '--font-syne',
+  weight: ['300', '400', '500'],
+  variable: '--font-exo2',
   display: 'swap',
 })
 
-const dmSans = DM_Sans({
+const plex = IBM_Plex_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  variable: '--font-dm-sans',
+  weight: ['400', '500', '600'],
+  variable: '--font-plex',
   display: 'swap',
 })
+
+const jbMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-jbmono',
+  display: 'swap',
+})
+
+export const viewport: Viewport = {
+  themeColor: '#C24E4E',
+}
 
 export const metadata: Metadata = {
   title: 'Prescript Digital Solutions | We Build, Automate & Deploy AI Into Businesses',
@@ -30,15 +41,25 @@ export const metadata: Metadata = {
     'web development Nigeria',
     'AI agents Africa',
   ],
+  metadataBase: new URL('https://prescriptdigital.com'),
   icons: {
-    icon: '/prescriptcreatives_logo.png',
-    shortcut: '/prescriptcreatives_logo.png',
-    apple: '/prescriptcreatives_logo.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+    other: [{ rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#C24E4E' }],
   },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'Prescript Digital Solutions',
     description: 'We Build, Automate & Deploy AI Into Businesses',
     type: 'website',
+    images: [{ url: '/og-image-1200x630.png', width: 1200, height: 630, alt: 'Prescript Digital' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/og-image-1200x630.png'],
   },
 }
 
@@ -48,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${exo2.variable} ${plex.variable} ${jbMono.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
 

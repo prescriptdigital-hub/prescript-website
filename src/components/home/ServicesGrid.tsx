@@ -21,10 +21,10 @@ export default function ServicesGrid() {
   return (
     <section id="services" className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionLabel>Our services</SectionLabel>
-      <h2 className="font-syne font-extrabold text-3xl lg:text-4xl tracking-tighter text-gray-900 mb-3">
+      <h2 className="font-display font-light text-3xl lg:text-4xl tracking-tighter text-pd-ink mb-3">
         Five Services. One Partner.
       </h2>
-      <p className="font-sans font-light text-gray-500 text-base max-w-2xl mb-6 leading-relaxed">
+      <p className="font-sans font-light text-pd-muted text-base max-w-2xl mb-6 leading-relaxed">
         From your first logo to your first AI agent, we handle every layer of your digital
         business, and each service feeds the next.
       </p>
@@ -44,7 +44,7 @@ export default function ServicesGrid() {
             viewport={{ once: true, margin: '-50px' }}
             transition={{ delay: i * 0.08, duration: 0.4 }}
             onClick={() => router.push(`/services/${service.slug}`)}
-            className="border border-gray-100 rounded-xl p-5 cursor-pointer hover:bg-gray-50 transition-colors flex flex-col gap-3"
+            className="border border-pd-line rounded-xl p-5 cursor-pointer hover:bg-pd-paper transition-colors flex flex-col gap-3"
           >
             {/* Icon */}
             <div
@@ -56,19 +56,19 @@ export default function ServicesGrid() {
 
             {/* Name */}
             <div>
-              <p className="font-syne font-extrabold text-prescript-green text-base leading-tight">
+              <p className="font-display font-light text-pd-brick-700 text-base leading-tight">
                 {service.name}
               </p>
-              <p className="font-sans text-sm text-gray-400 mt-0.5">{service.fullName}</p>
+              <p className="font-sans text-sm text-pd-subtle mt-0.5">{service.fullName}</p>
             </div>
 
             {/* Description */}
-            <p className="font-sans text-sm text-gray-500 leading-relaxed flex-1">
+            <p className="font-sans text-sm text-pd-muted leading-relaxed flex-1">
               {service.description.slice(0, 110)}…
             </p>
 
             {/* From price */}
-            <span className="inline-flex w-fit items-center px-2.5 py-0.5 rounded-full text-xs font-sans font-medium bg-prescript-green-light text-prescript-green-dark">
+            <span className="inline-flex w-fit items-center px-2.5 py-0.5 text-xs font-sans font-medium bg-pd-surface-2 text-pd-oxblood">
               From {FROM_PRICE[service.slug]}
             </span>
           </motion.div>

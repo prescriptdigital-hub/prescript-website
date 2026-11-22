@@ -10,7 +10,7 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
     <div className="mb-10">
       <Link
         href="/"
-        className="inline-flex items-center gap-1.5 text-xs font-sans text-gray-400 hover:text-prescript-green transition-colors mb-6"
+        className="inline-flex items-center gap-1.5 text-xs font-sans text-pd-subtle hover:text-pd-brick-700 transition-colors mb-6"
       >
         ← Back to home
       </Link>
@@ -23,38 +23,38 @@ export default function ServiceHero({ service }: ServiceHeroProps) {
           {service.icon}
         </div>
         <div>
-          <p className="text-xs font-sans text-gray-400 uppercase tracking-widest mb-1">
+          <p className="text-xs font-sans text-pd-subtle uppercase tracking-widest mb-1">
             Prescript · Service {service.seriesNum} of 05
             {service.isCoreService && (
-              <span className="ml-2 bg-prescript-green-light text-prescript-green px-2 py-0.5 rounded-full text-xs normal-case tracking-normal">
+              <span className="ml-2 bg-pd-surface-2 text-pd-brick-700 px-2 py-0.5 text-xs normal-case tracking-normal">
                 Our Core
               </span>
             )}
           </p>
-          <h1 className="font-syne font-extrabold text-5xl lg:text-6xl tracking-tighter text-prescript-green leading-none">
+          <h1 className="font-display font-light text-5xl lg:text-6xl tracking-tighter text-pd-brick-700 leading-none">
             {service.name}
           </h1>
-          <p className="text-sm font-sans text-gray-400 mt-1 mb-3">{service.fullName}</p>
+          <p className="text-sm font-sans text-pd-subtle mt-1 mb-3">{service.fullName}</p>
         </div>
       </div>
 
-      <p className="font-sans text-base text-gray-500 max-w-xl leading-relaxed mb-6">
+      <p className="font-sans text-base text-pd-muted max-w-xl leading-relaxed mb-6">
         {service.description}
       </p>
 
       {/* Meta row */}
       <div className="flex flex-wrap gap-6">
         <div>
-          <p className="text-xs font-sans uppercase tracking-widest text-gray-400">Starting from</p>
-          <p className="font-sans font-medium text-prescript-green text-sm">{service.meta.from}</p>
+          <p className="text-xs font-sans uppercase tracking-widest text-pd-subtle">Starting from</p>
+          <p className="font-sans font-medium text-pd-brick-700 text-sm">{service.meta.from}</p>
         </div>
         <div>
-          <p className="text-xs font-sans uppercase tracking-widest text-gray-400">Turnaround</p>
-          <p className="font-sans font-medium text-prescript-green text-sm">{service.meta.turnaround}</p>
+          <p className="text-xs font-sans uppercase tracking-widest text-pd-subtle">Turnaround</p>
+          <p className="font-sans font-medium text-pd-brick-700 text-sm">{service.meta.turnaround}</p>
         </div>
         <div>
-          <p className="text-xs font-sans uppercase tracking-widest text-gray-400">{service.meta.thirdLabel}</p>
-          <p className="font-sans font-medium text-prescript-green text-sm">{service.meta.thirdValue}</p>
+          <p className="text-xs font-sans uppercase tracking-widest text-pd-subtle">{service.meta.thirdLabel}</p>
+          <p className="font-sans font-medium text-pd-brick-700 text-sm">{service.meta.thirdValue}</p>
         </div>
       </div>
     </div>

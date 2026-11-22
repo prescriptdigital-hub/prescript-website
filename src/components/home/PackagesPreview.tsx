@@ -63,10 +63,10 @@ export default function PackagesPreview() {
   return (
     <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionLabel>Enterprise Packages</SectionLabel>
-      <h2 className="font-syne font-extrabold text-3xl lg:text-4xl tracking-tighter text-gray-900 mb-3">
+      <h2 className="font-display font-light text-3xl lg:text-4xl tracking-tighter text-pd-ink mb-3">
         For corporations &amp; established businesses.
       </h2>
-      <p className="font-sans font-light text-gray-500 text-base max-w-2xl mb-10 leading-relaxed">
+      <p className="font-sans font-light text-pd-muted text-base max-w-2xl mb-10 leading-relaxed">
         One-time or retainer packages built for companies that need the full stack, brand, tech,
         marketing, automation, and AI working as a single system.
       </p>
@@ -77,27 +77,27 @@ export default function PackagesPreview() {
             key={pkg.name}
             className={`border rounded-2xl overflow-hidden flex flex-col ${
               pkg.featured
-                ? 'border-[1.5px] border-prescript-green'
-                : 'border-gray-200'
+                ? 'border-[1.5px] border-pd-brick-700'
+                : 'border-pd-line'
             }`}
           >
             {pkg.featured && (
-              <div className="bg-prescript-green text-white text-center text-xs font-sans font-medium py-1.5">
+              <div className="bg-pd-brick-700 text-white text-center text-xs font-sans font-medium py-1.5">
                 Most Popular
               </div>
             )}
 
             {/* Card header */}
-            <div className="p-6 border-b border-gray-100">
-              <p className="font-syne font-bold text-gray-900 text-lg">{pkg.name}</p>
-              <p className="text-xs font-sans text-prescript-green font-medium mt-0.5 mb-3">
+            <div className="p-6 border-b border-pd-line">
+              <p className="font-display font-normal text-pd-ink text-lg">{pkg.name}</p>
+              <p className="text-xs font-sans text-pd-brick-700 font-medium mt-0.5 mb-3">
                 {pkg.tag}
               </p>
               <div className="flex items-baseline gap-1">
-                <span className="font-syne font-extrabold text-3xl text-gray-900">
+                <span className="font-display font-light text-3xl text-pd-ink">
                   {pkg.price}
                 </span>
-                <span className="text-sm font-sans text-gray-400">{pkg.period}</span>
+                <span className="text-sm font-sans text-pd-subtle">{pkg.period}</span>
               </div>
             </div>
 
@@ -106,8 +106,8 @@ export default function PackagesPreview() {
               <ul className="space-y-2.5 flex-1 mb-6">
                 {pkg.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <Check size={14} className="text-prescript-green mt-0.5 flex-shrink-0" />
-                    <span className="font-sans text-sm text-gray-700">{f}</span>
+                    <Check size={14} className="text-pd-brick-700 mt-0.5 flex-shrink-0" />
+                    <span className="font-sans text-sm text-pd-muted">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -127,7 +127,7 @@ export default function PackagesPreview() {
       <p className="text-center mt-6">
         <Link
           href="/pricing"
-          className="text-sm font-sans text-prescript-green hover:underline"
+          className="text-sm font-sans text-pd-brick-700 hover:underline"
         >
           View full enterprise pricing →
         </Link>

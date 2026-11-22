@@ -9,17 +9,17 @@ interface CurrencyToggleProps {
 
 export default function CurrencyToggle({ value, onChange }: CurrencyToggleProps) {
   return (
-    <div className="inline-flex items-center border border-gray-200 rounded-full p-0.5 bg-gray-50">
+    <div className="inline-flex items-center border border-pd-line p-0.5 bg-pd-paper">
       {(['usd', 'ngn'] as const).map((c) => (
         <button
           key={c}
           type="button"
           onClick={() => onChange(c)}
           className={clsx(
-            'px-4 py-1.5 rounded-full text-xs font-sans font-medium transition-all duration-150',
+            'px-4 py-1.5 text-xs font-sans font-medium transition-all duration-150',
             value === c
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-500 hover:text-gray-700'
+              ? 'bg-pd-surface text-pd-ink '
+              : 'text-pd-muted hover:text-pd-muted'
           )}
         >
           {c === 'usd' ? 'USD $' : 'NGN ₦'}

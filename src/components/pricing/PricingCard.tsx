@@ -26,28 +26,28 @@ export default function PricingCard({ pkg, currency }: PricingCardProps) {
     <>
       <div
         className={`border rounded-2xl overflow-hidden flex flex-col transition-transform hover:scale-[1.01] ${
-          pkg.isFeatured ? 'border-[1.5px] border-prescript-green' : 'border-gray-200'
+          pkg.isFeatured ? 'border-[1.5px] border-pd-brick-700' : 'border-pd-line'
         }`}
       >
         {pkg.isFeatured && (
-          <div className="bg-prescript-green text-white text-center text-xs font-sans font-medium py-1.5">
+          <div className="bg-pd-brick-700 text-white text-center text-xs font-sans font-medium py-1.5">
             Most Popular
           </div>
         )}
 
-        <div className="p-6 border-b border-gray-100">
-          <p className="font-syne font-bold text-gray-900 text-lg">{pkg.name}</p>
+        <div className="p-6 border-b border-pd-line">
+          <p className="font-display font-normal text-pd-ink text-lg">{pkg.name}</p>
           <div className="flex flex-wrap gap-1 mt-1 mb-3">
             {pkg.servicesIncluded.map((s) => (
-              <span key={s} className="text-xs font-sans text-prescript-green font-medium">{s}</span>
+              <span key={s} className="text-xs font-sans text-pd-brick-700 font-medium">{s}</span>
             ))}
           </div>
-          <p className="font-sans text-sm text-gray-400 mb-3">{pkg.tagline}</p>
+          <p className="font-sans text-sm text-pd-subtle mb-3">{pkg.tagline}</p>
           <div className="flex items-baseline gap-1">
-            <span className="font-syne font-extrabold text-3xl text-gray-900">
+            <span className="font-display font-light text-3xl text-pd-ink">
               {formatPkg(pkg, currency)}
             </span>
-            <span className="text-sm font-sans text-gray-400">
+            <span className="text-sm font-sans text-pd-subtle">
               {pkg.period === 'one-time' ? 'one-time' : pkg.period === 'per month' ? '/mo' : pkg.period}
             </span>
           </div>
@@ -58,11 +58,11 @@ export default function PricingCard({ pkg, currency }: PricingCardProps) {
             {pkg.features.map((f) => (
               <li key={f.text} className="flex items-start gap-2">
                 {f.included ? (
-                  <Check size={14} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                  <Check size={14} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 ) : (
-                  <Minus size={14} className="text-gray-300 flex-shrink-0 mt-0.5" />
+                  <Minus size={14} className="text-pd-subtle flex-shrink-0 mt-0.5" />
                 )}
-                <span className={`font-sans text-sm ${f.included ? 'text-gray-700' : 'text-gray-400'}`}>
+                <span className={`font-sans text-sm ${f.included ? 'text-pd-muted' : 'text-pd-subtle'}`}>
                   {f.text}
                 </span>
               </li>

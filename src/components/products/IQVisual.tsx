@@ -43,18 +43,18 @@ export default function IQVisual() {
       aria-label={`PRESCRIPT IQ example: the question "${QUESTION}" becomes three insights and a three-step plan.`}
     >
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10" aria-hidden="true">
-        <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-        <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-        <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+        <span className="w-2.5 h-2.5 rounded-full bg-pd-surface/15" />
+        <span className="w-2.5 h-2.5 rounded-full bg-pd-surface/15" />
+        <span className="w-2.5 h-2.5 rounded-full bg-pd-surface/15" />
         <span className="ml-3 text-[11px] tracking-[0.18em] uppercase text-white/40 font-sans">Digital Doctor</span>
       </div>
 
       <div className="p-5 sm:p-6 min-h-[360px]" aria-hidden="true">
         <div className="flex items-start gap-3 mb-5">
-          <span className="shrink-0 w-8 h-8 rounded-full bg-white/10 grid place-items-center text-xs text-white/70 font-sans">You</span>
+          <span className="shrink-0 w-8 h-8 rounded-full bg-pd-surface/10 grid place-items-center text-xs text-white/70 font-sans">You</span>
           <p className="font-sans text-white text-[15px] leading-relaxed pt-1">
             {typed}
-            {!reduce && t < TIMELINE.typingDone && <span className="inline-block w-[2px] h-4 align-middle ml-0.5 bg-white/80 animate-pulse" />}
+            {!reduce && t < TIMELINE.typingDone && <span className="inline-block w-[2px] h-4 align-middle ml-0.5 bg-pd-surface/80 animate-pulse" />}
           </p>
         </div>
 
@@ -69,9 +69,9 @@ export default function IQVisual() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: reduce ? 0 : i * 0.35, duration: 0.4 }}
-                    className="rounded-xl border border-white/10 bg-white/[0.04] p-3"
+                    className="rounded-xl border border-white/10 bg-pd-surface/[0.04] p-3"
                   >
-                    <p className="font-syne font-extrabold text-lg text-white">{ins.k}</p>
+                    <p className="font-display font-light text-lg text-white">{ins.k}</p>
                     <p className="font-sans text-xs text-white/60 leading-snug">{ins.t}</p>
                   </motion.div>
                 ))}
@@ -87,10 +87,10 @@ export default function IQVisual() {
                 <p className="text-[11px] tracking-[0.18em] uppercase font-sans" style={{ color: IQ.accent }}>Your 30-day plan</p>
                 <p className="text-[11px] font-sans text-white/50">{ticked}/{PLAN.length} approved</p>
               </div>
-              <div className="h-1.5 rounded-full bg-white/10 mb-3 overflow-hidden">
+              <div className="h-1.5 rounded-full bg-pd-surface/10 mb-3 overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
-                  style={{ background: `linear-gradient(90deg, ${IQ.accent}, #2EE6A6)` }}
+                  style={{ background: IQ.accent }}
                   animate={{ width: `${(ticked / PLAN.length) * 100}%` }}
                   transition={{ duration: 0.4 }}
                 />

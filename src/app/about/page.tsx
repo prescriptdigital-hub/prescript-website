@@ -32,42 +32,42 @@ const STATS = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-pd-surface">
       <Navbar />
 
       {/* Hero */}
-      <section className="border-b border-gray-100 px-6 py-20 max-w-5xl mx-auto">
-        <p className="text-xs font-medium tracking-widest uppercase text-prescript-green mb-5">About us</p>
-        <h1 className="font-syne font-extrabold text-5xl md:text-6xl text-gray-900 tracking-tight leading-tight max-w-3xl mb-8">
+      <section className="border-b border-pd-line px-6 py-20 max-w-5xl mx-auto">
+        <p className="text-xs font-medium tracking-widest uppercase text-pd-brick-700 mb-5">About us</p>
+        <h1 className="font-display font-light text-5xl md:text-6xl text-pd-ink tracking-tight leading-tight max-w-3xl mb-8">
           We help businesses look, run, and grow at their best.
         </h1>
-        <p className="text-lg text-gray-500 leading-relaxed max-w-2xl">
+        <p className="text-lg text-pd-muted leading-relaxed max-w-2xl">
           Prescript Digital Solutions is a Lagos-based agency working with founders, businesses, and brands across Africa, Europe, and America. We cover everything from brand identity and tech platforms to marketing, automation, and AI deployment.
         </p>
       </section>
 
       {/* Stats */}
-      <section className="border-b border-gray-100 px-6 py-14 max-w-5xl mx-auto">
+      <section className="border-b border-pd-line px-6 py-14 max-w-5xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {STATS.map(s => (
             <div key={s.label}>
-              <p className="font-syne font-extrabold text-4xl text-prescript-green mb-1">{s.number}</p>
-              <p className="text-sm text-gray-500">{s.label}</p>
+              <p className="font-display font-light text-4xl text-pd-brick-700 mb-1">{s.number}</p>
+              <p className="text-sm text-pd-muted">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Story */}
-      <section className="border-b border-gray-100 px-6 py-20 max-w-5xl mx-auto">
+      <section className="border-b border-pd-line px-6 py-20 max-w-5xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="text-xs font-medium tracking-widest uppercase text-prescript-green mb-5">Our story</p>
-            <h2 className="font-syne font-extrabold text-3xl text-gray-900 tracking-tight leading-tight mb-6">
+            <p className="text-xs font-medium tracking-widest uppercase text-pd-brick-700 mb-5">Our story</p>
+            <h2 className="font-display font-light text-3xl text-pd-ink tracking-tight leading-tight mb-6">
               Built out of a real frustration.
             </h2>
           </div>
-          <div className="space-y-4 text-gray-600 text-base leading-relaxed">
+          <div className="space-y-4 text-pd-muted text-base leading-relaxed">
             <p>
               Prescript Digital was founded because good businesses were being underserved. Too many agencies promised the world, delivered inconsistently, and disappeared after payment. Too many founders in Africa were building great things but could not communicate their value to global audiences.
             </p>
@@ -82,23 +82,23 @@ export default function AboutPage() {
       </section>
 
       {/* Services */}
-      <section className="border-b border-gray-100 px-6 py-20 max-w-5xl mx-auto">
-        <p className="text-xs font-medium tracking-widest uppercase text-prescript-green mb-5">What we do</p>
-        <h2 className="font-syne font-extrabold text-3xl text-gray-900 tracking-tight leading-tight mb-12 max-w-xl">
+      <section className="border-b border-pd-line px-6 py-20 max-w-5xl mx-auto">
+        <p className="text-xs font-medium tracking-widest uppercase text-pd-brick-700 mb-5">What we do</p>
+        <h2 className="font-display font-light text-3xl text-pd-ink tracking-tight leading-tight mb-12 max-w-xl">
           Five services. One integrated operation.
         </h2>
         <div className="grid gap-6">
           {SERVICES.map((s, i) => (
-            <div key={s.name} className="flex gap-6 items-start border-t border-gray-100 pt-6">
-              <span className="font-syne text-xs text-gray-300 mt-1 w-8 flex-shrink-0">0{i + 1}</span>
+            <div key={s.name} className="flex gap-6 items-start border-t border-pd-line pt-6">
+              <span className="font-display text-xs text-pd-subtle mt-1 w-8 flex-shrink-0">0{i + 1}</span>
               <div className="flex-1">
                 <div className="flex items-baseline gap-3 mb-2">
-                  <h3 className="font-syne font-bold text-lg text-gray-900">{s.name}</h3>
-                  <span className="text-sm text-gray-400">{s.full}</span>
+                  <h3 className="font-display font-normal text-lg text-pd-ink">{s.name}</h3>
+                  <span className="text-sm text-pd-subtle">{s.full}</span>
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
+                <p className="text-pd-muted text-sm leading-relaxed">{s.desc}</p>
               </div>
-              <Link href={"/services/" + s.name.toLowerCase()} className="text-xs font-medium text-prescript-green hover:underline flex-shrink-0 mt-1">
+              <Link href={"/services/" + s.name.toLowerCase()} className="text-xs font-medium text-pd-brick-700 hover:underline flex-shrink-0 mt-1">
                 Learn more
               </Link>
             </div>
@@ -107,28 +107,28 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="border-b border-gray-100 px-6 py-20 max-w-5xl mx-auto">
-        <p className="text-xs font-medium tracking-widest uppercase text-prescript-green mb-5">How we work</p>
-        <h2 className="font-syne font-extrabold text-3xl text-gray-900 tracking-tight leading-tight mb-12 max-w-xl">
+      <section className="border-b border-pd-line px-6 py-20 max-w-5xl mx-auto">
+        <p className="text-xs font-medium tracking-widest uppercase text-pd-brick-700 mb-5">How we work</p>
+        <h2 className="font-display font-light text-3xl text-pd-ink tracking-tight leading-tight mb-12 max-w-xl">
           The things we will not compromise on.
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {VALUES.map(v => (
-            <div key={v.title} className="border border-gray-100 rounded-xl p-6">
-              <h3 className="font-syne font-bold text-gray-900 mb-2">{v.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{v.body}</p>
+            <div key={v.title} className="border border-pd-line rounded-xl p-6">
+              <h3 className="font-display font-normal text-pd-ink mb-2">{v.title}</h3>
+              <p className="text-sm text-pd-muted leading-relaxed">{v.body}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Markets */}
-      <section className="border-b border-gray-100 px-6 py-20 max-w-5xl mx-auto">
-        <p className="text-xs font-medium tracking-widest uppercase text-prescript-green mb-5">Where we work</p>
-        <h2 className="font-syne font-extrabold text-3xl text-gray-900 tracking-tight leading-tight mb-6 max-w-xl">
+      <section className="border-b border-pd-line px-6 py-20 max-w-5xl mx-auto">
+        <p className="text-xs font-medium tracking-widest uppercase text-pd-brick-700 mb-5">Where we work</p>
+        <h2 className="font-display font-light text-3xl text-pd-ink tracking-tight leading-tight mb-6 max-w-xl">
           Lagos is home. The world is the market.
         </h2>
-        <p className="text-gray-500 leading-relaxed max-w-2xl mb-10">
+        <p className="text-pd-muted leading-relaxed max-w-2xl mb-10">
           We are headquartered in Lagos, Nigeria, with clients and partners across the United Kingdom, mainland Europe, and the United States. We understand the nuances of each market and how to position a business for success in all of them.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -138,10 +138,10 @@ export default function AboutPage() {
             { flag: "🇪🇺", market: "Europe", note: "Active market" },
             { flag: "🇺🇸", market: "United States", note: "Active market" },
           ].map(m => (
-            <div key={m.market} className="bg-gray-50 rounded-xl p-4">
+            <div key={m.market} className="bg-pd-paper rounded-xl p-4">
               <span className="text-2xl block mb-2">{m.flag}</span>
-              <p className="font-syne font-bold text-sm text-gray-900">{m.market}</p>
-              <p className="text-xs text-gray-400 mt-0.5">{m.note}</p>
+              <p className="font-display font-normal text-sm text-pd-ink">{m.market}</p>
+              <p className="text-xs text-pd-subtle mt-0.5">{m.note}</p>
             </div>
           ))}
         </div>
@@ -149,12 +149,12 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="px-6 py-20 max-w-5xl mx-auto">
-        <div className="bg-prescript-green rounded-2xl px-8 py-12 md:flex items-center justify-between gap-8">
+        <div className="bg-pd-brick-700 rounded-2xl px-8 py-12 md:flex items-center justify-between gap-8">
           <div className="mb-6 md:mb-0">
-            <h2 className="font-syne font-extrabold text-2xl text-white mb-2">Ready to work together?</h2>
+            <h2 className="font-display font-light text-2xl text-white mb-2">Ready to work together?</h2>
             <p className="text-white/70 text-sm">Tell us about your project and we will get back to you within 24 hours.</p>
           </div>
-          <Link href="/contact" className="inline-block bg-white text-prescript-green font-syne font-bold text-sm px-6 py-3 rounded-lg hover:bg-prescript-green-light transition-colors flex-shrink-0">
+          <Link href="/contact" className="inline-block bg-pd-surface text-pd-brick-700 font-display font-normal text-sm px-6 py-3 rounded-lg hover:bg-pd-surface-2 transition-colors flex-shrink-0">
             Start a conversation
           </Link>
         </div>

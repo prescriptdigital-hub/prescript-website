@@ -158,11 +158,11 @@ export default function PaymentModal({
       />
 
       {/* Card */}
-      <div className="relative bg-white rounded-2xl w-full max-w-md shadow-2xl p-7">
+      <div className="relative bg-pd-surface rounded-2xl w-full max-w-md  p-7">
         {stage !== 'processing' && (
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            className="absolute top-4 right-4 text-pd-subtle hover:text-pd-muted transition-colors"
           >
             <X size={18} />
           </button>
@@ -171,15 +171,15 @@ export default function PaymentModal({
         {/* Success */}
         {stage === 'success' && (
           <div className="text-center py-4">
-            <CheckCircle size={48} className="text-prescript-green mx-auto mb-4" />
-            <p className="font-syne font-extrabold text-xl text-gray-900 mb-2">Payment confirmed!</p>
-            <p className="font-sans text-sm text-gray-500 mb-3 leading-relaxed">
+            <CheckCircle size={48} className="text-pd-brick-700 mx-auto mb-4" />
+            <p className="font-display font-light text-xl text-pd-ink mb-2">Payment confirmed!</p>
+            <p className="font-sans text-sm text-pd-muted mb-3 leading-relaxed">
               Welcome to <strong>{planName}</strong>. We&apos;ll reach out within 24 hours to get you onboarded.
             </p>
-            <p className="font-sans text-xs text-gray-400 mb-6">
+            <p className="font-sans text-xs text-pd-subtle mb-6">
               Track your project at{" "}
-              <a href={"/track?ref=" + payRef} className="text-prescript-green underline" target="_blank" rel="noopener noreferrer">prescriptdigital.com/track</a>
-              {" "}using ref <span className="font-medium text-gray-600">{payRef}</span>
+              <a href={"/track?ref=" + payRef} className="text-pd-brick-700 underline" target="_blank" rel="noopener noreferrer">prescriptdigital.com/track</a>
+              {" "}using ref <span className="font-medium text-pd-muted">{payRef}</span>
             </p>
             <div className="flex flex-col gap-3">
               <a href={"/onboarding?ref=" + payRef + "&plan=" + encodeURIComponent(planName)} className="block">
@@ -193,13 +193,13 @@ export default function PaymentModal({
         {/* Error */}
         {stage === 'error' && (
           <div className="text-center py-4">
-            <p className="font-syne font-extrabold text-xl text-gray-900 mb-2">Verification failed</p>
-            <p className="font-sans text-sm text-gray-500 mb-2 leading-relaxed">
+            <p className="font-display font-light text-xl text-pd-ink mb-2">Verification failed</p>
+            <p className="font-sans text-sm text-pd-muted mb-2 leading-relaxed">
               Your payment may have gone through but we couldn&apos;t verify it automatically.
             </p>
-            <p className="font-sans text-sm text-gray-500 mb-6">
+            <p className="font-sans text-sm text-pd-muted mb-6">
               Email us at{' '}
-              <a href="mailto:billing@prescriptdigital.com" className="text-prescript-green underline">
+              <a href="mailto:billing@prescriptdigital.com" className="text-pd-brick-700 underline">
                 billing@prescriptdigital.com
               </a>{' '}
               with your payment reference and we&apos;ll sort it out.
@@ -211,44 +211,44 @@ export default function PaymentModal({
         {/* Bank Transfer */}
         {stage === 'bank-transfer' && (
           <div>
-            <p className="font-syne font-extrabold text-xl text-gray-900 mb-1">{planName}</p>
-            <p className="font-sans text-sm text-gray-400 mb-5">
+            <p className="font-display font-light text-xl text-pd-ink mb-1">{planName}</p>
+            <p className="font-sans text-sm text-pd-subtle mb-5">
               {displayAmount} · Bank Transfer
             </p>
 
-            <div className="bg-gray-50 border border-gray-100 rounded-xl p-4 mb-5 flex flex-col gap-3">
+            <div className="bg-pd-paper border border-pd-line rounded-xl p-4 mb-5 flex flex-col gap-3">
               <div>
-                <p className="text-xs font-sans text-gray-400 mb-0.5">Bank</p>
-                <p className="text-sm font-sans font-medium text-gray-800">{BANK.name}</p>
+                <p className="text-xs font-sans text-pd-subtle mb-0.5">Bank</p>
+                <p className="text-sm font-sans font-medium text-pd-ink">{BANK.name}</p>
               </div>
               <div>
-                <p className="text-xs font-sans text-gray-400 mb-0.5">Account name</p>
-                <p className="text-sm font-sans font-medium text-gray-800">{BANK.accountName}</p>
+                <p className="text-xs font-sans text-pd-subtle mb-0.5">Account name</p>
+                <p className="text-sm font-sans font-medium text-pd-ink">{BANK.accountName}</p>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-sans text-gray-400 mb-0.5">Account number</p>
-                  <p className="text-lg font-syne font-bold text-prescript-green tracking-wider">{BANK.account}</p>
+                  <p className="text-xs font-sans text-pd-subtle mb-0.5">Account number</p>
+                  <p className="text-lg font-display font-normal text-pd-brick-700 tracking-wider">{BANK.account}</p>
                 </div>
                 <button
                   onClick={copyAccount}
-                  className="flex items-center gap-1.5 text-xs font-sans text-prescript-green border border-prescript-green/30 rounded-lg px-3 py-1.5 hover:bg-prescript-green-light transition-colors"
+                  className="flex items-center gap-1.5 text-xs font-sans text-pd-brick-700 border border-pd-brick-700/30 rounded-lg px-3 py-1.5 hover:bg-pd-surface-2 transition-colors"
                 >
                   {copied ? <Check size={12} /> : <Copy size={12} />}
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
               </div>
-              <div className="border-t border-gray-200 pt-3">
-                <p className="text-xs font-sans text-gray-400 mb-0.5">Use this as payment reference</p>
-                <p className="text-xs font-sans font-medium text-gray-700 bg-white border border-gray-200 rounded-lg px-3 py-2 tracking-wide">
+              <div className="border-t border-pd-line pt-3">
+                <p className="text-xs font-sans text-pd-subtle mb-0.5">Use this as payment reference</p>
+                <p className="text-xs font-sans font-medium text-pd-muted bg-pd-surface border border-pd-line rounded-lg px-3 py-2 tracking-wide">
                   {payRef}
                 </p>
               </div>
             </div>
 
-            <p className="font-sans text-xs text-gray-500 mb-5 leading-relaxed">
+            <p className="font-sans text-xs text-pd-muted mb-5 leading-relaxed">
               After payment, send your receipt and the reference above to{' '}
-              <a href="mailto:billing@prescriptdigital.com" className="text-prescript-green underline">
+              <a href="mailto:billing@prescriptdigital.com" className="text-pd-brick-700 underline">
                 billing@prescriptdigital.com
               </a>{' '}
               and we&apos;ll activate your plan within 24 hours.
@@ -275,8 +275,8 @@ export default function PaymentModal({
         {/* PayPal */}
         {stage === 'paypal' && (
           <div>
-            <p className="font-syne font-extrabold text-xl text-gray-900 mb-1">{planName}</p>
-            <p className="font-sans text-2xl font-bold text-prescript-green mb-5">{displayAmount}</p>
+            <p className="font-display font-light text-xl text-pd-ink mb-1">{planName}</p>
+            <p className="font-sans text-2xl font-bold text-pd-brick-700 mb-5">{displayAmount}</p>
             <PayPalCheckout
               planName={planName}
               amountUSD={amountUSD}
@@ -287,7 +287,7 @@ export default function PaymentModal({
             <button
               type="button"
               onClick={() => setStage('form')}
-              className="w-full text-center text-xs font-sans text-gray-400 hover:text-gray-600 mt-3"
+              className="w-full text-center text-xs font-sans text-pd-subtle hover:text-pd-muted mt-3"
             >
               ← Back
             </button>
@@ -298,10 +298,10 @@ export default function PaymentModal({
         {(stage === 'form' || stage === 'processing') && (
           <>
             <div className="mb-6">
-              <p className="font-syne font-extrabold text-xl text-gray-900 mb-1">{planName}</p>
+              <p className="font-display font-light text-xl text-pd-ink mb-1">{planName}</p>
               <div className="flex items-center gap-2">
-                <span className="font-sans text-2xl font-bold text-prescript-green">{displayAmount}</span>
-                <span className="text-xs font-sans text-gray-400 bg-gray-100 px-2 py-1 rounded-full">
+                <span className="font-sans text-2xl font-bold text-pd-brick-700">{displayAmount}</span>
+                <span className="text-xs font-sans text-pd-subtle bg-pd-surface-2 px-2 py-1">
                   via {provider}
                 </span>
               </div>
@@ -319,8 +319,8 @@ export default function PaymentModal({
                       onClick={() => setMethod(m)}
                       className={`py-2.5 rounded-lg border text-sm font-sans font-medium transition-colors ${
                         method === m
-                          ? 'border-prescript-green bg-prescript-green-light text-prescript-green-dark'
-                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                          ? 'border-pd-brick-700 bg-pd-surface-2 text-pd-oxblood'
+                          : 'border-pd-line text-pd-muted hover:border-pd-line'
                       }`}
                     >
                       {m === 'card' ? 'Card' : 'PayPal'}
@@ -330,32 +330,32 @@ export default function PaymentModal({
               )}
 
               <div>
-                <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
-                  Full name <span className="text-red-400">*</span>
+                <label className="text-sm font-sans font-medium text-pd-muted mb-1 block">
+                  Full name <span className="text-pd-error">*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="Your full name"
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                  className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                   {...register('name', { required: 'Name is required' })}
                 />
-                {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
+                {errors.name && <p className="text-xs text-pd-error mt-1">{errors.name.message}</p>}
               </div>
 
               <div>
-                <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
-                  Email <span className="text-red-400">*</span>
+                <label className="text-sm font-sans font-medium text-pd-muted mb-1 block">
+                  Email <span className="text-pd-error">*</span>
                 </label>
                 <input
                   type="email"
                   placeholder="you@example.com"
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                  className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                   {...register('email', {
                     required: 'Email is required',
                     pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' },
                   })}
                 />
-                {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
+                {errors.email && <p className="text-xs text-pd-error mt-1">{errors.email.message}</p>}
               </div>
 
               <Button
@@ -370,7 +370,7 @@ export default function PaymentModal({
                   : usePayPal ? 'Continue to PayPal →' : `Pay ${displayAmount} →`}
               </Button>
 
-              <p className="text-xs font-sans text-gray-400 text-center">
+              <p className="text-xs font-sans text-pd-subtle text-center">
                 Secured by {provider}. Your card details are never stored by us.
               </p>
             </form>

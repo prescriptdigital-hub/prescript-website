@@ -70,7 +70,7 @@ export default function ContactPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-10">
           <SectionLabel>Get in touch</SectionLabel>
-          <h1 className="font-syne font-extrabold text-4xl lg:text-5xl tracking-tighter text-gray-900">
+          <h1 className="font-display font-light text-4xl lg:text-5xl tracking-tighter text-pd-ink">
             Book a free strategy call.
           </h1>
         </div>
@@ -79,13 +79,13 @@ export default function ContactPage() {
           {/* Form / Calendly */}
           <div className="lg:col-span-2">
             {/* Tab toggle */}
-            <div className="flex gap-1 bg-gray-100 rounded-xl p-1 mb-6 w-fit">
+            <div className="flex gap-1 bg-pd-surface-2 rounded-xl p-1 mb-6 w-fit">
               <button
                 onClick={() => setActiveTab('book')}
                 className={`px-5 py-2 rounded-lg text-sm font-sans font-medium transition-colors ${
                   activeTab === 'book'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-pd-surface text-pd-ink '
+                    : 'text-pd-muted hover:text-pd-muted'
                 }`}
               >
                 Book a Call
@@ -94,8 +94,8 @@ export default function ContactPage() {
                 onClick={() => setActiveTab('message')}
                 className={`px-5 py-2 rounded-lg text-sm font-sans font-medium transition-colors ${
                   activeTab === 'message'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-pd-surface text-pd-ink '
+                    : 'text-pd-muted hover:text-pd-muted'
                 }`}
               >
                 Send a Message
@@ -105,7 +105,7 @@ export default function ContactPage() {
             {/* Calendly embed, always in DOM, hidden when not active */}
             <div className={activeTab === 'book' ? 'block' : 'hidden'}>
               <div
-                className="calendly-inline-widget rounded-xl overflow-hidden border border-gray-100"
+                className="calendly-inline-widget rounded-xl overflow-hidden border border-pd-line"
                 data-url="https://calendly.com/prescriptdigitalsolutions/strategy-call"
                 style={{ minWidth: '320px', height: '700px' }}
               />
@@ -117,25 +117,25 @@ export default function ContactPage() {
 
             {/* Message form */}
             {activeTab === 'message' && (submitted ? (
-              <div className="border border-prescript-green bg-prescript-green-light rounded-2xl p-10 text-center">
-                <p className="font-syne font-bold text-prescript-green-dark text-2xl mb-2">
+              <div className="border border-pd-brick-700 bg-pd-surface-2 rounded-2xl p-10 text-center">
+                <p className="font-display font-normal text-pd-oxblood text-2xl mb-2">
                   Message received!
                 </p>
-                <p className="font-sans text-prescript-green-dark text-sm">
+                <p className="font-sans text-pd-oxblood text-sm">
                   We&apos;ll respond within 24 hours via email or WhatsApp.
                 </p>
               </div>
             ) : error ? (
-              <div className="border border-red-200 bg-red-50 rounded-2xl p-10 text-center">
-                <p className="font-syne font-bold text-red-700 text-xl mb-2">
+              <div className="border border-pd-error bg-pd-error-bg rounded-2xl p-10 text-center">
+                <p className="font-display font-normal text-pd-error text-xl mb-2">
                   Something went wrong.
                 </p>
-                <p className="font-sans text-red-600 text-sm mb-4">
+                <p className="font-sans text-pd-error text-sm mb-4">
                   Your message could not be sent. Please reach us directly on WhatsApp or email.
                 </p>
                 <button
                   onClick={() => setError(false)}
-                  className="text-sm font-sans text-red-600 underline"
+                  className="text-sm font-sans text-pd-error underline"
                 >
                   Try again
                 </button>
@@ -144,63 +144,63 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
-                      Full name <span className="text-red-400">*</span>
+                    <label className="text-sm font-sans font-medium text-pd-muted mb-1 block">
+                      Full name <span className="text-pd-error">*</span>
                     </label>
                     <input
                       type="text"
                       placeholder="Your full name"
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                      className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                       {...register('fullName', { required: 'Full name is required' })}
                     />
                     {errors.fullName && (
-                      <p className="text-xs text-red-500 mt-1">{errors.fullName.message}</p>
+                      <p className="text-xs text-pd-error mt-1">{errors.fullName.message}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
-                      Business email <span className="text-red-400">*</span>
+                    <label className="text-sm font-sans font-medium text-pd-muted mb-1 block">
+                      Business email <span className="text-pd-error">*</span>
                     </label>
                     <input
                       type="email"
                       placeholder="you@company.com"
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                      className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                       {...register('email', {
                         required: 'Email is required',
                         pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' },
                       })}
                     />
                     {errors.email && (
-                      <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>
+                      <p className="text-xs text-pd-error mt-1">{errors.email.message}</p>
                     )}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
-                      WhatsApp number <span className="text-red-400">*</span>
+                    <label className="text-sm font-sans font-medium text-pd-muted mb-1 block">
+                      WhatsApp number <span className="text-pd-error">*</span>
                     </label>
                     <input
                       type="tel"
                       placeholder="+234 800 000 0000"
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                      className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                       {...register('whatsapp', { required: 'WhatsApp number is required' })}
                     />
                     {errors.whatsapp && (
-                      <p className="text-xs text-red-500 mt-1">{errors.whatsapp.message}</p>
+                      <p className="text-xs text-pd-error mt-1">{errors.whatsapp.message}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
+                    <label className="text-sm font-sans font-medium text-pd-muted mb-1 block">
                       Company name
                     </label>
                     <input
                       type="text"
                       placeholder="Optional"
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                      className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                       {...register('company')}
                     />
                   </div>
@@ -208,11 +208,11 @@ export default function ContactPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
-                      Which service? <span className="text-red-400">*</span>
+                    <label className="text-sm font-sans font-medium text-pd-muted mb-1 block">
+                      Which service? <span className="text-pd-error">*</span>
                     </label>
                     <select
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-700 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent bg-white"
+                      className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-muted focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent bg-pd-surface"
                       defaultValue=""
                       {...register('service', { required: 'Please select a service' })}
                     >
@@ -226,16 +226,16 @@ export default function ContactPage() {
                       <option value="full">Full Package, All Five Services</option>
                     </select>
                     {errors.service && (
-                      <p className="text-xs text-red-500 mt-1">{errors.service.message}</p>
+                      <p className="text-xs text-pd-error mt-1">{errors.service.message}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="text-sm font-sans font-medium text-gray-600 mb-1 block">
-                      Budget range <span className="text-red-400">*</span>
+                    <label className="text-sm font-sans font-medium text-pd-muted mb-1 block">
+                      Budget range <span className="text-pd-error">*</span>
                     </label>
                     <select
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-700 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent bg-white"
+                      className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-muted focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent bg-pd-surface"
                       defaultValue=""
                       {...register('budget', { required: 'Please select a budget range' })}
                     >
@@ -247,25 +247,25 @@ export default function ContactPage() {
                       <option value="discuss">Let&apos;s discuss</option>
                     </select>
                     {errors.budget && (
-                      <p className="text-xs text-red-500 mt-1">{errors.budget.message}</p>
+                      <p className="text-xs text-pd-error mt-1">{errors.budget.message}</p>
                     )}
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-sans font-medium text-gray-600 mb-1 block">
+                  <label className="text-xs font-sans font-medium text-pd-muted mb-1 block">
                     Message
                   </label>
                   <textarea
                     rows={4}
                     placeholder="Tell us about your business and what you're looking to achieve..."
-                    className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent resize-none"
+                    className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent resize-none"
                     {...register('message', {
                       minLength: { value: 10, message: 'Message must be at least 10 characters' },
                     })}
                   />
                   {errors.message && (
-                    <p className="text-xs text-red-500 mt-1">{errors.message.message}</p>
+                    <p className="text-xs text-pd-error mt-1">{errors.message.message}</p>
                   )}
                 </div>
 
@@ -278,43 +278,43 @@ export default function ContactPage() {
 
           {/* Info panel */}
           <div className="flex flex-col gap-5">
-            <div className="border border-prescript-green bg-prescript-green-light rounded-xl p-5">
-              <p className="font-syne font-bold text-prescript-green-dark text-base mb-1">
+            <div className="border border-pd-brick-700 bg-pd-surface-2 rounded-xl p-5">
+              <p className="font-display font-normal text-pd-oxblood text-base mb-1">
                 We respond within 24 hours
               </p>
-              <p className="font-sans text-sm text-prescript-green-dark leading-relaxed">
+              <p className="font-sans text-sm text-pd-oxblood leading-relaxed">
                 Every enquiry gets a personal response, not an automated reply.
               </p>
             </div>
 
-            <div className="border border-gray-200 rounded-xl p-5 flex flex-col gap-4">
+            <div className="border border-pd-line rounded-xl p-5 flex flex-col gap-4">
               <div className="flex items-start gap-3">
-                <MapPin size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                <MapPin size={16} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-sans font-medium text-gray-700">Location</p>
-                  <p className="text-sm font-sans text-gray-400">Lagos, Nigeria</p>
-                  <p className="text-sm font-sans text-gray-400">WAT (UTC+1)</p>
+                  <p className="text-sm font-sans font-medium text-pd-muted">Location</p>
+                  <p className="text-sm font-sans text-pd-subtle">Lagos, Nigeria</p>
+                  <p className="text-sm font-sans text-pd-subtle">WAT (UTC+1)</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                <Clock size={16} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-sans font-medium text-gray-700">Response time</p>
-                  <p className="text-sm font-sans text-gray-400">Within 24 hours</p>
-                  <p className="text-sm font-sans text-gray-400">Mon – Sat, 8am – 8pm WAT</p>
+                  <p className="text-sm font-sans font-medium text-pd-muted">Response time</p>
+                  <p className="text-sm font-sans text-pd-subtle">Within 24 hours</p>
+                  <p className="text-sm font-sans text-pd-subtle">Mon – Sat, 8am – 8pm WAT</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <MessageCircle size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                <MessageCircle size={16} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-sans font-medium text-gray-700">WhatsApp</p>
+                  <p className="text-sm font-sans font-medium text-pd-muted">WhatsApp</p>
                   <a
                     href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/\D/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-pd-brick-700 hover:underline"
                   >
                     {COMPANY_INFO.whatsapp}
                   </a>
@@ -322,12 +322,12 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Mail size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                <Mail size={16} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-sans font-medium text-gray-700">Email</p>
+                  <p className="text-sm font-sans font-medium text-pd-muted">Email</p>
                   <a
                     href={`mailto:${COMPANY_INFO.email}`}
-                    className="text-sm font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-pd-brick-700 hover:underline"
                   >
                     {COMPANY_INFO.email}
                   </a>
@@ -335,14 +335,14 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Instagram size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                <Instagram size={16} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-sans font-medium text-gray-700">Instagram</p>
+                  <p className="text-sm font-sans font-medium text-pd-muted">Instagram</p>
                   <a
                     href={COMPANY_INFO.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-pd-brick-700 hover:underline"
                   >
                     @prescriptdigital
                   </a>
@@ -350,14 +350,14 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="text-prescript-green flex-shrink-0 mt-0.5"><XIcon size={16} /></span>
+                <span className="text-pd-brick-700 flex-shrink-0 mt-0.5"><XIcon size={16} /></span>
                 <div>
-                  <p className="text-sm font-sans font-medium text-gray-700">X (Twitter)</p>
+                  <p className="text-sm font-sans font-medium text-pd-muted">X (Twitter)</p>
                   <a
                     href={COMPANY_INFO.x}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-pd-brick-700 hover:underline"
                   >
                     @prescriptdigit1
                   </a>
@@ -365,14 +365,14 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Facebook size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                <Facebook size={16} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-sans font-medium text-gray-700">Facebook</p>
+                  <p className="text-sm font-sans font-medium text-pd-muted">Facebook</p>
                   <a
                     href={COMPANY_INFO.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-pd-brick-700 hover:underline"
                   >
                     /prescriptdigital
                   </a>
@@ -380,14 +380,14 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Linkedin size={16} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                <Linkedin size={16} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-sans font-medium text-gray-700">LinkedIn</p>
+                  <p className="text-sm font-sans font-medium text-pd-muted">LinkedIn</p>
                   <a
                     href={COMPANY_INFO.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-sans text-prescript-green hover:underline"
+                    className="text-sm font-sans text-pd-brick-700 hover:underline"
                   >
                     /company/prescriptdigital
                   </a>

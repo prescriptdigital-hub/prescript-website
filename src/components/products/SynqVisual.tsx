@@ -48,9 +48,9 @@ export default function SynqVisual() {
       aria-label="PRESYNQ example: a new lead is qualified by AI, approved by a person, then a CRM deal, a WhatsApp reply and a team notification run, all recorded in a run log."
     >
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10" aria-hidden="true">
-        <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-        <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-        <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+        <span className="w-2.5 h-2.5 rounded-full bg-pd-surface/15" />
+        <span className="w-2.5 h-2.5 rounded-full bg-pd-surface/15" />
+        <span className="w-2.5 h-2.5 rounded-full bg-pd-surface/15" />
         <span className="ml-3 text-[11px] tracking-[0.18em] uppercase text-white/40 font-sans">Workflow · Lead response</span>
         <span className="ml-auto flex items-center gap-1.5 text-[11px] font-sans" style={{ color: SYNQ.accent }}>
           <span className="w-1.5 h-1.5 rounded-full" style={{ background: SYNQ.accent }} />
@@ -85,7 +85,7 @@ export default function SynqVisual() {
                     </p>
                   )}
                 </motion.div>
-                <div className="h-5 ml-6 w-px relative overflow-hidden bg-white/10">
+                <div className="h-5 ml-6 w-px relative overflow-hidden bg-pd-surface/10">
                   {active && !reduce && (
                     <motion.span
                       key={step}

@@ -34,15 +34,15 @@ export default function WaitlistForm({ defaultProduct = 'Both' }: { defaultProdu
 
   if (status === 'done') {
     return (
-      <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-8 text-center" role="status">
-        <p className="font-syne font-extrabold text-2xl text-white mb-2">You&apos;re on the list.</p>
+      <div className="rounded-2xl border border-white/15 bg-pd-surface/[0.04] p-8 text-center" role="status">
+        <p className="font-display font-light text-2xl text-white mb-2">You&apos;re on the list.</p>
         <p className="font-sans text-white/65 text-sm">We&apos;ll email you as early-access places open.</p>
       </div>
     )
   }
 
   const field =
-    'w-full rounded-xl border border-white/15 bg-white/[0.06] px-4 py-3 text-sm font-sans text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#2EE6A6] focus:border-transparent'
+    'w-full rounded-xl border border-white/15 bg-pd-surface/[0.06] px-4 py-3 text-sm font-sans text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-pd-cream focus:border-transparent'
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid sm:grid-cols-2 gap-3" noValidate>
@@ -84,8 +84,7 @@ export default function WaitlistForm({ defaultProduct = 'Both' }: { defaultProdu
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="sm:col-span-2 rounded-xl py-3.5 font-sans font-semibold text-[#07110E] transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-        style={{ background: 'linear-gradient(90deg, #8B7CFF, #2EE6A6)' }}
+        className="sm:col-span-2 py-3.5 font-sans font-semibold bg-pd-brick text-white hover:bg-pd-brick-700 transition-colors disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
         {status === 'sending' ? 'Joining…' : 'Request early access'}
       </button>

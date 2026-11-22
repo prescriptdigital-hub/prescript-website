@@ -37,18 +37,18 @@ export default function ComparisonTable({ plans, currency, billing }: Comparison
       <table className="w-full min-w-[640px] border-collapse">
         <thead>
           <tr>
-            <th className="text-left py-3 pr-4 text-xs font-sans font-medium text-gray-400 uppercase tracking-widest w-40">
+            <th className="text-left py-3 pr-4 text-xs font-sans font-medium text-pd-subtle uppercase tracking-widest w-40">
               Feature
             </th>
             {plans.map((plan) => (
               <th
                 key={plan.name}
                 className={`py-3 px-4 text-center min-w-[120px] ${
-                  plan.isFeatured ? 'bg-prescript-green-light rounded-t-lg' : ''
+                  plan.isFeatured ? 'bg-pd-surface-2 rounded-t-lg' : ''
                 }`}
               >
-                <p className="font-syne font-bold text-sm text-gray-900">{plan.name}</p>
-                <p className="font-sans font-light text-xs text-prescript-green">
+                <p className="font-display font-normal text-sm text-pd-ink">{plan.name}</p>
+                <p className="font-sans font-light text-xs text-pd-brick-700">
                   {getPrice(plan, currency, billing)}/mo
                 </p>
               </th>
@@ -57,19 +57,19 @@ export default function ComparisonTable({ plans, currency, billing }: Comparison
         </thead>
         <tbody>
           {features.map((feature, i) => (
-            <tr key={feature} className={i % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-              <td className="py-3 pr-4 text-xs font-sans text-gray-600 leading-relaxed">{feature}</td>
+            <tr key={feature} className={i % 2 === 0 ? 'bg-pd-paper' : 'bg-pd-surface'}>
+              <td className="py-3 pr-4 text-xs font-sans text-pd-muted leading-relaxed">{feature}</td>
               {plans.map((plan) => {
                 const match = plan.features.find((f) => f.text === feature)
                 return (
                   <td
                     key={plan.name}
-                    className={`py-3 px-4 text-center ${plan.isFeatured ? 'bg-prescript-green-light bg-opacity-40' : ''}`}
+                    className={`py-3 px-4 text-center ${plan.isFeatured ? 'bg-pd-surface-2 bg-opacity-40' : ''}`}
                   >
                     {match?.included ? (
-                      <Check size={14} className="text-prescript-green mx-auto" />
+                      <Check size={14} className="text-pd-brick-700 mx-auto" />
                     ) : (
-                      <Minus size={14} className="text-gray-300 mx-auto" />
+                      <Minus size={14} className="text-pd-subtle mx-auto" />
                     )}
                   </td>
                 )

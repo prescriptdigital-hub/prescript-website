@@ -59,12 +59,12 @@ export default function AdminProjectsPage() {
     setSaving(null)
   }
   return (
-    <main className="min-h-screen bg-gray-50 py-10 px-4">
+    <main className="min-h-screen bg-pd-paper py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <p className="font-syne font-extrabold text-2xl text-gray-900">Projects</p>
-            <p className="font-sans text-sm text-gray-400">{projects.length} project{projects.length !== 1 ? "s" : ""}</p>
+            <p className="font-display font-light text-2xl text-pd-ink">Projects</p>
+            <p className="font-sans text-sm text-pd-subtle">{projects.length} project{projects.length !== 1 ? "s" : ""}</p>
           </div>
           <div className="flex gap-3">
             <Button variant="outline" size="sm" onClick={() => router.push("/admin/team")}><Users size={14} className="mr-1.5" />Team</Button>
@@ -74,13 +74,13 @@ export default function AdminProjectsPage() {
         </div>
 
         {showChangePw && (
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-6">
-            <p className="font-syne font-bold text-base text-gray-900 mb-4">Change password</p>
+          <div className="bg-pd-surface rounded-2xl border border-pd-line  p-5 mb-6">
+            <p className="font-display font-normal text-base text-pd-ink mb-4">Change password</p>
             <div className="flex flex-col gap-3">
-              <input type="password" value={oldPw} onChange={e => setOldPw(e.target.value)} placeholder="Current password" className="border border-gray-200 rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-prescript-green" />
-              <input type="password" value={newPw} onChange={e => setNewPw(e.target.value)} placeholder="New password (min 6 characters)" className="border border-gray-200 rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-prescript-green" />
-              {pwError && <p className="text-xs text-red-500">{pwError}</p>}
-              {pwSuccess && <p className="text-xs text-prescript-green">Password changed successfully!</p>}
+              <input type="password" value={oldPw} onChange={e => setOldPw(e.target.value)} placeholder="Current password" className="border border-pd-line rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-pd-brick-700" />
+              <input type="password" value={newPw} onChange={e => setNewPw(e.target.value)} placeholder="New password (min 6 characters)" className="border border-pd-line rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-pd-brick-700" />
+              {pwError && <p className="text-xs text-pd-error">{pwError}</p>}
+              {pwSuccess && <p className="text-xs text-pd-brick-700">Password changed successfully!</p>}
               <div className="flex gap-3">
                 <Button variant="primary" size="sm" onClick={submitChangePw}>Save new password</Button>
                 <Button variant="outline" size="sm" onClick={() => setShowChangePw(false)}>Cancel</Button>
@@ -89,7 +89,7 @@ export default function AdminProjectsPage() {
           </div>
         )}
 
-        {projects.length === 0 && <p className="text-center font-sans text-sm text-gray-400 py-16">No projects yet. They appear here automatically after a payment is verified.</p>}
+        {projects.length === 0 && <p className="text-center font-sans text-sm text-pd-subtle py-16">No projects yet. They appear here automatically after a payment is verified.</p>}
 
         <div className="flex flex-col gap-4">
           {projects.map(p => {
@@ -97,30 +97,30 @@ export default function AdminProjectsPage() {
             const draft = edits[p.reference] || {}
             const current = { ...p, ...draft }
             return (
-              <div key={p.reference} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <button onClick={() => toggleExpand(p.reference)} className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition-colors">
+              <div key={p.reference} className="bg-pd-surface rounded-2xl border border-pd-line  overflow-hidden">
+                <button onClick={() => toggleExpand(p.reference)} className="w-full flex items-center justify-between px-6 py-4 hover:bg-pd-paper transition-colors">
                   <div className="flex items-center gap-4 min-w-0">
                     <div className="text-left min-w-0">
-                      <p className="font-syne font-bold text-base text-gray-900 truncate">{p.planName}</p>
-                      <p className="font-sans text-xs text-gray-400">{p.customerName || p.customerEmail} · {p.reference}</p>
+                      <p className="font-display font-normal text-base text-pd-ink truncate">{p.planName}</p>
+                      <p className="font-sans text-xs text-pd-subtle">{p.customerName || p.customerEmail} · {p.reference}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                    <span className="text-xs font-sans font-medium bg-prescript-green-light text-prescript-green-dark px-2 py-0.5 rounded-full">{p.stages[p.currentStage] || "Complete"}</span>
-                    {isOpen ? <ChevronUp size={16} className="text-gray-400" /> : <ChevronDown size={16} className="text-gray-400" />}
+                    <span className="text-xs font-sans font-medium bg-pd-surface-2 text-pd-oxblood px-2 py-0.5">{p.stages[p.currentStage] || "Complete"}</span>
+                    {isOpen ? <ChevronUp size={16} className="text-pd-subtle" /> : <ChevronDown size={16} className="text-pd-subtle" />}
                   </div>
                 </button>                {isOpen && (
-                  <div className="border-t border-gray-100 px-6 py-5 flex flex-col gap-4">
+                  <div className="border-t border-pd-line px-6 py-5 flex flex-col gap-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-xs font-sans text-gray-400 mb-1">Current stage</p>
-                        <select value={current.currentStage} onChange={e => setEdit(p.reference, "currentStage", Number(e.target.value))} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-sans text-gray-800 focus:outline-none focus:ring-2 focus:ring-prescript-green">
+                        <p className="text-xs font-sans text-pd-subtle mb-1">Current stage</p>
+                        <select value={current.currentStage} onChange={e => setEdit(p.reference, "currentStage", Number(e.target.value))} className="w-full border border-pd-line rounded-lg px-3 py-2 text-sm font-sans text-pd-ink focus:outline-none focus:ring-2 focus:ring-pd-brick-700">
                           {p.stages.map((s, i) => <option key={s} value={i}>{i + 1}. {s}</option>)}
                         </select>
                       </div>
                       <div>
-                        <p className="text-xs font-sans text-gray-400 mb-1">Status</p>
-                        <select value={current.status} onChange={e => setEdit(p.reference, "status", e.target.value)} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-sans text-gray-800 focus:outline-none focus:ring-2 focus:ring-prescript-green">
+                        <p className="text-xs font-sans text-pd-subtle mb-1">Status</p>
+                        <select value={current.status} onChange={e => setEdit(p.reference, "status", e.target.value)} className="w-full border border-pd-line rounded-lg px-3 py-2 text-sm font-sans text-pd-ink focus:outline-none focus:ring-2 focus:ring-pd-brick-700">
                           <option value="active">Active</option>
                           <option value="paused">Paused</option>
                           <option value="completed">Completed</option>
@@ -128,20 +128,20 @@ export default function AdminProjectsPage() {
                       </div>
                     </div>
                     <div>
-                      <p className="text-xs font-sans text-gray-400 mb-1">Assigned team</p>
+                      <p className="text-xs font-sans text-pd-subtle mb-1">Assigned team</p>
                       <div className="flex flex-wrap gap-2">
                         {team.map(m => {
                           const assigned = (current.assignedTeam || []).includes(m.email)
                           return (
-                            <button key={m.email} onClick={() => { const cur = current.assignedTeam || []; setEdit(p.reference, "assignedTeam", assigned ? cur.filter(e => e !== m.email) : [...cur, m.email]) }} className={"text-xs font-sans px-3 py-1.5 rounded-full border transition-colors " + (assigned ? "bg-prescript-green text-white border-prescript-green" : "border-gray-200 text-gray-600 hover:border-prescript-green")}>{m.name}</button>
+                            <button key={m.email} onClick={() => { const cur = current.assignedTeam || []; setEdit(p.reference, "assignedTeam", assigned ? cur.filter(e => e !== m.email) : [...cur, m.email]) }} className={"text-xs font-sans px-3 py-1.5 border transition-colors " + (assigned ? "bg-pd-brick-700 text-white border-pd-brick-700" : "border-pd-line text-pd-muted hover:border-pd-brick-700")}>{m.name}</button>
                           )
                         })}
-                        {team.length === 0 && <p className="text-xs text-gray-400">No team members. Add some in the Team tab.</p>}
+                        {team.length === 0 && <p className="text-xs text-pd-subtle">No team members. Add some in the Team tab.</p>}
                       </div>
                     </div>
                     <div>
-                      <p className="text-xs font-sans text-gray-400 mb-1">Internal notes</p>
-                      <textarea value={current.notes || ""} onChange={e => setEdit(p.reference, "notes", e.target.value)} rows={3} placeholder="Notes visible only to the team..." className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-sans text-gray-800 placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-prescript-green" />
+                      <p className="text-xs font-sans text-pd-subtle mb-1">Internal notes</p>
+                      <textarea value={current.notes || ""} onChange={e => setEdit(p.reference, "notes", e.target.value)} rows={3} placeholder="Notes visible only to the team..." className="w-full border border-pd-line rounded-lg px-3 py-2 text-sm font-sans text-pd-ink placeholder-pd-subtle resize-none focus:outline-none focus:ring-2 focus:ring-pd-brick-700" />
                     </div>
                     {edits[p.reference] && (
                       <Button variant="primary" size="sm" onClick={() => save(p.reference)} disabled={saving === p.reference} className="self-end">{saving === p.reference ? "Saving..." : "Save changes"}</Button>

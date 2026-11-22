@@ -18,7 +18,7 @@ export function ProductsShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navbar />
-      <main className="relative bg-[#07110E] text-white overflow-hidden">
+      <main className="relative bg-pd-ink text-white overflow-hidden">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 opacity-[0.07]"
@@ -42,7 +42,7 @@ export function EarlyAccess({ defaultProduct, accent }: { defaultProduct?: 'PRES
     <section id="early-access" className="relative px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20">
       <Reveal className="max-w-3xl mx-auto rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-6 sm:p-10">
         <Eyebrow color={accent}>Early access</Eyebrow>
-        <h2 className="font-syne font-extrabold text-3xl sm:text-4xl tracking-tighter mb-3">Be first in line.</h2>
+        <h2 className="font-display font-light text-3xl sm:text-4xl tracking-tighter mb-3">Be first in line.</h2>
         <p className="font-sans font-light text-white/65 mb-8">
           We&apos;re opening access in stages to individuals and businesses worldwide. Tell us who you are and we&apos;ll invite you as places open.
         </p>
@@ -70,27 +70,27 @@ export default function ProductPage({ product, visual }: { product: Product; vis
               ← All products
             </Link>
             <div className="flex flex-wrap items-center gap-3 mb-5">
-              <span className="font-syne font-extrabold text-lg tracking-tight" style={{ color: product.accent }}>
+              <span className="font-display font-light text-lg tracking-tight" style={{ color: product.accent }}>
                 {product.name}
                 <sup className="font-sans font-normal text-[10px] ml-0.5">™</sup>
               </span>
-              <span className="text-[11px] font-sans tracking-widest uppercase px-2.5 py-1 rounded-full border border-white/15 text-white/70">
+              <span className="text-[11px] font-sans tracking-widest uppercase px-2.5 py-1 border border-white/15 text-white/70">
                 Early access
               </span>
             </div>
-            <h1 className="font-syne font-extrabold text-[2.1rem] sm:text-5xl lg:text-[3.1rem] tracking-tighter leading-[1.08] mb-5">
+            <h1 className="font-display font-light text-[2.1rem] sm:text-5xl lg:text-[3.1rem] tracking-tighter leading-[1.08] mb-5">
               {product.tagline}
             </h1>
             <p className="font-sans font-light text-lg text-white/70 leading-relaxed mb-8 max-w-xl">{product.promise}</p>
             <div className="flex flex-wrap gap-3">
               <a
                 href="#early-access"
-                className="rounded-xl px-6 py-3.5 font-sans font-semibold text-[#07110E] transition-transform hover:scale-[1.02]"
+                className="rounded-xl px-6 py-3.5 font-sans font-semibold text-pd-ink transition-transform hover:scale-[1.02]"
                 style={{ background: product.accent }}
               >
                 Request early access
               </a>
-              <a href="#how" className="rounded-xl px-6 py-3.5 font-sans font-medium border border-white/20 text-white hover:bg-white/5">
+              <a href="#how" className="rounded-xl px-6 py-3.5 font-sans font-medium border border-white/20 text-white hover:bg-pd-surface/5">
                 See how it works
               </a>
             </div>
@@ -104,7 +104,7 @@ export default function ProductPage({ product, visual }: { product: Product; vis
       <section id="how" className="px-4 sm:px-6 lg:px-8 py-20 max-w-7xl mx-auto scroll-mt-20">
         <Reveal>
           <Eyebrow color={product.accent}>Who it&apos;s for</Eyebrow>
-          <h2 className="font-syne font-extrabold text-3xl sm:text-4xl tracking-tighter mb-8 max-w-2xl">
+          <h2 className="font-display font-light text-3xl sm:text-4xl tracking-tighter mb-8 max-w-2xl">
             Built for one person with a big idea, and for teams with a business to run.
           </h2>
         </Reveal>
@@ -117,12 +117,12 @@ export default function ProductPage({ product, visual }: { product: Product; vis
       <section className="px-4 sm:px-6 lg:px-8 py-20 max-w-7xl mx-auto">
         <Reveal>
           <Eyebrow color={product.accent}>Inside {product.name}</Eyebrow>
-          <h2 className="font-syne font-extrabold text-3xl sm:text-4xl tracking-tighter mb-10 max-w-2xl">Everything works together.</h2>
+          <h2 className="font-display font-light text-3xl sm:text-4xl tracking-tighter mb-10 max-w-2xl">Everything works together.</h2>
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {product.modules.map((m, i) => (
             <Reveal key={m.name} delay={(i % 4) * 0.06}>
-              <div className="group relative h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6 overflow-hidden transition-colors hover:border-white/25">
+              <div className="group relative h-full rounded-2xl border border-white/10 bg-pd-surface/[0.03] p-6 overflow-hidden transition-colors hover:border-white/25">
                 <div
                   aria-hidden="true"
                   className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"
@@ -135,7 +135,7 @@ export default function ProductPage({ product, visual }: { product: Product; vis
                 >
                   {m.glyph}
                 </span>
-                <h3 className="relative font-syne font-bold text-white mb-1.5">{m.name}</h3>
+                <h3 className="relative font-display font-normal text-white mb-1.5">{m.name}</h3>
                 <p className="relative font-sans font-light text-sm text-white/60 leading-relaxed">{m.blurb}</p>
               </div>
             </Reveal>
@@ -151,7 +151,7 @@ export default function ProductPage({ product, visual }: { product: Product; vis
             {product.principles.map((p) => (
               <div key={p.title}>
                 <span className="block w-8 h-[3px] rounded-full mb-4" style={{ background: product.accent }} />
-                <h3 className="font-syne font-bold text-lg mb-2">{p.title}</h3>
+                <h3 className="font-display font-normal text-lg mb-2">{p.title}</h3>
                 <p className="font-sans font-light text-sm text-white/65 leading-relaxed">{p.body}</p>
               </div>
             ))}
@@ -164,13 +164,12 @@ export default function ProductPage({ product, visual }: { product: Product; vis
         <Reveal className="relative rounded-3xl overflow-hidden border border-white/10 p-8 sm:p-12">
           <div
             aria-hidden="true"
-            className="absolute inset-0 opacity-25"
-            style={{ background: `linear-gradient(120deg, ${IQ.accent}, transparent 45%, transparent 55%, ${SYNQ.accent})` }}
+            className="absolute inset-0 bg-pd-oxblood"
           />
           <div className="relative grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
             <div>
               <Eyebrow color="#fff">Better together</Eyebrow>
-              <h2 className="font-syne font-extrabold text-3xl sm:text-4xl tracking-tighter mb-3">
+              <h2 className="font-display font-light text-3xl sm:text-4xl tracking-tighter mb-3">
                 Think smarter with PRESCRIPT IQ. Execute consistently with PRESYNQ.
               </h2>
               <p className="font-sans font-light text-white/70 leading-relaxed">
@@ -182,7 +181,7 @@ export default function ProductPage({ product, visual }: { product: Product; vis
               className="group rounded-2xl border border-white/15 bg-black/30 p-6 hover:border-white/35 transition-colors"
             >
               <p className="font-sans text-xs tracking-widest uppercase text-white/50 mb-2">Explore</p>
-              <p className="font-syne font-extrabold text-2xl" style={{ color: other.accent }}>{other.name}</p>
+              <p className="font-display font-light text-2xl" style={{ color: other.accent }}>{other.name}</p>
               <p className="font-sans text-sm text-white/65 mt-1">{other.verb}</p>
               <p className="font-sans text-sm text-white mt-4 group-hover:translate-x-1 transition-transform">See {other.name} →</p>
             </Link>
@@ -194,7 +193,7 @@ export default function ProductPage({ product, visual }: { product: Product; vis
       <section className="px-4 sm:px-6 lg:px-8 py-20 max-w-3xl mx-auto">
         <Reveal>
           <Eyebrow color={product.accent}>Questions</Eyebrow>
-          <h2 className="font-syne font-extrabold text-3xl tracking-tighter mb-6">Good to know</h2>
+          <h2 className="font-display font-light text-3xl tracking-tighter mb-6">Good to know</h2>
           <div className="divide-y divide-white/10 border-y border-white/10">
             {product.faqs.map((f) => (
               <details key={f.q} className="group py-5">

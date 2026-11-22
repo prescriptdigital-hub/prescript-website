@@ -1,0 +1,30 @@
+{
+  "color": {
+    "cream": "#EFEA8C", "brick": "#C24E4E", "oxblood": "#3A1714", "paper": "#F7F4EC", "ink": "#141110",
+    "brick700": "#A33E3E", "textMuted": "#4A403B", "textSubtle": "#6B605A", "line": "#DED8C8", "surface": "#FFFDF7", "surface2": "#E9E4D7",
+    "iqViolet": "#8B7CFF", "synqMint": "#2EE6A6",
+    "error": "#B3123B", "errorBg": "#F9E3E8", "warning": "#9A5B00", "warningBg": "#FBEFD9",
+    "success": "#1F7A4F", "successBg": "#E0F2E8", "info": "#2F5FC4", "infoBg": "#E3EBFA"
+  },
+  "font": {
+    "display": "'Exo 2', system-ui, sans-serif",
+    "body": "'IBM Plex Sans', system-ui, sans-serif",
+    "mono": "'JetBrains Mono', ui-monospace, monospace"
+  },
+  "typeScale": {
+    "h1": { "font": "display", "size": "clamp(40px,5vw,64px)", "weight": 300, "lineHeight": 1.02, "letterSpacing": "-0.01em" },
+    "h2": { "font": "display", "size": "clamp(32px,4vw,48px)", "weight": 300, "lineHeight": 1.05 },
+    "h3": { "font": "display", "size": "36px", "weight": 400, "lineHeight": 1.1 },
+    "h4": { "font": "display", "size": "28px", "weight": 400, "lineHeight": 1.15 },
+    "h5": { "font": "body", "size": "22px", "weight": 600, "lineHeight": 1.25 },
+    "h6": { "font": "mono", "size": "14px", "weight": 500, "lineHeight": 1.3, "letterSpacing": "0.08em", "textTransform": "uppercase" },
+    "bodyLg": { "font": "body", "size": "18px", "weight": 400, "lineHeight": 1.6 },
+    "body": { "font": "body", "size": "16px", "weight": 400, "lineHeight": 1.6 },
+    "caption": { "font": "body", "size": "13px", "weight": 400, "lineHeight": 1.45 },
+    "button": { "font": "body", "size": "15px", "weight": 600, "lineHeight": 1 },
+    "eyebrow": { "font": "mono", "size": "12px", "weight": 400, "letterSpacing": "0.1em", "textTransform": "uppercase" }
+  },
+  "space": [4, 8, 12, 16, 24, 32, 48, 64, 80, 96],
+  "radius": { "ui": 0, "appIcon": "22%" },
+  "motion": { "easeOut": "cubic-bezier(.2,.8,.2,1)", "easeSettle": "cubic-bezier(.3,1.4,.5,1)", "fast": "150ms", "base": "250ms", "logo": "900ms" }
+}

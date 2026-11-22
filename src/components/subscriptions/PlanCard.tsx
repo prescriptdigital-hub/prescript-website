@@ -43,28 +43,28 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
     <>
       <div
         className={`border rounded-2xl overflow-hidden flex flex-col transition-transform hover:scale-[1.01] ${
-          plan.isFeatured ? 'border-[1.5px] border-prescript-green' : 'border-gray-200'
+          plan.isFeatured ? 'border-[1.5px] border-pd-brick-700' : 'border-pd-line'
         }`}
       >
         {plan.isFeatured && (
-          <div className="bg-prescript-green text-white text-center text-xs font-sans font-medium py-1.5">
+          <div className="bg-pd-brick-700 text-white text-center text-xs font-sans font-medium py-1.5">
             Most Popular
           </div>
         )}
 
-        <div className="p-6 border-b border-gray-100">
-          <p className="text-xs font-sans text-gray-400 uppercase tracking-widest mb-0.5">{plan.tier}</p>
-          <p className="font-syne font-extrabold text-2xl text-gray-900 mb-1">{plan.name}</p>
-          <p className="font-sans text-sm text-gray-400 mb-4 leading-relaxed">{plan.forWhom}</p>
+        <div className="p-6 border-b border-pd-line">
+          <p className="text-xs font-sans text-pd-subtle uppercase tracking-widest mb-0.5">{plan.tier}</p>
+          <p className="font-display font-light text-2xl text-pd-ink mb-1">{plan.name}</p>
+          <p className="font-sans text-sm text-pd-subtle mb-4 leading-relaxed">{plan.forWhom}</p>
 
           <div className="flex items-baseline gap-1 mb-1">
-            <span className="font-syne font-extrabold text-4xl text-prescript-green leading-none">
+            <span className="font-display font-light text-4xl text-pd-brick-700 leading-none">
               {getPrice(plan, currency, billing)}
             </span>
-            <span className="text-sm font-sans text-gray-400">/mo</span>
+            <span className="text-sm font-sans text-pd-subtle">/mo</span>
           </div>
           {billing === 'annual' && (
-            <p className="text-xs font-sans text-gray-400 mb-3">
+            <p className="text-xs font-sans text-pd-subtle mb-3">
               {getAnnualTotal(plan, currency)} billed annually
             </p>
           )}
@@ -81,11 +81,11 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
             {plan.features.map((f) => (
               <li key={f.text} className="flex items-start gap-2">
                 {f.included ? (
-                  <Check size={13} className="text-prescript-green flex-shrink-0 mt-0.5" />
+                  <Check size={13} className="text-pd-brick-700 flex-shrink-0 mt-0.5" />
                 ) : (
-                  <Minus size={13} className="text-gray-300 flex-shrink-0 mt-0.5" />
+                  <Minus size={13} className="text-pd-subtle flex-shrink-0 mt-0.5" />
                 )}
-                <span className={`font-sans text-sm ${f.included ? 'text-gray-700' : 'text-gray-400'}`}>
+                <span className={`font-sans text-sm ${f.included ? 'text-pd-muted' : 'text-pd-subtle'}`}>
                   {f.text}
                 </span>
               </li>

@@ -120,7 +120,7 @@ export default function EcosystemScene() {
           </g>
         ))}
         <circle cx={IQ_CENTER.x} cy={IQ_CENTER.y} r="34" fill="#120F2A" stroke={IQ.accent} strokeWidth="2" />
-        <text x={IQ_CENTER.x} y={IQ_CENTER.y + 6} textAnchor="middle" fill="#fff" fontSize="18" fontWeight="800" fontFamily="var(--font-syne)">IQ</text>
+        <text x={IQ_CENTER.x} y={IQ_CENTER.y + 6} textAnchor="middle" fill="#fff" fontSize="18" fontWeight="800" fontFamily="var(--font-display)">IQ</text>
 
         {/* Bridge: the approved plan travels from IQ to PRESYNQ */}
         <use href="#bridgePath" stroke="url(#beam)" strokeOpacity="0.55" strokeWidth="1.5" fill="none" strokeDasharray="4 6" />
@@ -129,7 +129,7 @@ export default function EcosystemScene() {
             <rect x="-15" y="-19" width="30" height="38" rx="4" fill="#0B1411" stroke="#fff" strokeOpacity="0.85" strokeWidth="1.4" />
             <path d="M-8 -9 h16 M-8 -2 h16 M-8 5 h10" stroke="#fff" strokeOpacity="0.7" strokeWidth="1.4" />
             <circle cx="9" cy="12" r="6" fill={SYNQ.accent} />
-            <path d="M6 12 l2 2 l4 -4" stroke="#07110E" strokeWidth="1.6" fill="none" />
+            <path d="M6 12 l2 2 l4 -4" stroke="#141110" strokeWidth="1.6" fill="none" />
             <animateMotion dur="4.5s" repeatCount="indefinite" rotate="0" keyPoints="0;1;1" keyTimes="0;0.7;1" calcMode="linear">
               <mpath href="#bridgePath" />
             </animateMotion>
@@ -176,7 +176,7 @@ export default function EcosystemScene() {
             <animate attributeName="opacity" values="0.6;0" dur="2.4s" repeatCount="indefinite" />
           </circle>
         )}
-        <text x={HUB.x} y={HUB.y + 5} textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily="var(--font-syne)" letterSpacing="0.02em">SYNQ</text>
+        <text x={HUB.x} y={HUB.y + 5} textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily="var(--font-display)" letterSpacing="0.02em">SYNQ</text>
       </svg>
     </div>
   )

@@ -42,23 +42,23 @@ export default function ContactCTA() {
   }
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-pd-paper py-16">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-syne font-extrabold text-3xl lg:text-4xl tracking-tighter text-gray-900 mb-3 text-center">
+        <h2 className="font-display font-light text-3xl lg:text-4xl tracking-tighter text-pd-ink mb-3 text-center">
           Your business deserves a digital team that actually delivers
         </h2>
-        <p className="font-sans text-gray-500 text-base text-center mb-8 leading-relaxed">
+        <p className="font-sans text-pd-muted text-base text-center mb-8 leading-relaxed">
           Tell us where you are, we&apos;ll show you how{' '}
-          <span className="text-prescript-green font-medium">Imprint</span>,{' '}
+          <span className="text-pd-brick-700 font-medium">Imprint</span>,{' '}
           Forge, Surge, Flow, and Cortex fit together for your business.
         </p>
 
         {submitted ? (
-          <div className="border border-prescript-green bg-prescript-green-light rounded-xl p-8 text-center">
-            <p className="font-syne font-bold text-prescript-green-dark text-lg mb-1">
+          <div className="border border-pd-brick-700 bg-pd-surface-2 rounded-xl p-8 text-center">
+            <p className="font-display font-normal text-pd-oxblood text-lg mb-1">
               We&apos;ve received your message!
             </p>
-            <p className="font-sans text-sm text-prescript-green-dark">
+            <p className="font-sans text-sm text-pd-oxblood">
               We respond within 24 hours. Check your WhatsApp.
             </p>
           </div>
@@ -68,11 +68,11 @@ export default function ContactCTA() {
               <input
                 type="text"
                 placeholder="Full name"
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                 {...register('fullName', { required: true })}
               />
               {errors.fullName && (
-                <p className="text-xs text-red-500 mt-1">Full name is required</p>
+                <p className="text-xs text-pd-error mt-1">Full name is required</p>
               )}
             </div>
 
@@ -80,11 +80,11 @@ export default function ContactCTA() {
               <input
                 type="email"
                 placeholder="Business email"
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                 {...register('email', { required: true })}
               />
               {errors.email && (
-                <p className="text-xs text-red-500 mt-1">Email is required</p>
+                <p className="text-xs text-pd-error mt-1">Email is required</p>
               )}
             </div>
 
@@ -92,17 +92,17 @@ export default function ContactCTA() {
               <input
                 type="tel"
                 placeholder="WhatsApp number"
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent"
+                className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent"
                 {...register('whatsapp', { required: true })}
               />
               {errors.whatsapp && (
-                <p className="text-xs text-red-500 mt-1">WhatsApp number is required</p>
+                <p className="text-xs text-pd-error mt-1">WhatsApp number is required</p>
               )}
             </div>
 
             <div>
               <select
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm font-sans text-gray-700 focus:outline-none focus:ring-2 focus:ring-prescript-green focus:border-transparent bg-white"
+                className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-muted focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent bg-pd-surface"
                 {...register('service', { required: true })}
                 defaultValue=""
               >
@@ -117,7 +117,7 @@ export default function ContactCTA() {
                 <option value="full">Full Package, All Five Services</option>
               </select>
               {errors.service && (
-                <p className="text-xs text-red-500 mt-1">Please select a service</p>
+                <p className="text-xs text-pd-error mt-1">Please select a service</p>
               )}
             </div>
 
@@ -125,7 +125,7 @@ export default function ContactCTA() {
               {submitting ? 'Sending…' : 'Book My Free Strategy Call →'}
             </Button>
 
-            <p className="text-sm font-sans text-gray-400 text-center">
+            <p className="text-sm font-sans text-pd-subtle text-center">
               No commitment. We respond within 24 hours.
             </p>
           </form>

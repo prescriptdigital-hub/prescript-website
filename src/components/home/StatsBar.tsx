@@ -40,7 +40,7 @@ export default function StatsBar() {
   const inView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
-    <div ref={ref} className="border-y border-gray-100 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div ref={ref} className="border-y border-pd-line max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-2 md:grid-cols-4">
         {STATS.map((stat, i) => (
           <motion.div
@@ -48,16 +48,16 @@ export default function StatsBar() {
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: i * 0.1, duration: 0.4 }}
-            className="flex flex-col items-start px-4 py-6 border-r last:border-r-0 border-b md:border-b-0 border-gray-100 [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r"
+            className="flex flex-col items-start px-4 py-6 border-r last:border-r-0 border-b md:border-b-0 border-pd-line [&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r"
           >
-            <span className="font-syne font-extrabold text-3xl text-prescript-green leading-none">
+            <span className="font-display font-light text-3xl text-pd-brick-700 leading-none">
               {stat.isNumeric ? (
                 <CountUp target={stat.target} active={inView} />
               ) : (
                 stat.value
               )}
             </span>
-            <span className="font-sans text-xs text-gray-400 mt-1">{stat.label}</span>
+            <span className="font-sans text-xs text-pd-subtle mt-1">{stat.label}</span>
           </motion.div>
         ))}
       </div>

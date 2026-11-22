@@ -1,0 +1,74 @@
+/* Prescript Digital — design tokens (v1.0)
+   Import once at the root of the site, e.g. in globals.css:  @import "./prescript-tokens.css";  */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Core brand */
+  --pd-cream:   #EFEA8C;   /* mark, wordmark, headlines on brick/oxblood */
+  --pd-brick:   #C24E4E;   /* brand ground, accent square, primary buttons */
+  --pd-oxblood: #3A1714;   /* depth, dark mode, secondary buttons */
+  --pd-paper:   #F7F4EC;   /* light ground */
+  --pd-ink:     #141110;   /* text, dark UI */
+
+  /* Supporting */
+  --pd-brick-700: #A33E3E; /* links + labels on light (AA) */
+  --pd-text-muted: #4A403B;/* body on paper */
+  --pd-text-subtle: #6B605A;
+  --pd-line: #DED8C8;      /* hairlines on paper */
+  --pd-surface: #FFFDF7;   /* cards on paper */
+  --pd-surface-2: #E9E4D7;
+
+  /* Sub-brands — only in the centre square, full stop and product UI */
+  --pd-iq-violet: #8B7CFF;   /* PRESCRIPT IQ™ */
+  --pd-synq-mint: #2EE6A6;   /* PRESYNQ™ */
+
+  /* Status (UI only — never use brick for errors) */
+  --pd-error:   #B3123B;  --pd-error-bg:   #F9E3E8;
+  --pd-warning: #9A5B00;  --pd-warning-bg: #FBEFD9;
+  --pd-success: #1F7A4F;  --pd-success-bg: #E0F2E8;
+  --pd-info:    #2F5FC4;  --pd-info-bg:    #E3EBFA;
+
+  /* Type */
+  --pd-font-display: 'Exo 2', system-ui, sans-serif;      /* weight 300 headlines, 400 sub-heads */
+  --pd-font-body: 'IBM Plex Sans', system-ui, sans-serif; /* 400 / 500 / 600 */
+  --pd-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --pd-h1: clamp(40px, 5vw, 64px);   /* Exo 2 300, lh 1.02, ls -0.01em */
+  --pd-h2: clamp(32px, 4vw, 48px);   /* Exo 2 300, lh 1.05 */
+  --pd-h3: 36px;                     /* Exo 2 400, lh 1.1 */
+  --pd-h4: 28px;                     /* Exo 2 400, lh 1.15 */
+  --pd-h5: 22px;                     /* Plex 600, lh 1.25 */
+  --pd-h6: 14px;                     /* Mono 500, caps, ls 0.08em */
+  --pd-body-lg: 18px;                /* lh 1.6 */
+  --pd-body: 16px;                   /* lh 1.6 */
+  --pd-caption: 13px;                /* lh 1.45 */
+  --pd-eyebrow: 12px;                /* Mono, caps, ls 0.1em */
+
+  /* Spacing (4px base) */
+  --pd-space-1: 4px;  --pd-space-2: 8px;  --pd-space-3: 12px; --pd-space-4: 16px;
+  --pd-space-5: 24px; --pd-space-6: 32px; --pd-space-7: 48px; --pd-space-8: 64px;
+  --pd-space-9: 80px; --pd-space-10: 96px;
+
+  /* Shape — the brand is square-edged */
+  --pd-radius-0: 0;          /* buttons, cards, inputs, tags */
+  --pd-radius-app: 22%;      /* app icon tiles only */
+  --pd-shadow-print: 0 18px 40px -20px rgba(58,23,20,0.6); /* mockups only; UI is flat */
+
+  /* Motion */
+  --pd-ease-out: cubic-bezier(.2,.8,.2,1);
+  --pd-ease-settle: cubic-bezier(.3,1.4,.5,1);
+  --pd-dur-fast: 150ms; --pd-dur: 250ms; --pd-dur-logo: 900ms;
+}
+
+/* Signature square full stop — append to headlines: <h1>Diagnose. Prescribe. Deliver<span class="pd-dot"></span></h1> */
+.pd-dot { display:inline-block; width:0.14em; height:0.14em; background:currentColor; margin-left:0.08em; }
+.pd-dot--brick { background: var(--pd-brick); }
+.pd-dot--cream { background: var(--pd-cream); }
+
+/* Weathered texture — backgrounds only, never on the logo */
+.pd-texture { position:relative; isolation:isolate; }
+.pd-texture::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:url('/brand/texture/prescript-weathered-texture-dark.svg') center/cover; opacity:.7; }
+
+a { color: var(--pd-brick-700); }
+a:hover { color: var(--pd-oxblood); }

@@ -129,7 +129,7 @@ export function openFlutterwavePopup({
     customizations: {
       title: 'Prescript Digital',
       description: planName,
-      logo: '/prescriptcreatives_logo.png',
+      logo: 'https://prescriptdigital.com/android-chrome-512x512.png',
     },
     callback: (response) => onSuccess(String(response.transaction_id)),
     onclose: onClose,

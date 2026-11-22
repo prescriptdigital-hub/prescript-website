@@ -54,10 +54,10 @@ export default function PricingPage() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
           <div>
             <SectionLabel>Transparent pricing</SectionLabel>
-            <h1 className="font-syne font-extrabold text-4xl lg:text-5xl tracking-tighter text-gray-900 mb-3">
+            <h1 className="font-display font-light text-4xl lg:text-5xl tracking-tighter text-pd-ink mb-3">
               Invest in what grows your business.
             </h1>
-            <p className="font-sans font-light text-gray-500 text-base max-w-xl leading-relaxed">
+            <p className="font-sans font-light text-pd-muted text-base max-w-xl leading-relaxed">
               No hidden fees. No lock-ins beyond 3-month minimums on retainers. Two paths, subscriptions for individuals &amp; small businesses, packages for corporations.
             </p>
           </div>
@@ -66,23 +66,23 @@ export default function PricingPage() {
 
         {/* Audience selector cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
-          <div className="border border-prescript-green bg-prescript-green-light rounded-2xl p-6">
-            <p className="text-xs font-sans text-prescript-green font-medium uppercase tracking-widest mb-2">Monthly Subscriptions</p>
-            <p className="font-syne font-extrabold text-xl text-gray-900 mb-2">Individuals, Startups &amp; Small Businesses</p>
-            <p className="font-sans text-sm text-gray-500 mb-4 leading-relaxed">
+          <div className="border border-pd-brick-700 bg-pd-surface-2 rounded-2xl p-6">
+            <p className="text-xs font-sans text-pd-brick-700 font-medium uppercase tracking-widest mb-2">Monthly Subscriptions</p>
+            <p className="font-display font-light text-xl text-pd-ink mb-2">Individuals, Startups &amp; Small Businesses</p>
+            <p className="font-sans text-sm text-pd-muted mb-4 leading-relaxed">
               No big upfront. World-class services on a monthly plan, from $49/mo. Cancel after 3 months.
             </p>
-            <a href="#subscriptions" className="text-sm font-sans font-medium text-prescript-green hover:underline">
+            <a href="#subscriptions" className="text-sm font-sans font-medium text-pd-brick-700 hover:underline">
               View subscription plans ↓
             </a>
           </div>
-          <div className="border border-gray-200 rounded-2xl p-6">
-            <p className="text-xs font-sans text-gray-400 font-medium uppercase tracking-widest mb-2">Enterprise Packages</p>
-            <p className="font-syne font-extrabold text-xl text-gray-900 mb-2">Corporations &amp; Established Businesses</p>
-            <p className="font-sans text-sm text-gray-500 mb-4 leading-relaxed">
+          <div className="border border-pd-line rounded-2xl p-6">
+            <p className="text-xs font-sans text-pd-subtle font-medium uppercase tracking-widest mb-2">Enterprise Packages</p>
+            <p className="font-display font-light text-xl text-pd-ink mb-2">Corporations &amp; Established Businesses</p>
+            <p className="font-sans text-sm text-pd-muted mb-4 leading-relaxed">
               One-time or retainer packages for companies that need the full stack, from $1,500.
             </p>
-            <a href="#packages" className="text-sm font-sans font-medium text-gray-500 hover:underline">
+            <a href="#packages" className="text-sm font-sans font-medium text-pd-muted hover:underline">
               View enterprise packages ↓
             </a>
           </div>
@@ -93,14 +93,14 @@ export default function PricingPage() {
           <SectionLabel>Monthly Subscriptions</SectionLabel>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
-              <h2 className="font-syne font-extrabold text-3xl tracking-tighter text-gray-900 mb-2">
+              <h2 className="font-display font-light text-3xl tracking-tighter text-pd-ink mb-2">
                 For individuals, startups &amp; small businesses.
               </h2>
-              <p className="font-sans font-light text-gray-500 text-sm max-w-xl leading-relaxed">
+              <p className="font-sans font-light text-pd-muted text-sm max-w-xl leading-relaxed">
                 Start from $49/month. No large upfront investment. Scale your plan as your business grows.
               </p>
             </div>
-            <Link href="/subscriptions" className="text-sm font-sans text-prescript-green hover:underline whitespace-nowrap flex-shrink-0">
+            <Link href="/subscriptions" className="text-sm font-sans text-pd-brick-700 hover:underline whitespace-nowrap flex-shrink-0">
               See all 7 plans →
             </Link>
           </div>
@@ -109,34 +109,34 @@ export default function PricingPage() {
             {subPlans.map((plan) => (
               <div
                 key={plan.name}
-                className={`bg-white border rounded-2xl overflow-hidden flex flex-col ${
-                  plan.isFeatured ? 'border-[1.5px] border-prescript-green' : 'border-gray-200'
+                className={`bg-pd-surface border rounded-2xl overflow-hidden flex flex-col ${
+                  plan.isFeatured ? 'border-[1.5px] border-pd-brick-700' : 'border-pd-line'
                 }`}
               >
                 {plan.isFeatured && (
-                  <div className="bg-prescript-green text-white text-center text-xs font-sans font-medium py-1.5">
+                  <div className="bg-pd-brick-700 text-white text-center text-xs font-sans font-medium py-1.5">
                     Most Popular
                   </div>
                 )}
-                <div className="p-5 border-b border-gray-100">
-                  <p className="text-xs font-sans text-gray-400 uppercase tracking-widest mb-0.5">{plan.track}</p>
-                  <p className="font-syne font-extrabold text-xl text-gray-900 mb-1">{plan.name}</p>
-                  <p className="font-sans text-xs text-gray-400 mb-3 leading-relaxed">{plan.forWhom}</p>
+                <div className="p-5 border-b border-pd-line">
+                  <p className="text-xs font-sans text-pd-subtle uppercase tracking-widest mb-0.5">{plan.track}</p>
+                  <p className="font-display font-light text-xl text-pd-ink mb-1">{plan.name}</p>
+                  <p className="font-sans text-xs text-pd-subtle mb-3 leading-relaxed">{plan.forWhom}</p>
                   <div className="flex items-baseline gap-1">
-                    <span className="font-syne font-extrabold text-3xl text-prescript-green leading-none">
+                    <span className="font-display font-light text-3xl text-pd-brick-700 leading-none">
                       {currency === 'ngn'
                         ? `₦${(plan.priceMonthly * CURRENCY_RATES.ngn).toLocaleString()}`
                         : `$${plan.priceMonthly}`}
                     </span>
-                    <span className="text-xs font-sans text-gray-400">/mo</span>
+                    <span className="text-xs font-sans text-pd-subtle">/mo</span>
                   </div>
                 </div>
                 <div className="p-5 flex flex-col flex-1">
                   <ul className="space-y-2 flex-1 mb-5">
                     {plan.features.filter(f => f.included).slice(0, 5).map((f) => (
                       <li key={f.text} className="flex items-start gap-2">
-                        <Check size={12} className="text-prescript-green mt-0.5 flex-shrink-0" />
-                        <span className="font-sans text-xs text-gray-600 leading-relaxed">{f.text}</span>
+                        <Check size={12} className="text-pd-brick-700 mt-0.5 flex-shrink-0" />
+                        <span className="font-sans text-xs text-pd-muted leading-relaxed">{f.text}</span>
                       </li>
                     ))}
                   </ul>
@@ -153,10 +153,10 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="bg-pd-paper border border-pd-line rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <p className="font-sans font-medium text-sm text-gray-900 mb-0.5">7 plans across Personal Brand and Business tracks</p>
-              <p className="font-sans text-xs text-gray-400">From $49/mo · 3-month minimum · Cancel anytime after</p>
+              <p className="font-sans font-medium text-sm text-pd-ink mb-0.5">7 plans across Personal Brand and Business tracks</p>
+              <p className="font-sans text-xs text-pd-subtle">From $49/mo · 3-month minimum · Cancel anytime after</p>
             </div>
             <Button variant="primary" size="sm" href="/subscriptions" className="flex-shrink-0">
               See All Subscription Plans
@@ -167,10 +167,10 @@ export default function PricingPage() {
         {/* ── ENTERPRISE PACKAGES SECTION ── */}
         <div id="packages" className="mb-16">
           <SectionLabel>Enterprise Packages</SectionLabel>
-          <h2 className="font-syne font-extrabold text-3xl tracking-tighter text-gray-900 mb-2">
+          <h2 className="font-display font-light text-3xl tracking-tighter text-pd-ink mb-2">
             For corporations &amp; established businesses.
           </h2>
-          <p className="font-sans font-light text-gray-500 text-sm max-w-xl mb-8 leading-relaxed">
+          <p className="font-sans font-light text-pd-muted text-sm max-w-xl mb-8 leading-relaxed">
             Full-stack engagements that combine all five services. One clear investment, one integrated team.
           </p>
 
@@ -184,18 +184,18 @@ export default function PricingPage() {
 
         {/* Add-ons */}
         <div className="mb-16">
-          <h2 className="font-syne font-bold text-2xl text-gray-900 mb-2">Add-on services</h2>
-          <p className="font-sans font-light text-gray-500 text-sm mb-6">
+          <h2 className="font-display font-normal text-2xl text-pd-ink mb-2">Add-on services</h2>
+          <p className="font-sans font-light text-pd-muted text-sm mb-6">
             Layer these onto any package or subscription.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {ADDONS.map((addon) => (
-              <div key={addon.name} className="border border-gray-200 rounded-xl p-5">
-                <p className="font-sans font-medium text-sm text-gray-900 mb-1">{addon.name}</p>
-                <p className="font-sans font-light text-xs text-gray-400 leading-relaxed mb-3">
+              <div key={addon.name} className="border border-pd-line rounded-xl p-5">
+                <p className="font-sans font-medium text-sm text-pd-ink mb-1">{addon.name}</p>
+                <p className="font-sans font-light text-xs text-pd-subtle leading-relaxed mb-3">
                   {addon.description}
                 </p>
-                <p className="font-syne font-bold text-prescript-green text-sm">
+                <p className="font-display font-normal text-pd-brick-700 text-sm">
                   {currency === 'ngn'
                     ? (() => {
                         const match = addon.price.match(/\$([0-9,]+)/)
@@ -214,7 +214,7 @@ export default function PricingPage() {
 
         {/* FAQ */}
         <div className="max-w-2xl">
-          <h2 className="font-syne font-bold text-2xl text-gray-900 mb-6">
+          <h2 className="font-display font-normal text-2xl text-pd-ink mb-6">
             Frequently asked questions
           </h2>
           {FAQS.map((faq, i) => (

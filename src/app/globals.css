@@ -1,12 +1,13 @@
+@import './prescript-tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-green: #1d9e75;
-  --color-green-light: #e1f5ee;
-  --color-green-dark: #085041;
-  --color-green-mid: #0f6e56;
+@layer base {
+  a:not([class]) { color: var(--pd-brick-700); }
+  a:not([class]):hover { color: var(--pd-oxblood); }
+  :focus-visible { outline: 2px solid var(--pd-oxblood); outline-offset: 2px; }
 }
 
 html {
@@ -17,7 +18,9 @@ html {
 }
 
 body {
-  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-family: var(--pd-font-body);
+  background: var(--pd-paper);
+  color: var(--pd-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;

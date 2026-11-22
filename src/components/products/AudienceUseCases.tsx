@@ -15,7 +15,7 @@ export default function AudienceUseCases({ product }: { product: Product }) {
   return (
     <div>
       <div
-        className="inline-flex p-1 rounded-full border border-white/10 bg-white/[0.04] mb-8"
+        className="inline-flex p-1 border border-white/10 bg-pd-surface/[0.04] mb-8"
         role="tablist"
         aria-label="Who is this for"
       >
@@ -26,13 +26,13 @@ export default function AudienceUseCases({ product }: { product: Product }) {
             role="tab"
             aria-selected={audience === a}
             onClick={() => setAudience(a)}
-            className="relative px-4 sm:px-5 py-2 rounded-full text-sm font-sans font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-            style={{ color: audience === a ? '#07110E' : 'rgba(255,255,255,0.7)' }}
+            className="relative px-4 sm:px-5 py-2 text-sm font-sans font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            style={{ color: audience === a ? '#141110' : 'rgba(255,255,255,0.7)' }}
           >
             {audience === a && (
               <motion.span
                 layoutId={`aud-${product.slug}`}
-                className="absolute inset-0 rounded-full"
+                className="absolute inset-0"
                 style={{ background: product.accent }}
                 transition={{ type: 'spring', stiffness: 400, damping: 32 }}
               />
@@ -53,11 +53,11 @@ export default function AudienceUseCases({ product }: { product: Product }) {
           className="grid md:grid-cols-3 gap-4"
         >
           {product.useCases[audience].map((u, i) => (
-            <div key={u.title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-              <span className="font-syne font-extrabold text-sm" style={{ color: product.accent }}>
+            <div key={u.title} className="rounded-2xl border border-white/10 bg-pd-surface/[0.03] p-6">
+              <span className="font-display font-light text-sm" style={{ color: product.accent }}>
                 0{i + 1}
               </span>
-              <h3 className="font-syne font-bold text-lg text-white mt-2 mb-2">{u.title}</h3>
+              <h3 className="font-display font-normal text-lg text-white mt-2 mb-2">{u.title}</h3>
               <p className="font-sans font-light text-sm text-white/65 leading-relaxed">{u.body}</p>
             </div>
           ))}

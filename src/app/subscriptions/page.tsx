@@ -59,10 +59,10 @@ export default function SubscriptionsPage() {
         {/* Header */}
         <div className="mb-10">
           <SectionLabel>Subscription Plans · New</SectionLabel>
-          <h1 className="font-syne font-extrabold text-4xl lg:text-5xl tracking-tighter text-gray-900 mb-3">
+          <h1 className="font-display font-light text-4xl lg:text-5xl tracking-tighter text-pd-ink mb-3">
             World-class services. Monthly. No big upfront.
           </h1>
-          <p className="font-sans text-gray-500 text-base max-w-xl leading-relaxed mb-6">
+          <p className="font-sans text-pd-muted text-base max-w-xl leading-relaxed mb-6">
             Choose your track, personal brand or business, and pick the plan that fits where you are now.
           </p>
           <div className="flex flex-wrap items-center gap-4">
@@ -78,18 +78,18 @@ export default function SubscriptionsPage() {
             onClick={() => setTrack('personal')}
             className={`text-left border rounded-xl p-5 transition-colors ${
               track === 'personal'
-                ? 'border-[1.5px] border-prescript-green bg-prescript-green-light'
-                : 'border-gray-200 hover:bg-gray-50'
+                ? 'border-[1.5px] border-pd-brick-700 bg-pd-surface-2'
+                : 'border-pd-line hover:bg-pd-paper'
             }`}
           >
-            <p className="font-syne font-bold text-lg text-gray-900 mb-1">Personal Brand</p>
-            <p className="font-sans text-sm text-gray-500 mb-3">
+            <p className="font-display font-normal text-lg text-pd-ink mb-1">Personal Brand</p>
+            <p className="font-sans text-sm text-pd-muted mb-3">
               For creators, coaches, consultants, and solo professionals building a personal brand.
             </p>
-            <p className="font-syne font-bold text-prescript-green text-sm">
+            <p className="font-display font-normal text-pd-brick-700 text-sm">
               From {currency === 'ngn' ? `₦${personalStart.toLocaleString()}` : `$${PERSONAL_PLANS[0].priceMonthly}`}/mo
             </p>
-            <p className="text-xs font-sans text-gray-400 mt-0.5">3 plans</p>
+            <p className="text-xs font-sans text-pd-subtle mt-0.5">3 plans</p>
           </button>
 
           <button
@@ -97,18 +97,18 @@ export default function SubscriptionsPage() {
             onClick={() => setTrack('business')}
             className={`text-left border rounded-xl p-5 transition-colors ${
               track === 'business'
-                ? 'border-[1.5px] border-prescript-green bg-prescript-green-light'
-                : 'border-gray-200 hover:bg-gray-50'
+                ? 'border-[1.5px] border-pd-brick-700 bg-pd-surface-2'
+                : 'border-pd-line hover:bg-pd-paper'
             }`}
           >
-            <p className="font-syne font-bold text-lg text-gray-900 mb-1">Business</p>
-            <p className="font-sans text-sm text-gray-500 mb-3">
+            <p className="font-display font-normal text-lg text-pd-ink mb-1">Business</p>
+            <p className="font-sans text-sm text-pd-muted mb-3">
               For registered businesses, startups, and SMEs that need a full digital team.
             </p>
-            <p className="font-syne font-bold text-prescript-green text-sm">
+            <p className="font-display font-normal text-pd-brick-700 text-sm">
               From {currency === 'ngn' ? `₦${businessStart.toLocaleString()}` : `$${BUSINESS_PLANS[0].priceMonthly}`}/mo
             </p>
-            <p className="text-xs font-sans text-gray-400 mt-0.5">4 plans</p>
+            <p className="text-xs font-sans text-pd-subtle mt-0.5">4 plans</p>
           </button>
         </div>
 
@@ -121,14 +121,14 @@ export default function SubscriptionsPage() {
 
         {/* Subscriber perks */}
         <div className="mb-16">
-          <h2 className="font-syne font-bold text-2xl text-gray-900 mb-6">
+          <h2 className="font-display font-normal text-2xl text-pd-ink mb-6">
             What every subscriber gets
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {SUBSCRIBER_PERKS.map((perk) => (
-              <div key={perk.title} className="border border-gray-100 rounded-xl p-5">
-                <p className="font-sans font-medium text-sm text-gray-900 mb-1">{perk.title}</p>
-                <p className="font-sans text-sm text-gray-400 leading-relaxed">{perk.desc}</p>
+              <div key={perk.title} className="border border-pd-line rounded-xl p-5">
+                <p className="font-sans font-medium text-sm text-pd-ink mb-1">{perk.title}</p>
+                <p className="font-sans text-sm text-pd-subtle leading-relaxed">{perk.desc}</p>
               </div>
             ))}
           </div>
@@ -136,7 +136,7 @@ export default function SubscriptionsPage() {
 
         {/* Comparison table */}
         <div className="mb-16">
-          <h2 className="font-syne font-bold text-2xl text-gray-900 mb-6">
+          <h2 className="font-display font-normal text-2xl text-pd-ink mb-6">
             Full comparison, {track === 'personal' ? 'Personal Brand' : 'Business'} plans
           </h2>
           <ComparisonTable plans={plans} currency={currency} billing={billing} />
@@ -144,7 +144,7 @@ export default function SubscriptionsPage() {
 
         {/* FAQ */}
         <div className="max-w-2xl mb-16">
-          <h2 className="font-syne font-bold text-2xl text-gray-900 mb-6">
+          <h2 className="font-display font-normal text-2xl text-pd-ink mb-6">
             Subscription questions
           </h2>
           {FAQS.map((faq, i) => (
@@ -159,14 +159,14 @@ export default function SubscriptionsPage() {
         </div>
 
         {/* CTA strip */}
-        <div className="bg-prescript-green rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-pd-brick-700 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <p className="font-syne font-bold text-white text-xl mb-1">Not sure which plan?</p>
+            <p className="font-display font-normal text-white text-xl mb-1">Not sure which plan?</p>
             <p className="font-sans text-white text-sm opacity-80">
               Book a free 20-minute call and we&apos;ll recommend the right fit.
             </p>
           </div>
-          <Button variant="outline" size="lg" href="/contact" className="border-white text-white hover:bg-white hover:text-prescript-green flex-shrink-0">
+          <Button variant="outline" size="lg" href="/contact" className="border-white text-white hover:bg-pd-surface hover:text-pd-brick-700 flex-shrink-0">
             Book a Free Call
           </Button>
         </div>

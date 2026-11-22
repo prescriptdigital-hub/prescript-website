@@ -16,16 +16,16 @@ export default function FAQItem({ question, answer, isOpen, onToggle }: FAQItemP
   const toggle = onToggle ?? (() => setLocalOpen((v) => !v))
 
   return (
-    <div className="border-b border-gray-100">
+    <div className="border-b border-pd-line">
       <button
         className="w-full flex items-center justify-between py-4 text-left gap-4 group"
         onClick={toggle}
         type="button"
       >
-        <span className="font-sans font-medium text-sm text-gray-800 group-hover:text-prescript-green transition-colors">
+        <span className="font-sans font-medium text-sm text-pd-ink group-hover:text-pd-brick-700 transition-colors">
           {question}
         </span>
-        <span className="text-prescript-green text-lg leading-none flex-shrink-0 font-light">
+        <span className="text-pd-brick-700 text-lg leading-none flex-shrink-0 font-light">
           {open ? '−' : '+'}
         </span>
       </button>
@@ -39,7 +39,7 @@ export default function FAQItem({ question, answer, isOpen, onToggle }: FAQItemP
             transition={{ duration: 0.22, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <p className="pb-4 text-sm text-gray-500 font-sans font-light leading-relaxed">
+            <p className="pb-4 text-sm text-pd-muted font-sans font-light leading-relaxed">
               {answer}
             </p>
           </motion.div>

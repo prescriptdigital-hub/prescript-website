@@ -31,24 +31,24 @@ const TESTIMONIALS = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-pd-paper">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="text-xs font-sans font-medium tracking-widest uppercase text-prescript-green mb-3 block">Client Stories</span>
-          <h2 className="font-syne font-extrabold text-3xl md:text-4xl text-gray-900 tracking-tight">What clients say</h2>
+          <span className="text-xs font-sans font-medium tracking-widest uppercase text-pd-brick-700 mb-3 block">Client Stories</span>
+          <h2 className="font-display font-light text-3xl md:text-4xl text-pd-ink tracking-tight">What clients say</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {TESTIMONIALS.map((t, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-gray-100 p-7 flex flex-col gap-4">
-              <p className="font-sans text-base text-gray-700 leading-relaxed flex-1">&ldquo;{t.quote}&rdquo;</p>
-              <div className="flex items-center gap-3 pt-2 border-t border-gray-100">
-                <div className="w-9 h-9 rounded-full bg-prescript-green-light flex items-center justify-center flex-shrink-0">
-                  <span className="font-syne font-extrabold text-sm text-prescript-green-dark">{t.name.charAt(0)}</span>
+            <div key={i} className="bg-pd-surface rounded-2xl border border-pd-line p-7 flex flex-col gap-4">
+              <p className="font-sans text-base text-pd-muted leading-relaxed flex-1">&ldquo;{t.quote}&rdquo;</p>
+              <div className="flex items-center gap-3 pt-2 border-t border-pd-line">
+                <div className="w-9 h-9 bg-pd-surface-2 flex items-center justify-center flex-shrink-0">
+                  <span className="font-display font-light text-sm text-pd-oxblood">{t.name.charAt(0)}</span>
                 </div>
                 <div>
-                  <p className="font-syne font-bold text-sm text-gray-900">{t.name}</p>
-                  <p className="font-sans text-xs text-gray-400">{t.role}, {t.company}</p>
+                  <p className="font-display font-normal text-sm text-pd-ink">{t.name}</p>
+                  <p className="font-sans text-xs text-pd-subtle">{t.role}, {t.company}</p>
                 </div>
               </div>
             </div>

@@ -40,10 +40,10 @@ export default function ProductsPage() {
         <div className="relative grid lg:grid-cols-[1fr_1.15fr] gap-10 items-center">
           <Reveal className="min-w-0">
             <p className="font-sans text-xs font-medium tracking-[0.22em] uppercase text-white/60 mb-4">Prescript Software · Early access</p>
-            <h1 className="font-syne font-extrabold text-[2.15rem] sm:text-6xl lg:text-7xl tracking-tighter leading-[1.02] mb-6">
+            <h1 className="font-display font-light text-[2.15rem] sm:text-6xl lg:text-7xl tracking-tighter leading-[1.02] mb-6">
               Think smarter.
               <br />
-              <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(90deg, ${IQ.accent}, ${SYNQ.accent})` }}>
+              <span className="text-pd-cream">
                 Execute consistently.
               </span>
             </h1>
@@ -51,10 +51,10 @@ export default function ProductsPage() {
               Two AI products for anyone building a business, anywhere in the world. One helps you decide what to do. The other makes sure it gets done.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a href="#early-access" className="rounded-xl px-6 py-3.5 font-sans font-semibold text-[#07110E] transition-transform hover:scale-[1.02]" style={{ background: 'linear-gradient(90deg, #8B7CFF, #2EE6A6)' }}>
+              <a href="#early-access" className="rounded-xl px-6 py-3.5 font-sans font-semibold bg-pd-brick text-white hover:bg-pd-brick-700 hover:text-white transition-colors">
                 Request early access
               </a>
-              <a href="#products" className="rounded-xl px-6 py-3.5 font-sans font-medium border border-white/20 hover:bg-white/5">
+              <a href="#products" className="rounded-xl px-6 py-3.5 font-sans font-medium border border-white/20 hover:bg-pd-surface/5">
                 Meet the products
               </a>
             </div>
@@ -72,11 +72,11 @@ export default function ProductsPage() {
             <Reveal key={p.slug} delay={i * 0.1} className="min-w-0">
               <Link
                 href={`/products/${p.slug}`}
-                className="group relative block h-full rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-10 overflow-hidden transition-colors hover:border-white/30"
+                className="group relative block h-full rounded-3xl border border-white/10 bg-pd-surface/[0.03] p-6 sm:p-10 overflow-hidden transition-colors hover:border-white/30"
               >
                 <div aria-hidden="true" className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-20 group-hover:opacity-50 transition-opacity duration-700" style={{ background: p.accent }} />
                 <p className="relative font-sans text-xs tracking-[0.22em] uppercase text-white/50 mb-3">{p.verb}</p>
-                <h2 className="relative font-syne font-extrabold text-[1.7rem] sm:text-4xl tracking-tighter mb-3" style={{ color: p.accent }}>
+                <h2 className="relative font-display font-light text-[1.7rem] sm:text-4xl tracking-tighter mb-3" style={{ color: p.accent }}>
                   {p.name}<sup className="font-sans font-normal text-xs ml-0.5">™</sup>
                 </h2>
                 <p className="relative font-sans text-lg text-white mb-6 max-w-md">{p.tagline}</p>
@@ -101,18 +101,18 @@ export default function ProductsPage() {
       <section className="px-4 sm:px-6 lg:px-8 py-20 max-w-7xl mx-auto">
         <Reveal>
           <p className="font-sans text-xs font-medium tracking-[0.22em] uppercase text-white/60 mb-3">From question to done</p>
-          <h2 className="font-syne font-extrabold text-3xl sm:text-4xl tracking-tighter mb-12 max-w-2xl">One journey, two products, no gaps.</h2>
+          <h2 className="font-display font-light text-3xl sm:text-4xl tracking-tighter mb-12 max-w-2xl">One journey, two products, no gaps.</h2>
         </Reveal>
         <div className="relative grid md:grid-cols-3 gap-5">
-          <div aria-hidden="true" className="hidden md:block absolute top-7 left-[8%] right-[8%] h-px" style={{ background: `linear-gradient(90deg, ${IQ.accent}, ${SYNQ.accent})`, opacity: 0.5 }} />
+          <div aria-hidden="true" className="hidden md:block absolute top-7 left-[8%] right-[8%] h-px" style={{ background: 'rgba(247,244,236,0.2)' }} />
           {JOURNEY.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.12}>
               <div className="relative">
-                <span className="relative z-10 w-14 h-14 rounded-2xl grid place-items-center font-syne font-extrabold text-[#07110E] mb-5" style={{ background: s.who.accent }}>
+                <span className="relative z-10 w-14 h-14 rounded-2xl grid place-items-center font-display font-light text-pd-ink mb-5" style={{ background: s.who.accent }}>
                   {s.n}
                 </span>
                 <p className="font-sans text-xs tracking-widest uppercase mb-1" style={{ color: s.who.accent }}>{s.who.name}</p>
-                <h3 className="font-syne font-bold text-xl mb-2">{s.title}</h3>
+                <h3 className="font-display font-normal text-xl mb-2">{s.title}</h3>
                 <p className="font-sans font-light text-sm text-white/65 leading-relaxed">{s.body}</p>
               </div>
             </Reveal>
@@ -124,14 +124,14 @@ export default function ProductsPage() {
       <section className="px-4 sm:px-6 lg:px-8 py-20 max-w-7xl mx-auto">
         <Reveal>
           <p className="font-sans text-xs font-medium tracking-[0.22em] uppercase text-white/60 mb-3">Made for</p>
-          <h2 className="font-syne font-extrabold text-3xl sm:text-4xl tracking-tighter mb-10 max-w-2xl">From a solo founder in Lagos to a team in London.</h2>
+          <h2 className="font-display font-light text-3xl sm:text-4xl tracking-tighter mb-10 max-w-2xl">From a solo founder in Lagos to a team in London.</h2>
         </Reveal>
         <div className="grid md:grid-cols-3 gap-4">
           {AUDIENCES.map((a, i) => (
             <Reveal key={a.title} delay={i * 0.08}>
-              <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                <span aria-hidden="true" className="text-3xl bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(135deg, ${IQ.accent}, ${SYNQ.accent})` }}>{a.icon}</span>
-                <h3 className="font-syne font-bold text-lg mt-3 mb-2">{a.title}</h3>
+              <div className="h-full rounded-2xl border border-white/10 bg-pd-surface/[0.03] p-6">
+                <span aria-hidden="true" className="text-3xl text-pd-cream">{a.icon}</span>
+                <h3 className="font-display font-normal text-lg mt-3 mb-2">{a.title}</h3>
                 <p className="font-sans font-light text-sm text-white/65 leading-relaxed">{a.body}</p>
               </div>
             </Reveal>
