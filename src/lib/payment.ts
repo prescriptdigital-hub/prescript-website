@@ -63,12 +63,12 @@ export function generateRef(): string {
 export async function verifyPayment(
   reference: string,
   provider: 'paystack' | 'flutterwave' | 'paypal'
-): Promise<boolean> {
+): Promise<{ ok: boolean; trackingRef: string | null }> {
   const url = process.env.NEXT_PUBLIC_PAYMENT_VERIFY_URL
   if (!url) {
     // No worker configured yet, optimistic success in dev
     console.log('[Payment verify, no worker URL]', { reference, provider })
-    return true
+    return { ok: true, trackingRef: null }
   }
   try {
     const res = await fetch(url, {
@@ -77,9 +77,9 @@ export async function verifyPayment(
       body: JSON.stringify({ reference, provider }),
     })
     const data = await res.json()
-    return data.success === true
+    return { ok: data.success === true, trackingRef: data.trackingRef ?? null }
   } catch {
-    return false
+    return { ok: false, trackingRef: null }
   }
 }
 

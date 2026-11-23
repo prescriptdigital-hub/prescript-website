@@ -104,10 +104,13 @@ export default function PaymentModal({
 
   const onPayPalApproved = async (orderID: string) => {
     setStage('processing')
-    const ok = await verifyPayment(orderID, 'paypal')
+    const { ok, trackingRef } = await verifyPayment(orderID, 'paypal')
+    setTrackingRef(trackingRef)
     setStage(ok ? 'success' : 'error')
   }
-  const payRef = `PSC-${planName.toUpperCase().replace(/\s/g, '-')}-${generateRef().split('-')[1]}`
+  // Fixed while the window is open, so the reference the customer copies does not change.
+  const [bankRef] = useState(() => `PSC-${planName.toUpperCase().replace(/\s/g, '-')}-${generateRef().split('-')[2]}`)
+  const [trackingRef, setTrackingRef] = useState<string | null>(null)
 
   const copyAccount = () => {
     navigator.clipboard.writeText(BANK.account)
@@ -123,7 +126,8 @@ export default function PaymentModal({
     setStage('processing')
 
     const handleSuccess = async (reference: string) => {
-      const ok = await verifyPayment(reference, currency === 'ngn' ? 'paystack' : 'flutterwave')
+      const { ok, trackingRef } = await verifyPayment(reference, currency === 'ngn' ? 'paystack' : 'flutterwave')
+      setTrackingRef(trackingRef)
       setStage(ok ? 'success' : 'error')
     }
 
@@ -178,12 +182,17 @@ export default function PaymentModal({
               Welcome to <strong>{planName}</strong>. We&apos;ll reach out within 24 hours to get you onboarded.
             </p>
             <p className="font-sans text-xs text-pd-subtle mb-6">
-              Track your project at{" "}
-              <a href={"/track?ref=" + payRef} className="text-pd-brick-700 underline" target="_blank" rel="noopener noreferrer">prescriptdigital.com/track</a>
-              {" "}using ref <span className="font-medium text-pd-muted">{payRef}</span>
+              {trackingRef ? (
+                <>
+                  Save your tracking reference: <span className="font-mono font-medium text-pd-ink">{trackingRef}</span>.{" "}
+                  <a href={"/track/?ref=" + trackingRef} className="text-pd-brick-700 underline" target="_blank" rel="noopener noreferrer">Track your project</a>
+                </>
+              ) : (
+                <>We&apos;ll send your project tracking reference when we contact you.</>
+              )}
             </p>
             <div className="flex flex-col gap-3">
-              <a href={"/onboarding?ref=" + payRef + "&plan=" + encodeURIComponent(planName)} className="block">
+              <a href={"/onboarding/?ref=" + (trackingRef ?? "") + "&plan=" + encodeURIComponent(planName)} className="block">
                 <Button variant="primary" size="md" className="w-full">Fill in your project brief</Button>
               </a>
               <Button variant="outline" size="md" onClick={onClose} className="w-full">Close</Button>
@@ -242,7 +251,7 @@ export default function PaymentModal({
               <div className="border-t border-pd-line pt-3">
                 <p className="text-xs font-sans text-pd-subtle mb-0.5">Use this as payment reference</p>
                 <p className="text-xs font-sans font-medium text-pd-muted bg-pd-surface border border-pd-line rounded-lg px-3 py-2 tracking-wide">
-                  {payRef}
+                  {bankRef}
                 </p>
               </div>
             </div>
@@ -257,7 +266,7 @@ export default function PaymentModal({
 
             <div className="flex gap-3">
               <a
-                href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/\D/g, '')}?text=Hi, I just made a bank transfer for ${planName} (${displayAmount}). Reference: ${payRef}`}
+                href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/\D/g, '')}?text=Hi, I just made a bank transfer for ${planName} (${displayAmount}). Reference: ${bankRef}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1"

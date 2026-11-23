@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 import Button from "@/components/ui/Button"
+import { submitToWebhook } from "@/lib/submitForm"
 import { CheckCircle2 } from "lucide-react"
 
 interface FormData {
@@ -39,30 +40,23 @@ function OnboardingInner() {
     setError("")
     setSubmitting(true)
     try {
-      const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
-      if (!key) throw new Error("Onboarding form is not configured")
-      const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            access_key: key,
-            subject: "New Project Onboarding: " + plan + " (" + ref + ")",
-            name: form.name,
-            email: form.email,
-            company: form.company,
-            website: form.website,
-            payment_reference: ref,
-            plan: plan,
-            goals: form.goals,
-            timeline: form.timeline,
-            existing_assets: form.assets,
-            how_they_found_us: form.source,
-          }),
-        })
-      if (!res.ok) throw new Error("Onboarding submission failed")
+      await submitToWebhook({
+        _subject: "New project brief: " + plan + (ref ? " (" + ref + ")" : ""),
+        formType: "Project onboarding",
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        website: form.website,
+        tracking_reference: ref,
+        plan,
+        goals: form.goals,
+        timeline: form.timeline,
+        existing_assets: form.assets,
+        how_they_found_us: form.source,
+      })
       setDone(true)
     } catch {
-      setError("Something went wrong. Please email us directly.")
+      setError("Something went wrong. Please email hello@prescriptdigital.com.")
     } finally {
       setSubmitting(false)
     }
@@ -78,7 +72,7 @@ function OnboardingInner() {
               <CheckCircle2 size={48} className="text-pd-brick-700 mx-auto mb-4" />
               <p className="font-display font-light text-2xl text-pd-ink mb-2">Brief received!</p>
               <p className="font-sans text-sm text-pd-muted leading-relaxed mb-2">Thanks {form.name}. We have everything we need to kick off your project.</p>
-              <p className="font-sans text-sm text-pd-muted leading-relaxed">We will reach out within 24 hours to schedule your onboarding call. Track your project at <a href={"/track?ref=" + ref} className="text-pd-brick-700 underline">/track</a> using ref <span className="font-medium text-pd-muted">{ref}</span>.</p>
+              <p className="font-sans text-sm text-pd-muted leading-relaxed">We will reach out within 24 hours to schedule your onboarding call.{ref && <> Track your project at <a href={"/track/?ref=" + ref} className="text-pd-brick-700 underline">/track</a> using ref <span className="font-medium text-pd-muted">{ref}</span>.</>}</p>
             </div>
           ) : (
             <div className="bg-pd-surface rounded-2xl border border-pd-line  p-8">

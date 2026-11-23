@@ -13,7 +13,24 @@ export interface Project {
   status: "active" | "paused" | "completed"
   notes?: string
   assignedTeam?: string[]
+  paymentReference?: string
 }
+
+// What a customer sees: no name, email, amount or notes.
+export type PublicProject = Pick<Project, "reference" | "planName" | "currentStage" | "stages" | "startDate" | "updatedAt" | "status">
+
+export interface NewProject {
+  customerName: string
+  customerEmail: string
+  planName: string
+  type: "monthly" | "project"
+  amount: string
+  paymentReference: string
+}
+
+// Keep in sync with MONTHLY_PLANS in workers/tracker.js.
+export const MONTHLY_PLANS = ["Seed", "Bloom", "Authority", "Launch", "Build", "Scale", "Command", "Growth Engine"]
+export const PROJECT_TYPES = ["Imprint", "Forge", "Surge", "Flow", "Cortex", "Digital Foundation", "AI Business System"]
 
 export interface TeamMember {
   id: string
@@ -48,8 +65,8 @@ async function apiFetch<T>(
   if (!data.success) throw new Error(data.error ?? "Request failed")
   return data as T
 }
-export async function getProject(ref: string): Promise<Project> {
-  const data = await apiFetch<{ success: true; project: Project }>(encodeURI("/project?ref=" + ref))
+export async function getProject(ref: string): Promise<PublicProject> {
+  const data = await apiFetch<{ success: true; project: PublicProject }>("/project?ref=" + encodeURIComponent(ref))
   return data.project
 }
 
@@ -70,6 +87,16 @@ export async function updateProject(adminKey: string, reference: string, updates
   )
   return data.project
 }
+
+export async function createProject(adminKey: string, project: NewProject): Promise<Project> {
+  const data = await apiFetch<{ success: true; project: Project }>("/projects", { method: "POST", body: JSON.stringify(project) }, adminKey)
+  return data.project
+}
+
+export async function deleteProject(adminKey: string, reference: string): Promise<void> {
+  await apiFetch("/project", { method: "DELETE", body: JSON.stringify({ reference }) }, adminKey)
+}
+
 export async function listTeam(adminKey: string): Promise<TeamMember[]> {
   const data = await apiFetch<{ success: true; members: TeamMember[] }>("/team", {}, adminKey)
   return data.members

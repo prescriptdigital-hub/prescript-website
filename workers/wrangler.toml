@@ -2,7 +2,12 @@ name = "prescript-payment-verify"
 main = "verify-payment.js"
 compatibility_date = "2024-01-01"
 
-# Deploy with: wrangler deploy (from inside the /workers folder)
+# Direct connection to the tracker. Workers on the same account cannot fetch each other's workers.dev address.
+[[services]]
+binding = "TRACKER"
+service = "prescript-tracker"
+
+# Deploy: npx wrangler deploy --config workers/wrangler.toml
 # Add secrets with:
 #   wrangler secret put PAYSTACK_SECRET_KEY
 #   wrangler secret put FLUTTERWAVE_SECRET_KEY

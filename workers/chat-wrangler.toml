@@ -13,12 +13,11 @@ type = "Text"
 globs = ["**/*.txt"]
 fallthrough = true
 
-[[ratelimits]]
-name = "VISITOR_LIMIT"
-namespace_id = "1001"
-simple = { limit = 8, period = 60 }
+# Message counters (limits are set in chat.js).
+[[durable_objects.bindings]]
+name = "ATTEMPTS"
+class_name = "AttemptCounter"
 
-[[ratelimits]]
-name = "SITE_LIMIT"
-namespace_id = "1002"
-simple = { limit = 60, period = 60 }
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["AttemptCounter"]

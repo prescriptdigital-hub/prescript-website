@@ -3,6 +3,9 @@
  * Answers from public/llms.txt with Workers AI. Stores nothing.
  */
 import knowledge from '../public/llms.txt'
+import { AttemptCounter, overLimit, visitorKey } from './attempt-counter.js'
+
+export { AttemptCounter }
 
 const MODEL = '@cf/meta/llama-3.3-70b-instruct-fp8-fast'
 const MAX_MESSAGES = 12
@@ -62,12 +65,8 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders(origin) })
     if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin)
 
-    const ip = request.headers.get('CF-Connecting-IP') || 'unknown'
-    const [visitor, site] = await Promise.all([
-      env.VISITOR_LIMIT.limit({ key: ip }),
-      env.SITE_LIMIT.limit({ key: 'all' }),
-    ])
-    if (!visitor.success || !site.success) return json({ error: 'busy' }, 429, origin)
+    // Visitor first, so one blocked visitor cannot use up the site-wide allowance.
+    if ((await overLimit(env.ATTEMPTS, 'chat:' + visitorKey(request), 8)) || (await overLimit(env.ATTEMPTS, 'chat-site', 60))) return json({ error: 'busy' }, 429, origin)
 
     const body = await request.json().catch(() => null)
     const messages = cleanMessages(body?.messages)

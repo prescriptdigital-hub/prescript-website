@@ -1,18 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Search, CheckCircle2, Circle, Clock, ArrowRight } from 'lucide-react'
 import Button from '@/components/ui/Button'
-import { getProject, type Project } from '@/lib/tracker'
+import { getProject, type PublicProject } from '@/lib/tracker'
 
 export default function TrackPage() {
   const [ref, setRef] = useState('')
-  const [project, setProject] = useState<Project | null>(null)
+  const [project, setProject] = useState<PublicProject | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const lookup = async () => {
-    const trimmed = ref.trim()
+  const lookup = async (value: string) => {
+    const trimmed = value.trim()
     if (!trimmed) return
     setLoading(true)
     setError('')
@@ -20,14 +20,25 @@ export default function TrackPage() {
     try {
       const p = await getProject(trimmed)
       setProject(p)
-    } catch {
-      setError('No project found for that reference. Double-check your payment confirmation email.')
+    } catch (e) {
+      const message = e instanceof Error ? e.message : ''
+      setError(message === 'Project not found'
+        ? 'No project found for that reference. Check it, or message us on WhatsApp and we will help.'
+        : message || 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
   }
 
+  useEffect(() => {
+    const fromLink = new URLSearchParams(window.location.search).get('ref')
+    if (!fromLink) return
+    setRef(fromLink)
+    lookup(fromLink)
+  }, [])
+
   const stageStatus = (i: number, current: number) => {
+    if (project?.status === "completed") return "done"
     if (i < current) return "done"
     if (i === current) return "active"
     return "pending"
@@ -38,21 +49,21 @@ export default function TrackPage() {
         <div className="text-center mb-10">
           <span className="text-xs font-sans font-medium tracking-widest uppercase text-pd-brick-700 mb-3 block">Project Tracker</span>
           <h1 className="font-display font-light text-3xl text-pd-ink tracking-tight mb-3">Track your project</h1>
-          <p className="font-sans text-sm text-pd-muted leading-relaxed">Enter the payment reference from your confirmation email to see your project status.</p>
+          <p className="font-sans text-sm text-pd-muted leading-relaxed">Enter your tracking reference to see how your project is going.</p>
         </div>
         <div className="bg-pd-surface rounded-2xl border border-pd-line p-6 mb-6 ">
-          <label className="text-sm font-sans font-medium text-pd-muted mb-2 block">Payment reference</label>
+          <label htmlFor="track-ref" className="text-sm font-sans font-medium text-pd-muted mb-2 block">Tracking reference</label>
           <div className="flex gap-3">
-            <input type="text" value={ref} onChange={e => setRef(e.target.value)} onKeyDown={e => e.key === "Enter" && lookup()} placeholder="e.g. PSC-SCALE-A1B2C3" className="flex-1 border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent" />
-            <Button variant="primary" size="md" onClick={lookup} disabled={loading}>{loading ? "..." : <Search size={16} />}</Button>
+            <input id="track-ref" type="text" value={ref} onChange={e => setRef(e.target.value)} onKeyDown={e => e.key === "Enter" && lookup(ref)} placeholder="e.g. PSC-A2B3C-D4E5F" className="flex-1 min-w-0 border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent" />
+            <Button variant="primary" size="md" onClick={() => lookup(ref)} disabled={loading}>{loading ? "..." : <><Search size={16} aria-hidden="true" /><span className="sr-only">Track</span></>}</Button>
           </div>
-          {error && <p className="text-xs text-pd-error mt-2">{error}</p>}
+          {error && <p role="alert" className="text-xs text-pd-error mt-2">{error}</p>}
         </div>        {project && (
           <div className="bg-pd-surface rounded-2xl border border-pd-line p-6 ">
             <div className="flex items-start justify-between mb-6">
               <div>
                 <p className="font-display font-light text-xl text-pd-ink">{project.planName}</p>
-                <p className="font-sans text-sm text-pd-subtle mt-0.5">{project.customerName && project.customerName + " · "}Started {new Date(project.startDate).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
+                <p className="font-sans text-sm text-pd-subtle mt-0.5">Started {new Date(project.startDate).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
               </div>
               <span className={"text-xs font-sans font-medium px-3 py-1 " + (project.status === "completed" ? "bg-pd-surface-2 text-pd-oxblood" : project.status === "paused" ? "bg-pd-surface text-pd-warning" : "bg-pd-surface text-pd-info")}>{project.status.charAt(0).toUpperCase() + project.status.slice(1)}</span>
             </div>
@@ -79,11 +90,11 @@ export default function TrackPage() {
             </div>
             <div className="border-t border-pd-line mt-2 pt-5 flex items-center justify-between">
               <p className="font-sans text-xs text-pd-subtle">Last updated {new Date(project.updatedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
-              <a href={"https://wa.me/2347030057040?text=Hi, checking on my project (ref: " + project.reference + ")"} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-sans text-pd-brick-700 hover:underline">Questions? WhatsApp us <ArrowRight size={12} /></a>
+              <a href={"https://wa.me/2347030057040?text=" + encodeURIComponent("Hi, checking on my project (ref: " + project.reference + ")")} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-sans text-pd-brick-700 hover:underline">Questions? WhatsApp us <ArrowRight size={12} /></a>
             </div>
           </div>
         )}
-        {!project && !error && <p className="text-center font-sans text-xs text-pd-subtle mt-4">Your reference looks like <span className="font-medium text-pd-muted">PSC-SCALE-A1B2C3</span> and is in your payment confirmation email.</p>}
+        {!project && !error && <p className="text-center font-sans text-xs text-pd-subtle mt-4">Your reference looks like <span className="font-medium text-pd-muted">PSC-A2B3C-D4E5F</span>. You get it after paying online, or from our team.</p>}
       </div>
     </main>
   )

@@ -39,21 +39,39 @@ function json(data, status = 200, origin = '') {
   })
 }
 
-async function createProjectRecord(env, { customerEmail, customerName, planName, reference, provider, amount }) {
-  if (!env.TRACKER_URL || !env.INTERNAL_KEY) return
+// Creates the tracker project (or finds it, if this payment was verified before) and notifies billing once.
+// The payment is already confirmed here, so problems are logged and never fail the customer.
+async function recordPayment(env, payment) {
+  let tracked = null
   try {
-    await fetch(env.TRACKER_URL + "/project", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Internal-Key": env.INTERNAL_KEY },
-      body: JSON.stringify({ reference, planName, customerEmail, customerName, amount, provider }),
+    const res = await env.TRACKER.fetch('https://tracker/project', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Internal-Key': env.INTERNAL_KEY },
+      body: JSON.stringify(payment),
     })
-  } catch { /* non-critical */ }
+    const data = await res.json()
+    if (!data.success) throw new Error(`${res.status} ${data.error}`)
+    tracked = data
+  } catch (e) {
+    console.error('Tracker record failed', payment.provider, payment.reference, e?.message)
+  }
+  if (tracked?.created !== false) {
+    try {
+      await sendBillingEmail(env, { ...payment, trackingReference: tracked?.reference ?? 'Not created: add it in /admin' })
+    } catch (e) {
+      console.error('Billing email failed', payment.provider, payment.reference, e?.message)
+    }
+  }
+  return tracked?.reference ?? null
 }
 
-async function sendBillingEmail(env, { customerEmail, planName, reference, provider, amount }) {
+const escapeHtml = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
+
+async function sendBillingEmail(env, { customerEmail, customerName, planName, reference, provider, amount, trackingReference }) {
   if (!env.RESEND_API_KEY) return
 
-  await fetch('https://api.resend.com/emails', {
+  const rows = { Plan: planName, Customer: customerName, Email: customerEmail, Amount: amount, Provider: provider, 'Payment reference': reference, 'Tracking reference': trackingReference }
+  const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${env.RESEND_API_KEY}`,
@@ -62,19 +80,11 @@ async function sendBillingEmail(env, { customerEmail, planName, reference, provi
     body: JSON.stringify({
       from: BILLING_EMAIL,
       to: [BILLING_EMAIL],
-      subject: `New payment — ${planName}`,
-      html: `
-        <h2>New payment received</h2>
-        <table>
-          <tr><td><strong>Plan</strong></td><td>${planName}</td></tr>
-          <tr><td><strong>Customer</strong></td><td>${customerEmail}</td></tr>
-          <tr><td><strong>Amount</strong></td><td>${amount}</td></tr>
-          <tr><td><strong>Provider</strong></td><td>${provider}</td></tr>
-          <tr><td><strong>Reference</strong></td><td>${reference}</td></tr>
-        </table>
-      `,
+      subject: `New payment: ${planName}`,
+      html: `<h2>New payment received</h2><table>${Object.entries(rows).map(([k, val]) => `<tr><td><strong>${k}</strong></td><td>${escapeHtml(val)}</td></tr>`).join('')}</table>`,
     }),
   })
+  if (!res.ok) throw new Error(`Resend ${res.status}`)
 }
 
 export default {
@@ -123,11 +133,8 @@ export default {
         const amount = `₦${(data.data.amount / 100).toLocaleString()}`
 
         const customerName = data.data.metadata?.custom_fields?.find(f => f.variable_name === 'name')?.value ?? ''
-        await Promise.all([
-          sendBillingEmail(env, { customerEmail, planName, reference, provider: 'Paystack', amount }),
-          createProjectRecord(env, { customerEmail, customerName, planName, reference, provider: 'Paystack', amount }),
-        ])
-        return json({ success: true }, 200, origin)
+        const trackingRef = await recordPayment(env, { customerEmail, customerName, planName, reference, provider: 'Paystack', amount })
+        return json({ success: true, trackingRef }, 200, origin)
       }
 
       return json({ success: false, error: 'Payment not successful' }, 400, origin)
@@ -149,11 +156,8 @@ export default {
         const amount = `$${data.data.amount}`
 
         const customerName = data.data.customer?.name ?? ''
-        await Promise.all([
-          sendBillingEmail(env, { customerEmail, planName, reference, provider: 'Flutterwave', amount }),
-          createProjectRecord(env, { customerEmail, customerName, planName, reference, provider: 'Flutterwave', amount }),
-        ])
-        return json({ success: true }, 200, origin)
+        const trackingRef = await recordPayment(env, { customerEmail, customerName, planName, reference, provider: 'Flutterwave', amount })
+        return json({ success: true, trackingRef }, 200, origin)
       }
 
       return json({ success: false, error: 'Payment not successful' }, 400, origin)
@@ -186,11 +190,15 @@ export default {
         return mismatch({ planName: ordered?.custom_id, amount: ordered?.amount })
       }
 
-      const captureRes = await fetch(`${base}/v2/checkout/orders/${reference}/capture`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${access_token}`, 'Content-Type': 'application/json' },
-      })
-      const data = await captureRes.json()
+      // A retry after a lost response finds the order already captured.
+      let data = order
+      if (order.status !== 'COMPLETED') {
+        const captureRes = await fetch(`${base}/v2/checkout/orders/${reference}/capture`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${access_token}`, 'Content-Type': 'application/json' },
+        })
+        data = await captureRes.json()
+      }
       const unit = data.purchase_units?.[0]
       const capture = unit?.payments?.captures?.[0]
 
@@ -199,11 +207,8 @@ export default {
         const customerName = [data.payer?.name?.given_name, data.payer?.name?.surname].filter(Boolean).join(' ')
         const planName = capture.custom_id ?? unit.custom_id ?? 'Unknown plan'
         const amount = `$${capture.amount.value}`
-        await Promise.all([
-          sendBillingEmail(env, { customerEmail, planName, reference: capture.id, provider: 'PayPal', amount }),
-          createProjectRecord(env, { customerEmail, customerName, planName, reference: capture.id, provider: 'PayPal', amount }),
-        ])
-        return json({ success: true }, 200, origin)
+        const trackingRef = await recordPayment(env, { customerEmail, customerName, planName, reference: capture.id, provider: 'PayPal', amount })
+        return json({ success: true, trackingRef }, 200, origin)
       }
 
       return json({ success: false, error: 'Payment not successful' }, 400, origin)

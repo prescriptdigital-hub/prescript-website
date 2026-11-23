@@ -59,7 +59,7 @@ npm run lint     # Run ESLint
 | `NEXT_PUBLIC_PAYMENT_VERIFY_URL` | URL of the `prescript-payment-verify` Worker. If unset, `verifyPayment()` optimistically returns `true` (dev only). | Cloudflare Pages Variables and Secrets |
 | `NEXT_PUBLIC_TRACKER_URL` | URL of the `prescript-tracker` Worker, used by `/track` and `/admin`. | Cloudflare Pages Variables and Secrets |
 
-Both are set in production. `NEXT_PUBLIC_WEB3FORMS_KEY` is used by `/onboarding`. The contact forms post to Formspree (see Integrations).
+Both are set in production. The contact, onboarding and waitlist forms post to Formspree (see Integrations).
 
 The contact form (Formspree) uses a hardcoded ID in the code, not an env var.
 
@@ -141,10 +141,10 @@ All contact forms call `submitToWebhook()` from `src/lib/submitForm.ts`. It POST
 ### Payments
 - Client: Paystack (NGN) + Flutterwave (USD) publishable keys are hardcoded in `src/lib/payment.ts`. SDKs are loaded in `layout.tsx`.
 - PayPal (USD, alongside Flutterwave "Card"): live Client ID in `src/lib/payment.ts`; the SDK is loaded on demand. The worker captures the order server-side with secrets `PAYPAL_CLIENT_ID` / `PAYPAL_SECRET` (set `PAYPAL_ENV=sandbox` only for testing).
-- Verification: the `prescript-payment-verify` Worker (`workers/verify-payment.js`) checks each transaction server-side against the Paystack/Flutterwave APIs, creates a tracker record, and emails billing via Resend. Worker secrets: `PAYSTACK_SECRET_KEY`, `FLUTTERWAVE_SECRET_KEY`, `INTERNAL_KEY`, `TRACKER_URL`. `RESEND_API_KEY` is **not yet set** — billing emails are skipped until it is.
+- Verification: the `prescript-payment-verify` Worker (`workers/verify-payment.js`) checks each transaction server-side against the Paystack/Flutterwave APIs, creates a tracker record, and emails billing via Resend. It reaches the tracker through the `TRACKER` service binding (deploy the tracker first). Worker secrets: `PAYSTACK_SECRET_KEY`, `FLUTTERWAVE_SECRET_KEY`, `INTERNAL_KEY`, `RESEND_API_KEY`.
 
 ### Project Tracker
-The `prescript-tracker` Worker (`workers/tracker.js`) backs `/track` (public status lookup by reference) and `/admin`, `/admin/projects`, `/admin/team` (password-gated). KV namespace `PROJECTS`; secrets `ADMIN_PASSWORD`, `INTERNAL_KEY`.
+The `prescript-tracker` Worker (`workers/tracker.js`) backs `/track` (public status lookup by reference) and `/admin`, `/admin/projects`, `/admin/team` (password-gated). Each project gets a random tracking reference (`PSC-XXXXX-XXXXX`), separate from the payment reference; admins can add projects by hand. Limits use the `AttemptCounter` Durable Object (`workers/attempt-counter.js`, shared with the chat Worker). KV namespace `PROJECTS` (admin password: `config:admin_password`); secrets `ADMIN_PASSWORD` (fallback), `INTERNAL_KEY`.
 
 ### Email
 `hello@prescriptdigital.com` is forwarded to Gmail via **Cloudflare Email Routing** (Cloudflare dashboard → prescriptdigital.com → Email → Email Routing).
@@ -157,8 +157,7 @@ Cloudflare Pages builds from `main` on every push. The last successful productio
 
 ## Pending Setup
 
-- [ ] Set `RESEND_API_KEY` on the `prescript-payment-verify` Worker so payment/billing emails send
-- [ ] Point `www.prescriptdigital.com` at Cloudflare Pages (currently serves a stale Hostinger site) — add `www` as a Pages custom domain or a redirect to the apex
+- [ ] Verify the `prescriptdigital.com` domain in Resend so billing emails send (the key is set)
 - [ ] Replace placeholder case studies in `src/lib/cases.ts` with real client work (or label them as samples)
 
 ## Logo / Brand Assets

@@ -3,8 +3,14 @@
  * KV namespace: PROJECTS | Secrets: ADMIN_PASSWORD, INTERNAL_KEY
  */
 
+import { AttemptCounter, overLimit, visitorKey } from "./attempt-counter.js"
+
+export { AttemptCounter }
+
 const ALLOWED_ORIGINS = ["https://prescriptdigital.com", "https://www.prescriptdigital.com", "http://localhost:3000"]
-const SUBSCRIPTION_NAMES = ["Seed","Grow","Thrive","Launch","Build","Scale","Dominate","Growth Engine","AI Business System"]
+// Keep in sync with MONTHLY_PLANS in src/lib/tracker.ts.
+const MONTHLY_PLANS = ["Seed", "Bloom", "Authority", "Launch", "Build", "Scale", "Command", "Growth Engine"]
+const STATUSES = ["active", "paused", "completed"]
 const SUBSCRIPTION_STAGES = ["Onboarding","Account Setup","Strategy & Planning","Execution","Review & Reporting"]
 const PACKAGE_STAGES = ["Brief & Discovery","Strategy","Design & Build","Client Review","Delivery"]
 
@@ -13,7 +19,7 @@ function corsHeaders(origin) {
   return {
     "Access-Control-Allow-Origin": allowed,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, X-Admin-Key, X-Internal-Key",
+    "Access-Control-Allow-Headers": "Content-Type, X-Admin-Key",
   }
 }
 
@@ -24,39 +30,43 @@ function json(data, status = 200, origin = "") {
   })
 }
 
-function isSubscription(n) { return SUBSCRIPTION_NAMES.some(s => n.toLowerCase().includes(s.toLowerCase())) }
-function getStages(n) { return isSubscription(n) ? SUBSCRIPTION_STAGES : PACKAGE_STAGES }
+function getStages(planName, type) {
+  const monthly = type ? type === "monthly" : MONTHLY_PLANS.includes(planName)
+  return monthly ? SUBSCRIPTION_STAGES : PACKAGE_STAGES
+}
+
+const text = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "")
+
+// Unguessable. Payment references are not used because some (Flutterwave) are plain sequential numbers.
+function newReference() {
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+  const c = [...crypto.getRandomValues(new Uint8Array(10))].map(b => alphabet[b % 32]).join("")
+  return "PSC-" + c.slice(0, 5) + "-" + c.slice(5)
+}
+
+async function createProject(env, fields) {
+  const now = new Date().toISOString()
+  const project = { id: "prj_" + crypto.randomUUID(), reference: newReference(), currentStage: 0, notes: "", assignedTeam: [], startDate: now, updatedAt: now, status: "active", ...fields }
+  await env.PROJECTS.put("project:" + project.reference, JSON.stringify(project))
+  return project
+}
+
+function cleanUpdates(body, project) {
+  const out = {}
+  if (Number.isInteger(body.currentStage) && body.currentStage >= 0 && body.currentStage < project.stages.length) out.currentStage = body.currentStage
+  if (STATUSES.includes(body.status)) out.status = body.status
+  if (typeof body.notes === "string") out.notes = body.notes.slice(0, 5000)
+  if (Array.isArray(body.assignedTeam)) out.assignedTeam = body.assignedTeam.filter(e => typeof e === "string").slice(0, 50)
+  return out
+}
+
 // No built-in default: with neither the KV value nor the secret set, every login is refused.
 async function getAdminPassword(env) { return (await env.PROJECTS.get("config:admin_password")) || env.ADMIN_PASSWORD || null }
 async function passwordMatches(given, env) { const pw = await getAdminPassword(env); return Boolean(pw) && given === pw }
 async function requireAdmin(req, env) { return passwordMatches(req.headers.get("X-Admin-Key"), env) }
-// One counter per visitor and purpose. IPv6 visitors are grouped by /64, which a single user controls.
-async function tooMany(env, req, name, limit) {
-  const ip = req.headers.get("CF-Connecting-IP") || "unknown"
-  const key = ip.includes(":") ? ip.split(":").slice(0, 4).join(":") : ip
-  const stub = env.ATTEMPTS.get(env.ATTEMPTS.idFromName(name + ":" + key))
-  const res = await stub.fetch("https://counter/?limit=" + limit)
-  return res.status === 429
-}
+async function tooMany(env, req, name, limit) { return overLimit(env.ATTEMPTS, name + ":" + visitorKey(req), limit) }
 function tooManyResponse(origin) { return json({ success: false, error: "Too many attempts. Wait a minute and try again." }, 429, origin) }
 function requireInternal(req, env) { return req.headers.get("X-Internal-Key") === env.INTERNAL_KEY }
-
-// Exact attempt counter. Cloudflare's rate-limit binding is approximate and let dozens of guesses through.
-export class AttemptCounter {
-  constructor(state) { this.storage = state.storage }
-  async fetch(request) {
-    const limit = Number(new URL(request.url).searchParams.get("limit"))
-    const now = Date.now()
-    const saved = await this.storage.get("window")
-    const win = saved && now - saved.start < 60000 ? saved : { start: now, count: 0 }
-    if (win.count >= limit) return new Response(null, { status: 429 })
-    win.count++
-    await this.storage.put("window", win)
-    if (win.count === 1) await this.storage.setAlarm(now + 120000)
-    return new Response(null, { status: 204 })
-  }
-  async alarm() { await this.storage.deleteAll() }
-}
 
 export default {
   async fetch(request, env) {
@@ -87,49 +97,84 @@ export default {
       return json({ success: true }, 200, origin)
     }
 
+    // Called by the payment Worker. Verifying the same payment twice returns the same project.
     if (path === "/project" && request.method === "POST") {
-      if (!requireInternal(request, env)) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      if (!env.INTERNAL_KEY || !requireInternal(request, env)) return json({ success: false, error: "Unauthorized" }, 401, origin)
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
-      const { reference, planName, customerEmail, customerName, amount, provider } = body
-      if (!reference || !planName) return json({ success: false, error: "Missing fields" }, 400, origin)
-      const project = { id: "prj_" + Date.now(), reference, planName, customerEmail: customerEmail || "", customerName: customerName || "", amount: amount || "", provider: provider || "", currentStage: 0, stages: getStages(planName), notes: "", assignedTeam: [], startDate: new Date().toISOString(), updatedAt: new Date().toISOString(), status: "active" }
-      await env.PROJECTS.put("project:" + reference, JSON.stringify(project))
-      const pi = await env.PROJECTS.get("index:projects")
-      const pia = pi ? JSON.parse(pi) : []
-      pia.unshift(reference)
-      await env.PROJECTS.put("index:projects", JSON.stringify(pia))
+      const paymentReference = text(String(body.reference ?? ""), 100)
+      const planName = text(body.planName, 100)
+      const provider = text(body.provider, 40)
+      if (!paymentReference || !planName || !provider) return json({ success: false, error: "Missing fields" }, 400, origin)
+      const paymentKey = "payment:" + provider + ":" + paymentReference
+      const known = await env.PROJECTS.get(paymentKey)
+      if (known) return json({ success: true, created: false, reference: known }, 200, origin)
+      const project = await createProject(env, { planName, customerEmail: text(body.customerEmail, 200), customerName: text(body.customerName, 200), amount: text(body.amount, 60), provider, paymentReference, stages: getStages(planName) })
+      await env.PROJECTS.put(paymentKey, project.reference)
+      return json({ success: true, created: true, reference: project.reference }, 200, origin)
+    }
+
+    // Added by hand in admin: bank transfers and Enterprise clients.
+    if (path === "/projects" && request.method === "POST") {
+      if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      let body
+      try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
+      const planName = text(body.planName, 100)
+      const customerName = text(body.customerName, 200)
+      if (!planName || !customerName) return json({ success: false, error: "Add the client name and the plan or project" }, 400, origin)
+      if (!["monthly", "project"].includes(body.type)) return json({ success: false, error: "Choose monthly plan or one-time project" }, 400, origin)
+      const project = await createProject(env, { planName, customerName, customerEmail: text(body.customerEmail, 200), amount: text(body.amount, 60), provider: "Manual", paymentReference: text(body.paymentReference, 100), stages: getStages(planName, body.type) })
       return json({ success: true, project }, 200, origin)
     }
 
+    // Public: only what the customer needs to see.
     if (path === "/project" && request.method === "GET") {
-      const ref = url.searchParams.get("ref")
+      if (await tooMany(env, request, "lookup", 20)) return tooManyResponse(origin)
+      const ref = text(url.searchParams.get("ref"), 60).toUpperCase()
       if (!ref) return json({ success: false, error: "Missing ref" }, 400, origin)
       const raw = await env.PROJECTS.get("project:" + ref)
       if (!raw) return json({ success: false, error: "Project not found" }, 404, origin)
-      const { notes, assignedTeam, ...pub } = JSON.parse(raw)
-      return json({ success: true, project: pub }, 200, origin)
+      const { reference, planName, currentStage, stages, startDate, updatedAt, status } = JSON.parse(raw)
+      return json({ success: true, project: { reference, planName, currentStage, stages, startDate, updatedAt, status } }, 200, origin)
     }
 
     if (path === "/project" && request.method === "PUT") {
       if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
-      const { reference, ...updates } = body
-      if (!reference) return json({ success: false, error: "Missing reference" }, 400, origin)
-      const raw = await env.PROJECTS.get("project:" + reference)
+      const raw = await env.PROJECTS.get("project:" + text(body.reference, 60))
       if (!raw) return json({ success: false, error: "Project not found" }, 404, origin)
-      const updated = { ...JSON.parse(raw), ...updates, reference, updatedAt: new Date().toISOString() }
-      await env.PROJECTS.put("project:" + reference, JSON.stringify(updated))
+      const project = JSON.parse(raw)
+      const updated = { ...project, ...cleanUpdates(body, project), updatedAt: new Date().toISOString() }
+      await env.PROJECTS.put("project:" + project.reference, JSON.stringify(updated))
       return json({ success: true, project: updated }, 200, origin)
     }
 
+    if (path === "/project" && request.method === "DELETE") {
+      if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      let body
+      try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
+      const raw = await env.PROJECTS.get("project:" + text(body.reference, 60))
+      if (!raw) return json({ success: false, error: "Project not found" }, 404, origin)
+      const project = JSON.parse(raw)
+      if (project.provider !== "Manual") await env.PROJECTS.delete("payment:" + project.provider + ":" + project.paymentReference)
+      await env.PROJECTS.delete("project:" + project.reference)
+      return json({ success: true }, 200, origin)
+    }
+
+    // Listed by prefix rather than a shared index, which two simultaneous payments could overwrite.
     if (path === "/projects" && request.method === "GET") {
       if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
-      const pi = await env.PROJECTS.get("index:projects")
-      const index = pi ? JSON.parse(pi) : []
-      const projects = await Promise.all(index.map(async r => { const raw = await env.PROJECTS.get("project:" + r); return raw ? JSON.parse(raw) : null }))
-      return json({ success: true, projects: projects.filter(Boolean) }, 200, origin)
+      const names = []
+      let cursor
+      do {
+        const page = await env.PROJECTS.list({ prefix: "project:", cursor })
+        names.push(...page.keys.map(k => k.name))
+        cursor = page.list_complete ? undefined : page.cursor
+      } while (cursor)
+      const projects = (await Promise.all(names.map(n => env.PROJECTS.get(n)))).filter(Boolean).map(r => JSON.parse(r))
+      projects.sort((x, y) => y.startDate.localeCompare(x.startDate))
+      return json({ success: true, projects }, 200, origin)
     }
 
     if (path === "/team" && request.method === "GET") {
