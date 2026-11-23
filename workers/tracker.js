@@ -30,9 +30,33 @@ function getStages(n) { return isSubscription(n) ? SUBSCRIPTION_STAGES : PACKAGE
 async function getAdminPassword(env) { return (await env.PROJECTS.get("config:admin_password")) || env.ADMIN_PASSWORD || null }
 async function passwordMatches(given, env) { const pw = await getAdminPassword(env); return Boolean(pw) && given === pw }
 async function requireAdmin(req, env) { return passwordMatches(req.headers.get("X-Admin-Key"), env) }
-async function tooMany(limiter, req) { const { success } = await limiter.limit({ key: req.headers.get("CF-Connecting-IP") || "unknown" }); return !success }
+// One counter per visitor and purpose. IPv6 visitors are grouped by /64, which a single user controls.
+async function tooMany(env, req, name, limit) {
+  const ip = req.headers.get("CF-Connecting-IP") || "unknown"
+  const key = ip.includes(":") ? ip.split(":").slice(0, 4).join(":") : ip
+  const stub = env.ATTEMPTS.get(env.ATTEMPTS.idFromName(name + ":" + key))
+  const res = await stub.fetch("https://counter/?limit=" + limit)
+  return res.status === 429
+}
 function tooManyResponse(origin) { return json({ success: false, error: "Too many attempts. Wait a minute and try again." }, 429, origin) }
 function requireInternal(req, env) { return req.headers.get("X-Internal-Key") === env.INTERNAL_KEY }
+
+// Exact attempt counter. Cloudflare's rate-limit binding is approximate and let dozens of guesses through.
+export class AttemptCounter {
+  constructor(state) { this.storage = state.storage }
+  async fetch(request) {
+    const limit = Number(new URL(request.url).searchParams.get("limit"))
+    const now = Date.now()
+    const saved = await this.storage.get("window")
+    const win = saved && now - saved.start < 60000 ? saved : { start: now, count: 0 }
+    if (win.count >= limit) return new Response(null, { status: 429 })
+    win.count++
+    await this.storage.put("window", win)
+    if (win.count === 1) await this.storage.setAlarm(now + 120000)
+    return new Response(null, { status: 204 })
+  }
+  async alarm() { await this.storage.deleteAll() }
+}
 
 export default {
   async fetch(request, env) {
@@ -43,12 +67,12 @@ export default {
     if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders(origin) })
 
     // Admin calls carry the password, so they are limited too; otherwise they could be used to guess it.
-    if (request.headers.has("X-Admin-Key") && (await tooMany(env.ADMIN_LIMIT, request))) return tooManyResponse(origin)
+    if (request.headers.has("X-Admin-Key") && (await tooMany(env, request, "admin", 60))) return tooManyResponse(origin)
 
     if (path === "/auth" && request.method === "POST") {
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
-      if (await tooMany(env.LOGIN_LIMIT, request)) return tooManyResponse(origin)
+      if (await tooMany(env, request, "login", 5)) return tooManyResponse(origin)
       if (await passwordMatches(body.password, env)) return json({ success: true }, 200, origin)
       return json({ success: false, error: "Invalid password" }, 401, origin)
     }
@@ -56,7 +80,7 @@ export default {
     if (path === "/change-password" && request.method === "POST") {
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
-      if (await tooMany(env.LOGIN_LIMIT, request)) return tooManyResponse(origin)
+      if (await tooMany(env, request, "login", 5)) return tooManyResponse(origin)
       if (!(await passwordMatches(body.oldPassword, env))) return json({ success: false, error: "Current password incorrect" }, 401, origin)
       if (!body.newPassword || typeof body.newPassword !== "string" || body.newPassword.length < 12) return json({ success: false, error: "New password must be at least 12 characters" }, 400, origin)
       await env.PROJECTS.put("config:admin_password", body.newPassword)
