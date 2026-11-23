@@ -2,6 +2,8 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/home/Hero'
 import CapabilityMarquee from '@/components/home/CapabilityMarquee'
+import ScrollFilm from '@/components/home/ScrollFilm'
+import StudioPhotos from '@/components/home/StudioPhotos'
 import StatsBar from '@/components/home/StatsBar'
 import ProcessStory from '@/components/home/ProcessStory'
 import ServicesShowcase from '@/components/home/ServicesShowcase'
@@ -22,10 +24,12 @@ export default function HomePage() {
         <Hero />
         <CapabilityMarquee />
         <Reveal><StatsBar /></Reveal>
+        <ScrollFilm />
         <ProcessStory />
         <ServicesShowcase />
         <Reveal><SubscriptionsPreview /></Reveal>
         <Reveal><PackagesPreview /></Reveal>
+        <StudioPhotos />
         <Reveal><WhyPreScript /></Reveal>
         <Reveal><WorkTeaser /></Reveal>
         <Reveal><Testimonials /></Reveal>
