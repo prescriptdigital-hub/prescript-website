@@ -80,7 +80,7 @@ export default function ScrollFilm() {
           poster={reduce ? '/media/blocks-end.webp' : '/media/blocks-start.webp'}
           aria-hidden="true"
           tabIndex={-1}
-          className="w-full flex-1 min-h-0 lg:absolute lg:inset-0 lg:h-full object-cover object-right"
+          className="w-full flex-1 min-h-0 lg:absolute lg:inset-0 lg:h-full object-cover object-[70%_50%] lg:object-right"
         />
         <div className="relative bg-pd-oxblood p-7 sm:p-10 lg:absolute lg:left-0 lg:bottom-0 lg:w-[38%] lg:max-w-xl lg:p-12">
           <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-pd-cream mb-4">The problem we solve</p>
