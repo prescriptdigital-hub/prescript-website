@@ -2,7 +2,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/home/Hero'
 import CapabilityMarquee from '@/components/home/CapabilityMarquee'
-import ScrollFilm from '@/components/home/ScrollFilm'
+import StructureScroll from '@/components/home/StructureScroll'
 import StudioPhotos from '@/components/home/StudioPhotos'
 import StatsBar from '@/components/home/StatsBar'
 import ProcessStory from '@/components/home/ProcessStory'
@@ -24,7 +24,7 @@ export default function HomePage() {
         <Hero />
         <CapabilityMarquee />
         <Reveal><StatsBar /></Reveal>
-        <ScrollFilm />
+        <StructureScroll />
         <ProcessStory />
         <ServicesShowcase />
         <Reveal><SubscriptionsPreview /></Reveal>
