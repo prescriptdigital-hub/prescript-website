@@ -45,17 +45,22 @@ export default function ScrollFilm() {
     if (!video || reduce) return
     let raf = 0
     let shown = 0
-    const tick = () => {
+    let last = performance.now()
+    const tick = (now: number) => {
+      const ease = 1 - Math.exp(-(now - last) / 110)
+      last = now
       if (video.readyState >= 2 && video.duration) {
         const target = Math.min(scrollYProgress.get() / 0.9, 1) * (video.duration - 0.05)
-        shown += (target - shown) * 0.18
+        shown += (target - shown) * Math.max(0, ease)
         if (!video.seeking && Math.abs(video.currentTime - shown) > 0.02) video.currentTime = shown
       }
       raf = requestAnimationFrame(tick)
     }
     const observer = new IntersectionObserver(([entry]) => {
       cancelAnimationFrame(raf)
-      if (entry.isIntersecting) raf = requestAnimationFrame(tick)
+      if (!entry.isIntersecting) return
+      last = performance.now()
+      raf = requestAnimationFrame(tick)
     })
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => {
