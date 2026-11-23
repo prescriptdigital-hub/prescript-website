@@ -61,7 +61,7 @@ npm run lint     # Run ESLint
 
 Both are set in production. `NEXT_PUBLIC_WEB3FORMS_KEY` is used by `/onboarding`. The contact forms post to Formspree (see Integrations).
 
-The contact form (Formspree) and live chat (Tawk.to) use hardcoded IDs in the code, not env vars.
+The contact form (Formspree) uses a hardcoded ID in the code, not an env var.
 
 ---
 
@@ -135,8 +135,8 @@ Always capitalize. Always use exact names and descriptions:
 ### Contact Form (Formspree)
 All contact forms call `submitToWebhook()` from `src/lib/submitForm.ts`. It POSTs JSON to `https://formspree.io/f/maqaqvqg`; Formspree emails the submission to the linked address. No backend required.
 
-### Live Chat (Tawk.to)
-Loaded in `src/app/layout.tsx` via an inline `next/script` (`strategy="afterInteractive"`). The Tawk.to property/widget ID is hardcoded in that script tag (`embed.tawk.to/<propertyId>/<widgetId>`). To change accounts, edit the `src` in `layout.tsx`.
+### Website Assistant
+`src/components/chat/ChatWidget.tsx` (in the root layout) calls the `prescript-chat` Worker (`workers/chat.js`), which answers with Cloudflare Workers AI using facts bundled from `public/llms.txt`. **After editing `llms.txt`, redeploy:** `npx wrangler deploy --config workers/chat-wrangler.toml`. Conversations are not stored; "Talk to the team" emails the details via Formspree. Tawk.to was removed at the owner's request.
 
 ### Payments
 - Client: Paystack (NGN) + Flutterwave (USD) publishable keys are hardcoded in `src/lib/payment.ts`. SDKs are loaded in `layout.tsx`.

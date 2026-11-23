@@ -1,6 +1,6 @@
 # Prescript Digital Solutions — AI Knowledge Base
 # https://prescriptdigital.com
-# Last updated: April 2026
+# Last updated: November 2026
 
 ## Company Overview
 
@@ -35,6 +35,14 @@ Deliverables: Business process audit, WhatsApp automation, CRM automation, email
 ### 05 - Cortex (Agentic AI Deployment) - Our Deepest Core
 AI agent deployment. Enterprise, contact us for a quote.
 Deliverables: Custom AI agent trained on business data, lead qualification agent, WhatsApp AI agent, CRM-integrated AI workflows, customer support AI.
+
+---
+
+## Software Products (early access, not yet on general sale)
+
+- PRESCRIPT IQ: an AI-assisted workspace to diagnose a business, decide what to do and plan it. It advises and plans; it does not run automations.
+- PRESYNQ: an automation platform that connects business tools and runs approved work, with a person approving important actions.
+- Prices are not set. Join the early-access list: https://prescriptdigital.com/products/
 
 ---
 
