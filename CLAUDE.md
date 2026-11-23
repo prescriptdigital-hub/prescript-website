@@ -24,7 +24,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Cream on brick only for the logo and text ≥ 24px; body text on brick is white.
 - Brick `#C24E4E` is the brand, not an error colour. Errors use `pd-error` `#B3123B` with an icon and label.
 - Violet `#8B7CFF` = PRESCRIPT IQ™ only. Mint `#2EE6A6` = PRESYNQ™ only. Never on master or Studio pages.
-- Weathered texture (`.pd-texture`): hero and social backgrounds only, never behind body text, never on the logo.
+- Weathered texture (`.pd-texture`): social and print only. The owner rejected it for the website hero (Nov 2026): the hero is clean paper with no texture, which overrides README 7.4.
 - Signature square full stop (`.pd-dot`): at most one headline per screen.
 - Tagline "Diagnose. Prescribe. Deliver." Voice: precise, confident, honest, no hype. No gradients, globes, circuit boards, light bulbs or robot heads.
 
