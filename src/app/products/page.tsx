@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { IQ, SYNQ, PRODUCTS } from '@/lib/products'
 import { ProductsShell, EarlyAccess } from '@/components/products/ProductPage'
 import EcosystemScene from '@/components/products/EcosystemScene'
-import Reveal from '@/components/products/Reveal'
+import Reveal from '@/components/ui/Reveal'
 
 export const metadata: Metadata = {
   title: 'Products | PRESCRIPT IQ & PRESYNQ by Prescript Digital',

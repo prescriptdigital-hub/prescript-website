@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { IQ, SYNQ, type Product } from '@/lib/products'
-import Reveal from './Reveal'
+import Reveal from '@/components/ui/Reveal'
 import AudienceUseCases from './AudienceUseCases'
 import WaitlistForm from './WaitlistForm'
 

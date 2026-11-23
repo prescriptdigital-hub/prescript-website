@@ -50,6 +50,11 @@ a {
   box-sizing: border-box;
 }
 
+@keyframes pd-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @media print {
   .no-print { display: none !important; }
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
