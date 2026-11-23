@@ -25,15 +25,15 @@ Website and technology platform development. Starting from $800 one-time, retain
 Deliverables: Custom websites, web apps, CRM setup (GoHighLevel), eCommerce (Shopify, WooCommerce), WhatsApp Business integration, business email setup.
 
 ### 03 - Surge (Digital Marketing)
-Full-service digital marketing. Starting from $600/month.
+Full-service digital marketing. Starting from $500/month.
 Deliverables: Social media management (up to 3 platforms), Meta and Google Ads, email marketing, SEO, monthly reports.
 
 ### 04 - Flow (Business Automation) - Our Core Service
-Business process automation. Starting from $700/month.
+Business process automation. Single workflow from $400.
 Deliverables: Business process audit, WhatsApp automation, CRM automation, email and SMS workflows, Zapier/Make.com integration.
 
 ### 05 - Cortex (Agentic AI Deployment) - Our Deepest Core
-AI agent deployment. Starting from $1,200 setup + $400/month.
+AI agent deployment. Enterprise, contact us for a quote.
 Deliverables: Custom AI agent trained on business data, lead qualification agent, WhatsApp AI agent, CRM-integrated AI workflows, customer support AI.
 
 ---
@@ -43,23 +43,25 @@ Deliverables: Custom AI agent trained on business data, lead qualification agent
 Minimum 3-month commitment. Cancel after 3 months with 30 days notice. Annual plans get 2 months free.
 
 Personal Brand Track:
-- Seed: $49/month (NGN 68,600) - 8 branded graphics, basic brand kit, 1 platform calendar, WhatsApp Business setup
-- Grow: $99/month (NGN 138,600) - 16 graphics, full brand identity, 2 platforms managed, basic paid ads, monthly strategy call
-- Thrive: $199/month (NGN 278,600) - 24 graphics, 3 platforms managed, Meta + Google Ads, email marketing, monthly report
+- Seed: $49/month
+- Bloom: $149/month
+- Authority: $349/month
 
 Business Track:
-- Launch: $149/month (NGN 208,600) - Brand kit, 5-page website one-time, 2 platforms, WhatsApp setup, CRM setup
-- Build: $299/month (NGN 418,600) - Full brand identity, website + maintenance, 3 platforms, Meta Ads, basic automation
-- Scale: $499/month (NGN 698,600) - MOST POPULAR - Full brand system, website + CRM, 3 platforms, Meta + Google Ads, Flow automations, email marketing, monthly strategy session
-- Dominate: $899/month (NGN 1,258,600) - Everything in Scale + Cortex AI agent, advanced automations, WhatsApp AI, dedicated account manager, priority support, quarterly strategy sessions
+- Launch: $199/month
+- Build: $499/month
+- Scale: $999/month
+- Command: Enterprise, contact us for a quote
 
 ---
 
 ## Enterprise Packages
 
-- Digital Foundation: $1,500 one-time (NGN 2,100,000) - Brand identity, 5-page website, business email, CRM, WhatsApp Business, 1-month content calendar
-- Growth Engine: $2,000/month (NGN 2,800,000) - MOST POPULAR - 3-platform social, Meta + Google Ads, 2 email campaigns/month, WhatsApp automation, CRM automation, monthly report + strategy call
-- AI Business System: $5,000 setup + $1,500/month (NGN 7,000,000 setup + NGN 2,100,000/month) - All five services, Cortex AI agent, CRM + eCommerce, dedicated account manager, quarterly strategy sessions
+Anything listed above $1,000 is Enterprise. Contact https://prescriptdigital.com/contact/ for a quote.
+
+- Digital Foundation: Imprint + Forge
+- Growth Engine: Surge + Flow
+- AI Business System: all five services
 
 ---
 
@@ -69,7 +71,7 @@ Business Track:
 - GoHighLevel White-Label CRM: $150/month per account
 - Surge Content Pack (30 graphics + 4 reels/month): $600/month
 - Flow + Cortex AI Workshop (team training): $300/session
-- Forge eCommerce store (Shopify or WooCommerce): $1,500 one-time
+- Forge eCommerce store (Shopify or WooCommerce): Enterprise, contact us
 - Surge SEO (on-page SEO + blog + ranking reports): $500/month
 
 ---
@@ -79,7 +81,7 @@ Business Track:
 - All prices in USD by default
 - NGN exchange rate: 1,400 per $1 USD
 - NGN payments: Paystack (card, bank transfer, USSD)
-- USD payments: Flutterwave
+- USD payments: Flutterwave (card) or PayPal
 - Bank transfer for amounts over NGN 1,000,000 or USD 5,000
 - Bank: GT Bank | Account: 0254852285 | Name: Prescript Digital Solutions
 - Annual subscriptions: pay 10 months, get 12 (17% saving)

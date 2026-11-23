@@ -35,7 +35,7 @@ function ServiceCard({ i }: { i: number }) {
           ))}
         </ul>
         <div className="flex items-center justify-between border-t border-pd-cream/15 pt-4">
-          <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-pd-cream">From {s.meta.from}</span>
+          <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-pd-cream">{s.meta.from.startsWith('$') ? `From ${s.meta.from}` : 'Enterprise · contact us'}</span>
           <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-pd-cream group-hover:translate-x-1 transition-transform">Explore →</span>
         </div>
       </div>

@@ -19,7 +19,7 @@ const FAQS = [
   },
   {
     q: 'Can Nigerian businesses pay in Naira?',
-    a: 'Yes. We accept NGN payments via bank transfer and Paystack. Our NGN rate is ₦1,600 per $1. All prices can be toggled to NGN on this page.',
+    a: 'Yes. We accept NGN payments via bank transfer and Paystack. Our NGN rate is ₦1,400 per $1. All prices can be toggled to NGN on this page.',
   },
   {
     q: 'How quickly does Surge generate results?',
@@ -80,7 +80,7 @@ export default function PricingPage() {
             <p className="text-xs font-sans text-pd-subtle font-medium uppercase tracking-widest mb-2">Enterprise Packages</p>
             <p className="font-display font-light text-xl text-pd-ink mb-2">Corporations &amp; Established Businesses</p>
             <p className="font-sans text-sm text-pd-muted mb-4 leading-relaxed">
-              One-time or retainer packages for companies that need the full stack, from $1,500.
+              One-time or retainer packages for companies that need the full stack. Contact us for a quote.
             </p>
             <a href="#packages" className="text-sm font-sans font-medium text-pd-muted hover:underline">
               View enterprise packages ↓
@@ -171,7 +171,7 @@ export default function PricingPage() {
             For corporations &amp; established businesses.
           </h2>
           <p className="font-sans font-light text-pd-muted text-sm max-w-xl mb-8 leading-relaxed">
-            Full-stack engagements that combine all five services. One clear investment, one integrated team.
+            Full-stack engagements that combine all five services. Tell us what you need and we will send a quote.
           </p>
 
           {/* Pricing cards */}

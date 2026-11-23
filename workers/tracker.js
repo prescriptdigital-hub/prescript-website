@@ -93,7 +93,7 @@ export default {
     }
 
     if (path === "/project" && request.method === "PUT") {
-      if (!requireAdmin(request, env)) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
       const { reference, ...updates } = body
@@ -106,7 +106,7 @@ export default {
     }
 
     if (path === "/projects" && request.method === "GET") {
-      if (!requireAdmin(request, env)) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
       const pi = await env.PROJECTS.get("index:projects")
       const index = pi ? JSON.parse(pi) : []
       const projects = await Promise.all(index.map(async r => { const raw = await env.PROJECTS.get("project:" + r); return raw ? JSON.parse(raw) : null }))
@@ -114,7 +114,7 @@ export default {
     }
 
     if (path === "/team" && request.method === "GET") {
-      if (!requireAdmin(request, env)) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
       const ti = await env.PROJECTS.get("index:team")
       const index = ti ? JSON.parse(ti) : []
       const members = await Promise.all(index.map(async e => { const raw = await env.PROJECTS.get("team:" + e); return raw ? JSON.parse(raw) : null }))
@@ -122,7 +122,7 @@ export default {
     }
 
     if (path === "/team" && request.method === "POST") {
-      if (!requireAdmin(request, env)) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
       const { name, role, whatsapp, email } = body
@@ -138,7 +138,7 @@ export default {
     }
 
     if (path === "/team" && request.method === "PUT") {
-      if (!requireAdmin(request, env)) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
       const { email, ...updates } = body
@@ -151,7 +151,7 @@ export default {
     }
 
     if (path === "/team" && request.method === "DELETE") {
-      if (!requireAdmin(request, env)) return json({ success: false, error: "Unauthorized" }, 401, origin)
+      if (!(await requireAdmin(request, env))) return json({ success: false, error: "Unauthorized" }, 401, origin)
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
       const { email } = body

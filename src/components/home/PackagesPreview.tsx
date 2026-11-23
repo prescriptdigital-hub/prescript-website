@@ -9,8 +9,8 @@ const PACKAGES = [
   {
     name: 'Digital Foundation',
     tag: 'Imprint + Forge',
-    price: '$1,500',
-    period: 'one-time',
+    price: 'Enterprise',
+    period: 'Custom quote',
     featured: false,
     features: [
       'Brand identity + full guide',
@@ -20,14 +20,14 @@ const PACKAGES = [
       'WhatsApp Business integration',
       '1-month content calendar',
     ],
-    cta: 'Get Started',
-    href: '/pricing',
+    cta: 'Contact us',
+    href: '/contact',
   },
   {
     name: 'Growth Engine',
     tag: 'Surge + Flow',
-    price: '$2,000',
-    period: 'per month',
+    price: 'Enterprise',
+    period: 'Custom quote',
     featured: true,
     features: [
       'Social media, 3 platforms',
@@ -37,14 +37,14 @@ const PACKAGES = [
       'Basic CRM automation',
       'Monthly report + strategy call',
     ],
-    cta: 'Start Growing',
-    href: '/pricing',
+    cta: 'Contact us',
+    href: '/contact',
   },
   {
     name: 'AI Business System',
     tag: 'All 5 Services',
-    price: '$5,000',
-    period: 'setup + $1,500/mo',
+    price: 'Enterprise',
+    period: 'Custom quote',
     featured: false,
     features: [
       'Business process audit',
@@ -54,7 +54,7 @@ const PACKAGES = [
       'Full Growth Engine included',
       'Dedicated account manager',
     ],
-    cta: 'Book Strategy Call',
+    cta: 'Contact us',
     href: '/contact',
   },
 ]
@@ -129,7 +129,7 @@ export default function PackagesPreview() {
           href="/pricing"
           className="text-sm font-sans text-pd-brick-700 hover:underline"
         >
-          View full enterprise pricing →
+          Compare enterprise packages →
         </Link>
       </p>
     </section>

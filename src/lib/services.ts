@@ -226,7 +226,7 @@ export const SERVICES: Service[] = [
     ],
     investment: {
       price: '$800+',
-      note: 'Websites from $800. eCommerce from $1,500. Mobile apps from $3,000. 30-day free support included.',
+      note: 'Websites from $800. eCommerce and mobile apps are Enterprise: contact us for a quote. 30-day free support included.',
     },
     nextService: {
       name: 'Surge',
@@ -319,7 +319,7 @@ export const SERVICES: Service[] = [
     ],
     investment: {
       price: '$500/mo',
-      note: 'Social media only from $500/mo. Full Surge (ads + social + email) from $2,000/mo.',
+      note: 'Social media only from $500/mo. Full Surge (ads + social + email) is Enterprise: contact us for a quote.',
     },
     nextService: {
       name: 'Flow',
@@ -341,7 +341,7 @@ export const SERVICES: Service[] = [
     description:
       'Flow maps your operations and automates the repetitive. CRM workflows, payment sequences, lead follow-ups, onboarding, and WhatsApp automations, we build the systems that keep your business running while you focus on growth. Flow is our core service because without it, every other service underperforms.',
     meta: {
-      from: '$1,200',
+      from: '$400',
       turnaround: '1–3 weeks',
       thirdLabel: 'Retainer',
       thirdValue: '$500/mo',
@@ -412,8 +412,8 @@ export const SERVICES: Service[] = [
       'Business operates without you in every detail',
     ],
     investment: {
-      price: '$1,200+',
-      note: 'Single workflow from $400. Full automation package from $1,200. Ongoing support from $500/mo.',
+      price: '$400+',
+      note: 'Single workflow from $400. Full automation packages are Enterprise: contact us for a quote. Ongoing support from $500/mo.',
     },
     nextService: {
       name: 'Cortex',
@@ -435,7 +435,7 @@ export const SERVICES: Service[] = [
     description:
       'Cortex is our deepest core. We design, train, and deploy AI agents directly into your business systems, handling customer support, qualifying leads, booking appointments, and running intelligent workflows around the clock. Cortex agents are trained on your business knowledge and integrated with your CRM, WhatsApp, and operations stack.',
     meta: {
-      from: '$2,000',
+      from: 'Custom quote',
       turnaround: '2–4 weeks',
       thirdLabel: 'Management',
       thirdValue: '$300/mo',
@@ -506,8 +506,8 @@ export const SERVICES: Service[] = [
       'Scales to thousands of conversations simultaneously',
     ],
     investment: {
-      price: '$2,000+',
-      note: 'Single agent deployment from $2,000. Monthly management from $300/mo. Enterprise pricing on request.',
+      price: 'Enterprise',
+      note: 'Contact us for a quote. Monthly management from $300/mo.',
     },
     nextService: {
       name: 'AI Business System',

@@ -1,6 +1,6 @@
 import { Check, Minus } from 'lucide-react'
 import type { SubscriptionPlan } from '@/lib/pricing'
-import { CURRENCY_RATES } from '@/lib/pricing'
+import { CURRENCY_RATES, isEnterprise } from '@/lib/pricing'
 
 interface ComparisonTableProps {
   plans: SubscriptionPlan[]
@@ -49,7 +49,7 @@ export default function ComparisonTable({ plans, currency, billing }: Comparison
               >
                 <p className="font-display font-normal text-sm text-pd-ink">{plan.name}</p>
                 <p className="font-sans font-light text-xs text-pd-brick-700">
-                  {getPrice(plan, currency, billing)}/mo
+                  {isEnterprise(plan.priceMonthly) ? 'Enterprise' : `${getPrice(plan, currency, billing)}/mo`}
                 </p>
               </th>
             ))}

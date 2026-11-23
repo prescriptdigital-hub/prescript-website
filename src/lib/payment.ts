@@ -18,6 +18,7 @@ declare global {
       amount: number
       currency: string
       customer: { email: string; name: string }
+      meta: { planName: string }
       customizations: { title: string; description: string; logo: string }
       callback: (response: { transaction_id: number; status: string }) => void
       onclose: () => void
@@ -126,6 +127,7 @@ export function openFlutterwavePopup({
     amount: amountUSD,
     currency: 'USD',
     customer: { email, name },
+    meta: { planName },
     customizations: {
       title: 'Prescript Digital',
       description: planName,

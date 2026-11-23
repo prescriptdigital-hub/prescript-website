@@ -9,6 +9,18 @@
  */
 
 const ALLOWED_ORIGINS = ['https://prescriptdigital.com', 'https://www.prescriptdigital.com', 'http://localhost:3000']
+// Keep in sync with src/lib/pricing.ts. Annual billing is 10x monthly; Enterprise plans have no checkout.
+const MONTHLY_USD = { Seed: 49, Bloom: 149, Authority: 349, Launch: 199, Build: 499, Scale: 999 }
+const NGN_PER_USD = 1400
+
+function isExpectedAmount(planName, amount, currency) {
+  const rate = { USD: 1, NGN: NGN_PER_USD }[currency]
+  if (!rate) return false
+  // Flutterwave transactions may lack a plan name; then any exact plan price is accepted.
+  const prices = planName ? [MONTHLY_USD[planName]] : Object.values(MONTHLY_USD)
+  return prices.some(p => p && [p * rate, p * 10 * rate].some(v => Math.abs(v - Number(amount)) < 0.01))
+}
+
 const BILLING_EMAIL = 'billing@prescriptdigital.com'
 
 function corsHeaders(origin) {
@@ -90,9 +102,14 @@ export default {
       return json({ success: false, error: 'Missing reference or provider' }, 400, origin)
     }
 
+    const mismatch = (details) => {
+      console.error('Payment amount mismatch', JSON.stringify({ provider, reference, ...details }))
+      return json({ success: false, error: 'Amount does not match plan' }, 400, origin)
+    }
+
     // ── Paystack verification ──
     if (provider === 'paystack') {
-      const res = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
+      const res = await fetch(`https://api.paystack.co/transaction/verify/${encodeURIComponent(reference)}`, {
         headers: { Authorization: `Bearer ${env.PAYSTACK_SECRET_KEY}` },
       })
       const data = await res.json()
@@ -100,6 +117,9 @@ export default {
       if (data.data?.status === 'success') {
         const customerEmail = data.data.customer?.email ?? ''
         const planName = data.data.metadata?.custom_fields?.find(f => f.variable_name === 'plan')?.value ?? 'Unknown plan'
+        if (!isExpectedAmount(planName, data.data.amount / 100, data.data.currency)) {
+          return mismatch({ planName, amount: data.data.amount / 100, currency: data.data.currency })
+        }
         const amount = `₦${(data.data.amount / 100).toLocaleString()}`
 
         const customerName = data.data.metadata?.custom_fields?.find(f => f.variable_name === 'name')?.value ?? ''
@@ -115,7 +135,7 @@ export default {
 
     // ── Flutterwave verification ──
     if (provider === 'flutterwave') {
-      const res = await fetch(`https://api.flutterwave.com/v3/transactions/${reference}/verify`, {
+      const res = await fetch(`https://api.flutterwave.com/v3/transactions/${encodeURIComponent(reference)}/verify`, {
         headers: { Authorization: `Bearer ${env.FLUTTERWAVE_SECRET_KEY}` },
       })
       const data = await res.json()
@@ -123,6 +143,9 @@ export default {
       if (data.data?.status === 'successful') {
         const customerEmail = data.data.customer?.email ?? ''
         const planName = data.data.meta?.planName ?? 'Unknown plan'
+        if (!isExpectedAmount(data.data.meta?.planName, data.data.amount, data.data.currency)) {
+          return mismatch({ planName, amount: data.data.amount, currency: data.data.currency })
+        }
         const amount = `$${data.data.amount}`
 
         const customerName = data.data.customer?.name ?? ''
@@ -152,6 +175,16 @@ export default {
       })
       const { access_token } = await tokenRes.json()
       if (!access_token) return json({ success: false, error: 'PayPal auth failed' }, 502, origin)
+
+      const orderRes = await fetch(`${base}/v2/checkout/orders/${reference}`, {
+        headers: { Authorization: `Bearer ${access_token}` },
+      })
+      const order = await orderRes.json()
+      const units = order.purchase_units ?? []
+      const ordered = units[0]
+      if (units.length !== 1 || !ordered.custom_id || !isExpectedAmount(ordered.custom_id, ordered.amount?.value, ordered.amount?.currency_code)) {
+        return mismatch({ planName: ordered?.custom_id, amount: ordered?.amount })
+      }
 
       const captureRes = await fetch(`${base}/v2/checkout/orders/${reference}/capture`, {
         method: 'POST',

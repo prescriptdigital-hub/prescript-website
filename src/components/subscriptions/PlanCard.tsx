@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button'
 import PaymentModal from '@/components/ui/PaymentModal'
 import ServiceTag from '@/components/ui/ServiceTag'
 import type { SubscriptionPlan } from '@/lib/pricing'
-import { CURRENCY_RATES } from '@/lib/pricing'
+import { CURRENCY_RATES, isEnterprise } from '@/lib/pricing'
 
 type ServiceSlug = 'imprint' | 'forge' | 'surge' | 'flow' | 'cortex'
 
@@ -36,6 +36,7 @@ function getAnnualTotal(plan: SubscriptionPlan, currency: 'usd' | 'ngn'): string
 export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
   const [modalOpen, setModalOpen] = useState(false)
 
+  const enterprise = isEnterprise(plan.priceMonthly)
   const amountUSD = getAmountUSD(plan, billing)
   const amountNGN = amountUSD * CURRENCY_RATES.ngn
 
@@ -59,11 +60,11 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
 
           <div className="flex items-baseline gap-1 mb-1">
             <span className="font-display font-light text-4xl text-pd-brick-700 leading-none">
-              {getPrice(plan, currency, billing)}
+              {enterprise ? 'Enterprise' : getPrice(plan, currency, billing)}
             </span>
-            <span className="text-sm font-sans text-pd-subtle">/mo</span>
+            <span className="text-sm font-sans text-pd-subtle">{enterprise ? 'Custom quote' : '/mo'}</span>
           </div>
-          {billing === 'annual' && (
+          {billing === 'annual' && !enterprise && (
             <p className="text-xs font-sans text-pd-subtle mb-3">
               {getAnnualTotal(plan, currency)} billed annually
             </p>
@@ -94,15 +95,16 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
           <Button
             variant={plan.isFeatured ? 'primary' : 'outline'}
             size="md"
+            href={enterprise ? '/contact' : undefined}
             onClick={() => setModalOpen(true)}
             className="w-full"
           >
-            {plan.ctaLabel}
+            {enterprise ? 'Contact us' : plan.ctaLabel}
           </Button>
         </div>
       </div>
 
-      {modalOpen && (
+      {modalOpen && !enterprise && (
         <PaymentModal
           planName={plan.name}
           amountUSD={amountUSD}

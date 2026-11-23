@@ -5,7 +5,7 @@ import { Check, Minus } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import PaymentModal from '@/components/ui/PaymentModal'
 import type { OneTimePackage } from '@/lib/pricing'
-import { CURRENCY_RATES } from '@/lib/pricing'
+import { CURRENCY_RATES, isEnterprise } from '@/lib/pricing'
 
 interface PricingCardProps {
   pkg: OneTimePackage
@@ -20,6 +20,7 @@ function formatPkg(pkg: OneTimePackage, currency: 'usd' | 'ngn'): string {
 export default function PricingCard({ pkg, currency }: PricingCardProps) {
   const [modalOpen, setModalOpen] = useState(false)
 
+  const enterprise = isEnterprise(pkg.price)
   const amountNGN = pkg.price * CURRENCY_RATES.ngn
 
   return (
@@ -45,10 +46,10 @@ export default function PricingCard({ pkg, currency }: PricingCardProps) {
           <p className="font-sans text-sm text-pd-subtle mb-3">{pkg.tagline}</p>
           <div className="flex items-baseline gap-1">
             <span className="font-display font-light text-3xl text-pd-ink">
-              {formatPkg(pkg, currency)}
+              {enterprise ? 'Enterprise' : formatPkg(pkg, currency)}
             </span>
             <span className="text-sm font-sans text-pd-subtle">
-              {pkg.period === 'one-time' ? 'one-time' : pkg.period === 'per month' ? '/mo' : pkg.period}
+              {enterprise ? 'Custom quote' : pkg.period === 'one-time' ? 'one-time' : pkg.period === 'per month' ? '/mo' : pkg.period}
             </span>
           </div>
         </div>
@@ -71,15 +72,16 @@ export default function PricingCard({ pkg, currency }: PricingCardProps) {
           <Button
             variant={pkg.buttonVariant}
             size="md"
+            href={enterprise ? '/contact' : undefined}
             onClick={() => setModalOpen(true)}
             className="w-full"
           >
-            {pkg.buttonLabel}
+            {enterprise ? 'Contact us' : pkg.buttonLabel}
           </Button>
         </div>
       </div>
 
-      {modalOpen && (
+      {modalOpen && !enterprise && (
         <PaymentModal
           planName={pkg.name}
           amountUSD={pkg.price}

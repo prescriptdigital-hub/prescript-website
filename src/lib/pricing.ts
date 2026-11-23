@@ -37,6 +37,13 @@ export const CURRENCY_RATES: Record<string, number> = {
   ngn: 1400,
 }
 
+// Listed prices above this are sold as Enterprise: no public price or checkout, contact only.
+export const ENTERPRISE_THRESHOLD_USD = 1000
+
+export function isEnterprise(listedPriceUSD: number): boolean {
+  return listedPriceUSD > ENTERPRISE_THRESHOLD_USD
+}
+
 export function formatPrice(
   usdAmount: number,
   currency: 'usd' | 'ngn',
@@ -145,7 +152,7 @@ export const ADDONS: Addon[] = [
   {
     name: 'Forge eCommerce',
     description: 'Full Shopify or WooCommerce store build with payment integration.',
-    price: '$1,500 one-time',
+    price: 'Enterprise · contact us',
   },
   {
     name: 'Surge SEO',

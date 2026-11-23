@@ -144,7 +144,7 @@ Loaded in `src/app/layout.tsx` via an inline `next/script` (`strategy="afterInte
 - Verification: the `prescript-payment-verify` Worker (`workers/verify-payment.js`) checks each transaction server-side against the Paystack/Flutterwave APIs, creates a tracker record, and emails billing via Resend. Worker secrets: `PAYSTACK_SECRET_KEY`, `FLUTTERWAVE_SECRET_KEY`, `INTERNAL_KEY`, `TRACKER_URL`. `RESEND_API_KEY` is **not yet set** — billing emails are skipped until it is.
 
 ### Project Tracker
-The `prescript-tracker` Worker (`workers/tracker.js`) backs `/track` (public status lookup by reference) and `/admin`, `/admin/projects`, `/admin/team` (password-gated). KV namespace `PROJECTS`; secrets `ADMIN_PASSWORD`, `INTERNAL_KEY`. Default admin password fallback in code is `prescript2026` if `config:admin_password` is unset in KV.
+The `prescript-tracker` Worker (`workers/tracker.js`) backs `/track` (public status lookup by reference) and `/admin`, `/admin/projects`, `/admin/team` (password-gated). KV namespace `PROJECTS`; secrets `ADMIN_PASSWORD`, `INTERNAL_KEY`.
 
 ### Email
 `hello@prescriptdigital.com` is forwarded to Gmail via **Cloudflare Email Routing** (Cloudflare dashboard → prescriptdigital.com → Email → Email Routing).
