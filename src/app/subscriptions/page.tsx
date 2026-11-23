@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: 'Can I pay quarterly or yearly?',
-    a: 'Yes. Quarterly is three months paid upfront at the monthly rate. Yearly is paid upfront and gives you 12 months for the price of 10. Yearly totals above $4,000 are arranged with our team.',
+    a: 'Yes. Pay three months upfront and save 5%, or a full year upfront and save 15%. Yearly totals above $4,000 are arranged with our team.',
   },
   {
     q: 'Can I mix Personal and Business plans?',

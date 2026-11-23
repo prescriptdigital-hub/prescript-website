@@ -27,8 +27,8 @@ export default function BillingToggle({ value, onChange }: BillingToggleProps) {
           </button>
         ))}
       </div>
-      {value === 'annual' && (
-        <span className="text-xs font-sans font-medium text-pd-brick-700 bg-pd-surface-2 px-2 py-0.5">2 months free</span>
+      {BILLING[value].discountPercent > 0 && (
+        <span className="text-xs font-sans font-medium text-pd-brick-700 bg-pd-surface-2 px-2 py-0.5">Save {BILLING[value].discountPercent}%</span>
       )}
     </div>
   )

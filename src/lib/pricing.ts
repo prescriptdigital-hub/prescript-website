@@ -46,18 +46,19 @@ export function isEnterprise(listedPriceUSD: number): boolean {
 
 export type Billing = 'monthly' | 'quarterly' | 'annual'
 
-// Quarterly is three months upfront at the monthly rate; annual is 10 months for 12.
-export const BILLING: Record<Billing, { label: string; multiplier: number; months: number; suffix: string }> = {
-  monthly: { label: 'Monthly', multiplier: 1, months: 1, suffix: 'per month' },
-  quarterly: { label: 'Quarterly', multiplier: 3, months: 3, suffix: 'for 3 months' },
-  annual: { label: 'Yearly', multiplier: 10, months: 12, suffix: 'for 12 months' },
+// Paid upfront, discounted and rounded to whole dollars. workers/verify-payment.js must match.
+export const BILLING: Record<Billing, { label: string; months: number; discountPercent: number; suffix: string }> = {
+  monthly: { label: 'Monthly', months: 1, discountPercent: 0, suffix: 'per month' },
+  quarterly: { label: 'Quarterly', months: 3, discountPercent: 5, suffix: 'for 3 months' },
+  annual: { label: 'Yearly', months: 12, discountPercent: 15, suffix: 'for 12 months' },
 }
 
 // Totals above this are arranged with the team instead of online checkout.
 export const CHECKOUT_LIMIT_USD = 4000
 
 export function billingTotalUSD(priceMonthly: number, billing: Billing): number {
-  return priceMonthly * BILLING[billing].multiplier
+  const { months, discountPercent } = BILLING[billing]
+  return Math.round((priceMonthly * months * (100 - discountPercent)) / 100)
 }
 
 export function monthlyEquivalentUSD(priceMonthly: number, billing: Billing): number {
