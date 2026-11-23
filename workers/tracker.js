@@ -26,8 +26,12 @@ function json(data, status = 200, origin = "") {
 
 function isSubscription(n) { return SUBSCRIPTION_NAMES.some(s => n.toLowerCase().includes(s.toLowerCase())) }
 function getStages(n) { return isSubscription(n) ? SUBSCRIPTION_STAGES : PACKAGE_STAGES }
-async function getAdminPassword(env) { const stored = await env.PROJECTS.get("config:admin_password"); return stored || "prescript2026" }
-async function requireAdmin(req, env) { const pw = await getAdminPassword(env); return req.headers.get("X-Admin-Key") === pw }
+// No built-in default: with neither the KV value nor the secret set, every login is refused.
+async function getAdminPassword(env) { return (await env.PROJECTS.get("config:admin_password")) || env.ADMIN_PASSWORD || null }
+async function passwordMatches(given, env) { const pw = await getAdminPassword(env); return Boolean(pw) && given === pw }
+async function requireAdmin(req, env) { return passwordMatches(req.headers.get("X-Admin-Key"), env) }
+async function tooMany(limiter, req) { const { success } = await limiter.limit({ key: req.headers.get("CF-Connecting-IP") || "unknown" }); return !success }
+function tooManyResponse(origin) { return json({ success: false, error: "Too many attempts. Wait a minute and try again." }, 429, origin) }
 function requireInternal(req, env) { return req.headers.get("X-Internal-Key") === env.INTERNAL_KEY }
 
 export default {
@@ -38,32 +42,23 @@ export default {
 
     if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders(origin) })
 
-    if (path === "/seed" && request.method === "POST") {
-      const existing = await env.PROJECTS.get("team:oluwaseun.olatunde@prescriptdigital.com")
-      if (existing) return json({ success: true, message: "Already seeded" }, 200, origin)
-      const member = { id: "tm_" + Date.now(), name: "Oluwaseun Olatunde", role: "Project Manager", whatsapp: "07030057040", email: "oluwaseun.olatunde@prescriptdigital.com", createdAt: new Date().toISOString() }
-      await env.PROJECTS.put("team:" + member.email, JSON.stringify(member))
-      const ti = await env.PROJECTS.get("index:team")
-      const tia = ti ? JSON.parse(ti) : []
-      tia.push(member.email)
-      await env.PROJECTS.put("index:team", JSON.stringify(tia))
-      return json({ success: true, member }, 200, origin)
-    }
+    // Admin calls carry the password, so they are limited too; otherwise they could be used to guess it.
+    if (request.headers.has("X-Admin-Key") && (await tooMany(env.ADMIN_LIMIT, request))) return tooManyResponse(origin)
 
     if (path === "/auth" && request.method === "POST") {
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
-      const adminPw = await getAdminPassword(env)
-      if (body.password === adminPw) return json({ success: true }, 200, origin)
+      if (await tooMany(env.LOGIN_LIMIT, request)) return tooManyResponse(origin)
+      if (await passwordMatches(body.password, env)) return json({ success: true }, 200, origin)
       return json({ success: false, error: "Invalid password" }, 401, origin)
     }
 
     if (path === "/change-password" && request.method === "POST") {
       let body
       try { body = await request.json() } catch { return json({ success: false }, 400, origin) }
-      const adminPw = await getAdminPassword(env)
-      if (body.oldPassword !== adminPw) return json({ success: false, error: "Current password incorrect" }, 401, origin)
-      if (!body.newPassword || body.newPassword.length < 6) return json({ success: false, error: "New password must be at least 6 characters" }, 400, origin)
+      if (await tooMany(env.LOGIN_LIMIT, request)) return tooManyResponse(origin)
+      if (!(await passwordMatches(body.oldPassword, env))) return json({ success: false, error: "Current password incorrect" }, 401, origin)
+      if (!body.newPassword || typeof body.newPassword !== "string" || body.newPassword.length < 12) return json({ success: false, error: "New password must be at least 12 characters" }, 400, origin)
       await env.PROJECTS.put("config:admin_password", body.newPassword)
       return json({ success: true }, 200, origin)
     }

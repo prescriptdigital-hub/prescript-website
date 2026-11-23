@@ -33,8 +33,18 @@ async function apiFetch<T>(
 ): Promise<T> {
   const headers: Record<string, string> = { "Content-Type": "application/json" }
   if (adminKey) headers["X-Admin-Key"] = adminKey
-  const res = await fetch(BASE + path, { ...options, headers })
-  const data = await res.json()
+  let res: Response
+  try {
+    res = await fetch(BASE + path, { ...options, headers })
+  } catch {
+    throw new Error("Can't reach the server. Check your connection, or try another network.")
+  }
+  let data
+  try {
+    data = await res.json()
+  } catch {
+    throw new Error("The server sent an unexpected reply. Please try again.")
+  }
   if (!data.success) throw new Error(data.error ?? "Request failed")
   return data as T
 }
@@ -43,13 +53,8 @@ export async function getProject(ref: string): Promise<Project> {
   return data.project
 }
 
-export async function verifyAdminPassword(password: string): Promise<boolean> {
-  try {
-    await apiFetch("/auth", { method: "POST", body: JSON.stringify({ password }) })
-    return true
-  } catch {
-    return false
-  }
+export async function verifyAdminPassword(password: string): Promise<void> {
+  await apiFetch("/auth", { method: "POST", body: JSON.stringify({ password }) })
 }
 
 export async function listProjects(adminKey: string): Promise<Project[]> {
@@ -92,11 +97,6 @@ export async function deleteTeamMember(adminKey: string, email: string): Promise
   await apiFetch("/team", { method: "DELETE", body: JSON.stringify({ email }) }, adminKey)
 }
 
-export async function changeAdminPassword(oldPassword: string, newPassword: string): Promise<boolean> {
-  try {
-    await apiFetch("/change-password", { method: "POST", body: JSON.stringify({ oldPassword, newPassword }) })
-    return true
-  } catch {
-    return false
-  }
+export async function changeAdminPassword(oldPassword: string, newPassword: string): Promise<void> {
+  await apiFetch("/change-password", { method: "POST", body: JSON.stringify({ oldPassword, newPassword }) })
 }

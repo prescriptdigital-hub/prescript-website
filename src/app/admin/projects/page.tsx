@@ -31,16 +31,16 @@ export default function AdminProjectsPage() {
 
   const submitChangePw = async () => {
     setPwError('')
-    const ok = await changeAdminPassword(oldPw, newPw)
-    if (ok) {
+    try {
+      await changeAdminPassword(oldPw, newPw)
       sessionStorage.setItem('admin_key', newPw)
       setAdminKey(newPw)
       setPwSuccess(true)
       setOldPw('')
       setNewPw('')
       setTimeout(() => { setPwSuccess(false); setShowChangePw(false) }, 2000)
-    } else {
-      setPwError('Current password is incorrect')
+    } catch (e) {
+      setPwError(e instanceof Error && e.message ? e.message : 'Something went wrong. Please try again.')
     }
   }
 
@@ -78,7 +78,7 @@ export default function AdminProjectsPage() {
             <p className="font-display font-normal text-base text-pd-ink mb-4">Change password</p>
             <div className="flex flex-col gap-3">
               <input type="password" value={oldPw} onChange={e => setOldPw(e.target.value)} placeholder="Current password" className="border border-pd-line rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-pd-brick-700" />
-              <input type="password" value={newPw} onChange={e => setNewPw(e.target.value)} placeholder="New password (min 6 characters)" className="border border-pd-line rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-pd-brick-700" />
+              <input type="password" value={newPw} onChange={e => setNewPw(e.target.value)} placeholder="New password (min 12 characters)" className="border border-pd-line rounded-lg px-3 py-2 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-pd-brick-700" />
               {pwError && <p className="text-xs text-pd-error">{pwError}</p>}
               {pwSuccess && <p className="text-xs text-pd-brick-700">Password changed successfully!</p>}
               <div className="flex gap-3">

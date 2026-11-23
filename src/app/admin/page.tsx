@@ -14,12 +14,13 @@ export default function AdminLoginPage() {
   const login = async () => {
     setLoading(true)
     setError('')
-    const ok = await verifyAdminPassword(password)
-    if (ok) {
+    try {
+      await verifyAdminPassword(password)
       sessionStorage.setItem('admin_key', password)
       router.push('/admin/projects')
-    } else {
-      setError('Incorrect password')
+    } catch (e) {
+      const message = e instanceof Error ? e.message : ''
+      setError(message === 'Invalid password' ? 'Incorrect password' : message || 'Something went wrong. Please try again.')
     }
     setLoading(false)
   }
@@ -33,7 +34,7 @@ export default function AdminLoginPage() {
         </div>
         <div className="flex flex-col gap-4">
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && login()} placeholder="Admin password" className="w-full border border-pd-line rounded-lg px-4 py-3 text-sm font-sans text-pd-ink placeholder-pd-subtle focus:outline-none focus:ring-2 focus:ring-pd-brick-700 focus:border-transparent" />
-          {error && <p className="text-xs text-pd-error">{error}</p>}
+          {error && <p role="alert" className="text-xs text-pd-error">{error}</p>}
           <Button variant="primary" size="lg" onClick={login} disabled={loading} className="w-full">{loading ? "Checking..." : "Sign in"}</Button>
         </div>
       </div>
