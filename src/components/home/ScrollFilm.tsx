@@ -9,6 +9,37 @@ export default function ScrollFilm() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] })
 
+  // Cloudflare Pages ignores Range requests, so a streamed video is not seekable; a blob URL is.
+  useEffect(() => {
+    const video = videoRef.current
+    const section = sectionRef.current
+    if (!video || !section || reduce) return
+    const abort = new AbortController()
+    let url = ''
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        observer.disconnect()
+        fetch('/media/blocks-scroll.mp4', { signal: abort.signal })
+          .then((res) => (res.ok ? res.blob() : Promise.reject(new Error(String(res.status)))))
+          .then((blob) => {
+            if (abort.signal.aborted) return
+            url = URL.createObjectURL(blob)
+            video.src = url
+            video.load()
+          })
+          .catch(() => {})
+      },
+      { rootMargin: '1200px 0px' }
+    )
+    observer.observe(section)
+    return () => {
+      abort.abort()
+      observer.disconnect()
+      if (url) URL.revokeObjectURL(url)
+    }
+  }, [reduce])
+
   useEffect(() => {
     const video = videoRef.current
     if (!video || reduce) return
@@ -42,7 +73,6 @@ export default function ScrollFilm() {
           playsInline
           preload="auto"
           poster={reduce ? '/media/blocks-end.webp' : '/media/blocks-start.webp'}
-          src={reduce ? undefined : '/media/blocks-scroll.mp4'}
           aria-hidden="true"
           tabIndex={-1}
           className="w-full flex-1 min-h-0 lg:absolute lg:inset-0 lg:h-full object-cover object-right"
