@@ -261,7 +261,7 @@ export const BUSINESS_PLANS: SubscriptionPlan[] = [
       { text: 'Google Ads', included: false },
       { text: 'Cortex AI agent', included: false },
     ],
-    isFeatured: false,
+    isFeatured: true,
     ctaLabel: 'Start with Build',
   },
   {
@@ -281,7 +281,7 @@ export const BUSINESS_PLANS: SubscriptionPlan[] = [
       { text: 'Priority WhatsApp support (12hr response)', included: true },
       { text: 'Dedicated account manager', included: false },
     ],
-    isFeatured: true,
+    isFeatured: false,
     ctaLabel: 'Start with Scale',
   },
   {

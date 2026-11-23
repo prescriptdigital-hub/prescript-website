@@ -51,18 +51,18 @@ const PREVIEW_PLANS = [
   },
   {
     track: 'Business',
-    name: 'Scale',
-    price: '$999',
-    forWhom: 'Run on AI-powered systems.',
+    name: 'Build',
+    price: '$499',
+    forWhom: 'Add automation to your marketing.',
     featured: true,
     features: [
-      '20 graphics + 6 reels + 1 video/month',
-      'Meta + Google Ads management',
-      'Flow, 4 automation workflows',
-      'Cortex, 1 AI agent (support or sales)',
-      'Monthly strategy call (60 mins)',
+      '16 graphics + 4 reels/month',
+      '3 social platforms managed',
+      'Meta Ads management',
+      'Flow, 2 automations',
+      'Monthly report + strategy call',
     ],
-    cta: 'Start with Scale',
+    cta: 'Start with Build',
   },
 ]
 
@@ -101,7 +101,7 @@ export default function SubscriptionsPreview() {
             >
               {plan.featured && (
                 <div className="bg-pd-brick-700 text-white text-center text-xs font-sans font-medium py-1.5">
-                  Most Popular
+                  Recommended
                 </div>
               )}
 

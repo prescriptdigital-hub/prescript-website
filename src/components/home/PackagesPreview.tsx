@@ -83,7 +83,7 @@ export default function PackagesPreview() {
           >
             {pkg.featured && (
               <div className="bg-pd-brick-700 text-white text-center text-xs font-sans font-medium py-1.5">
-                Most Popular
+                Recommended
               </div>
             )}
 

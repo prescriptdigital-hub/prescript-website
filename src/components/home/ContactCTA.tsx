@@ -15,6 +15,7 @@ interface FormData {
 export default function ContactCTA() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [failed, setFailed] = useState(false)
 
   const {
     register,
@@ -24,6 +25,7 @@ export default function ContactCTA() {
 
   const onSubmit = async (data: FormData) => {
     setSubmitting(true)
+    setFailed(false)
     try {
       await submitToWebhook({
         fullName: data.fullName,
@@ -35,7 +37,7 @@ export default function ContactCTA() {
       setSubmitted(true)
     } catch (err) {
       console.error('Form submission error:', err)
-      setSubmitted(true) // Show success to user regardless; review logs
+      setFailed(true)
     } finally {
       setSubmitting(false)
     }
@@ -120,6 +122,13 @@ export default function ContactCTA() {
                 <p className="text-xs text-pd-error mt-1">Please select a service</p>
               )}
             </div>
+
+            {failed && (
+              <p role="alert" className="border border-pd-error bg-pd-error-bg text-pd-error text-sm p-4">
+                Your message was not sent. Please try again, or email{' '}
+                <a href="mailto:hello@prescriptdigital.com" className="underline">hello@prescriptdigital.com</a>.
+              </p>
+            )}
 
             <Button type="submit" variant="primary" size="lg" className="w-full" disabled={submitting}>
               {submitting ? 'Sending…' : 'Book My Free Strategy Call →'}

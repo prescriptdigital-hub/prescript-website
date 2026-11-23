@@ -20,7 +20,7 @@ export default function ScrollFilm() {
       ([entry]) => {
         if (!entry.isIntersecting) return
         observer.disconnect()
-        fetch('/media/blocks-scroll.mp4', { signal: abort.signal })
+        fetch('/media/tiles-scroll.mp4', { signal: abort.signal })
           .then((res) => (res.ok ? res.blob() : Promise.reject(new Error(String(res.status)))))
           .then((blob) => {
             if (abort.signal.aborted) return
@@ -70,14 +70,14 @@ export default function ScrollFilm() {
   }, [reduce, scrollYProgress])
 
   return (
-    <section ref={sectionRef} aria-label="From scattered to structured" className="relative bg-pd-brick motion-safe:h-[260vh]">
+    <section ref={sectionRef} aria-label="From scattered to structured" className="relative bg-pd-paper motion-safe:h-[260vh]">
       <div className="sticky top-16 h-[calc(100svh-4rem)] overflow-hidden flex flex-col lg:block">
         <video
           ref={videoRef}
           muted
           playsInline
           preload="auto"
-          poster={reduce ? '/media/blocks-end.webp' : '/media/blocks-start.webp'}
+          poster={reduce ? '/media/tiles-end.webp' : '/media/tiles-start.webp'}
           aria-hidden="true"
           tabIndex={-1}
           className="w-full flex-1 min-h-0 lg:absolute lg:inset-0 lg:h-full object-cover object-[70%_50%] lg:object-right"

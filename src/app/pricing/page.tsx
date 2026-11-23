@@ -42,7 +42,7 @@ export default function PricingPage() {
   const subPlans = [
     { ...PERSONAL_PLANS[1], track: 'Personal Brand' },   // Bloom
     { ...BUSINESS_PLANS[0], track: 'Business' },          // Launch
-    { ...BUSINESS_PLANS[2], track: 'Business' },          // Scale (featured)
+    { ...BUSINESS_PLANS[1], track: 'Business' },          // Build (featured)
   ]
 
   return (
@@ -115,7 +115,7 @@ export default function PricingPage() {
               >
                 {plan.isFeatured && (
                   <div className="bg-pd-brick-700 text-white text-center text-xs font-sans font-medium py-1.5">
-                    Most Popular
+                    Recommended
                   </div>
                 )}
                 <div className="p-5 border-b border-pd-line">

@@ -48,6 +48,10 @@ export default function Hero() {
               Explore services
             </Button>
           </motion.div>
+          <motion.p {...rise(4)} className="mt-6 text-sm text-pd-muted">
+            Monthly plans from <strong className="font-semibold text-pd-ink">$49</strong>.{' '}
+            <Link href="/subscriptions" className="text-pd-brick-700 underline underline-offset-4 hover:text-pd-oxblood">See plans</Link>
+          </motion.p>
         </div>
 
         <nav aria-label="Our five services" className="w-full max-w-[540px] mx-auto lg:mr-0 aspect-square grid grid-cols-6 grid-rows-6 gap-2.5">

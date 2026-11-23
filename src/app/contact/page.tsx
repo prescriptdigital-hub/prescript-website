@@ -241,9 +241,8 @@ export default function ContactPage() {
                     >
                       <option value="" disabled>Select a range</option>
                       <option value="under-500">Under $500</option>
-                      <option value="500-1500">$500 – $1,500</option>
-                      <option value="1500-5000">$1,500 – $5,000</option>
-                      <option value="5000-plus">$5,000+</option>
+                      <option value="500-1000">$500 – $1,000</option>
+                      <option value="1000-plus">$1,000+ (Enterprise)</option>
                       <option value="discuss">Let&apos;s discuss</option>
                     </select>
                     {errors.budget && (

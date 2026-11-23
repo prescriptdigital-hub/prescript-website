@@ -40,8 +40,8 @@ function OnboardingInner() {
     setSubmitting(true)
     try {
       const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
-      if (key) {
-        await fetch("https://api.web3forms.com/submit", {
+      if (!key) throw new Error("Onboarding form is not configured")
+      const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -59,7 +59,7 @@ function OnboardingInner() {
             how_they_found_us: form.source,
           }),
         })
-      }
+      if (!res.ok) throw new Error("Onboarding submission failed")
       setDone(true)
     } catch {
       setError("Something went wrong. Please email us directly.")

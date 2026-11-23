@@ -37,6 +37,9 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
   const [modalOpen, setModalOpen] = useState(false)
 
   const enterprise = isEnterprise(plan.priceMonthly)
+  const annualByInvoice = billing === 'annual' && !enterprise && isEnterprise(plan.priceMonthly * 10)
+  const contactOnly = enterprise || annualByInvoice
+  const bookCall = !contactOnly && plan.name === 'Scale'
   const amountUSD = getAmountUSD(plan, billing)
   const amountNGN = amountUSD * CURRENCY_RATES.ngn
 
@@ -49,7 +52,7 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
       >
         {plan.isFeatured && (
           <div className="bg-pd-brick-700 text-white text-center text-xs font-sans font-medium py-1.5">
-            Most Popular
+            Recommended
           </div>
         )}
 
@@ -66,7 +69,7 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
           </div>
           {billing === 'annual' && !enterprise && (
             <p className="text-xs font-sans text-pd-subtle mb-3">
-              {getAnnualTotal(plan, currency)} billed annually
+              {annualByInvoice ? 'Contact us for annual billing' : `${getAnnualTotal(plan, currency)} billed annually`}
             </p>
           )}
 
@@ -95,16 +98,21 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
           <Button
             variant={plan.isFeatured ? 'primary' : 'outline'}
             size="md"
-            href={enterprise ? '/contact' : undefined}
+            href={contactOnly ? '/contact' : undefined}
             onClick={() => setModalOpen(true)}
             className="w-full"
           >
-            {enterprise ? 'Contact us' : plan.ctaLabel}
+            {contactOnly ? 'Contact us' : plan.ctaLabel}
           </Button>
+          {bookCall && (
+            <Button variant="outline" size="md" href="/contact" className="w-full mt-2">
+              Book a call first
+            </Button>
+          )}
         </div>
       </div>
 
-      {modalOpen && !enterprise && (
+      {modalOpen && !contactOnly && (
         <PaymentModal
           planName={plan.name}
           amountUSD={amountUSD}

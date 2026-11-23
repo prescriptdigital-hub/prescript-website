@@ -59,7 +59,7 @@ npm run lint     # Run ESLint
 | `NEXT_PUBLIC_PAYMENT_VERIFY_URL` | URL of the `prescript-payment-verify` Worker. If unset, `verifyPayment()` optimistically returns `true` (dev only). | Cloudflare Pages Variables and Secrets |
 | `NEXT_PUBLIC_TRACKER_URL` | URL of the `prescript-tracker` Worker, used by `/track` and `/admin`. | Cloudflare Pages Variables and Secrets |
 
-Both are set in production. `NEXT_PUBLIC_WEB3FORMS_KEY` is still present in Pages settings but is **no longer used** — the contact form now posts to Formspree (see Integrations).
+Both are set in production. `NEXT_PUBLIC_WEB3FORMS_KEY` is used by `/onboarding`. The contact forms post to Formspree (see Integrations).
 
 The contact form (Formspree) and live chat (Tawk.to) use hardcoded IDs in the code, not env vars.
 
