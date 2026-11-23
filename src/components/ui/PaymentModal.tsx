@@ -30,6 +30,7 @@ interface PaymentModalProps {
   amountUSD: number
   amountNGN: number
   currency: 'usd' | 'ngn'
+  periodLabel?: string
   onClose: () => void
 }
 
@@ -82,7 +83,7 @@ function PayPalCheckout({
 }
 
 export default function PaymentModal({
-  planName, amountUSD, amountNGN, currency, onClose,
+  planName, amountUSD, amountNGN, currency, periodLabel, onClose,
 }: PaymentModalProps) {
   const exceedsLimit = currency === 'ngn'
     ? amountNGN > PAYSTACK_NGN_LIMIT
@@ -213,7 +214,7 @@ export default function PaymentModal({
           <div>
             <p className="font-display font-light text-xl text-pd-ink mb-1">{planName}</p>
             <p className="font-sans text-sm text-pd-subtle mb-5">
-              {displayAmount} · Bank Transfer
+              {displayAmount} {periodLabel} · Bank Transfer
             </p>
 
             <div className="bg-pd-paper border border-pd-line rounded-xl p-4 mb-5 flex flex-col gap-3">
@@ -301,6 +302,7 @@ export default function PaymentModal({
               <p className="font-display font-light text-xl text-pd-ink mb-1">{planName}</p>
               <div className="flex items-center gap-2">
                 <span className="font-sans text-2xl font-bold text-pd-brick-700">{displayAmount}</span>
+                {periodLabel && <span className="text-sm font-sans text-pd-muted">{periodLabel}</span>}
                 <span className="text-xs font-sans text-pd-subtle bg-pd-surface-2 px-2 py-1">
                   via {provider}
                 </span>

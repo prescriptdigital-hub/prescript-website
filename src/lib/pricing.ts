@@ -44,22 +44,28 @@ export function isEnterprise(listedPriceUSD: number): boolean {
   return listedPriceUSD > ENTERPRISE_THRESHOLD_USD
 }
 
-export function formatPrice(
-  usdAmount: number,
-  currency: 'usd' | 'ngn',
-  billing: 'monthly' | 'annual' = 'monthly'
-): string {
-  const amount = billing === 'annual' ? usdAmount * 10 : usdAmount
-  const converted = amount * CURRENCY_RATES[currency]
+export type Billing = 'monthly' | 'quarterly' | 'annual'
 
-  if (currency === 'ngn') {
-    return `₦${converted.toLocaleString()}`
-  }
-  if (billing === 'annual') {
-    const perMonth = (usdAmount * 10) / 12
-    return `$${Math.round(perMonth).toLocaleString()}`
-  }
-  return `$${usdAmount.toLocaleString()}`
+// Quarterly is three months upfront at the monthly rate; annual is 10 months for 12.
+export const BILLING: Record<Billing, { label: string; multiplier: number; months: number; suffix: string }> = {
+  monthly: { label: 'Monthly', multiplier: 1, months: 1, suffix: 'per month' },
+  quarterly: { label: 'Quarterly', multiplier: 3, months: 3, suffix: 'for 3 months' },
+  annual: { label: 'Yearly', multiplier: 10, months: 12, suffix: 'for 12 months' },
+}
+
+// Totals above this are arranged with the team instead of online checkout.
+export const CHECKOUT_LIMIT_USD = 4000
+
+export function billingTotalUSD(priceMonthly: number, billing: Billing): number {
+  return priceMonthly * BILLING[billing].multiplier
+}
+
+export function monthlyEquivalentUSD(priceMonthly: number, billing: Billing): number {
+  return Math.round(billingTotalUSD(priceMonthly, billing) / BILLING[billing].months)
+}
+
+export function canCheckout(priceMonthly: number, billing: Billing): boolean {
+  return !isEnterprise(priceMonthly) && billingTotalUSD(priceMonthly, billing) <= CHECKOUT_LIMIT_USD
 }
 
 export const ONE_TIME_PACKAGES: OneTimePackage[] = [

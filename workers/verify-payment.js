@@ -9,7 +9,7 @@
  */
 
 const ALLOWED_ORIGINS = ['https://prescriptdigital.com', 'https://www.prescriptdigital.com', 'http://localhost:3000']
-// Keep in sync with src/lib/pricing.ts. Annual billing is 10x monthly; Enterprise plans have no checkout.
+// Keep in sync with src/lib/pricing.ts: monthly x1, quarterly x3, yearly x10. Enterprise plans have no checkout.
 const MONTHLY_USD = { Seed: 49, Bloom: 149, Authority: 349, Launch: 199, Build: 499, Scale: 999 }
 const NGN_PER_USD = 1400
 
@@ -18,7 +18,7 @@ function isExpectedAmount(planName, amount, currency) {
   if (!rate) return false
   // Flutterwave transactions may lack a plan name; then any exact plan price is accepted.
   const prices = planName ? [MONTHLY_USD[planName]] : Object.values(MONTHLY_USD)
-  return prices.some(p => p && [p * rate, p * 10 * rate].some(v => Math.abs(v - Number(amount)) < 0.01))
+  return prices.some(p => p && [p * rate, p * 3 * rate, p * 10 * rate].some(v => Math.abs(v - Number(amount)) < 0.01))
 }
 
 const BILLING_EMAIL = 'billing@prescriptdigital.com'

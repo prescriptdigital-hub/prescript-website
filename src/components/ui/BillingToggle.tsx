@@ -1,36 +1,34 @@
 'use client'
 
 import { clsx } from 'clsx'
+import { BILLING, type Billing } from '@/lib/pricing'
 
 interface BillingToggleProps {
-  value: 'monthly' | 'annual'
-  onChange: (v: 'monthly' | 'annual') => void
+  value: Billing
+  onChange: (v: Billing) => void
 }
 
 export default function BillingToggle({ value, onChange }: BillingToggleProps) {
   return (
-    <div className="inline-flex items-center gap-2">
+    <div className="inline-flex items-center gap-2 flex-wrap">
       <div className="inline-flex items-center border border-pd-line p-0.5 bg-pd-paper">
-        {(['monthly', 'annual'] as const).map((b) => (
+        {(Object.keys(BILLING) as Billing[]).map((b) => (
           <button
             key={b}
             type="button"
+            aria-pressed={value === b}
             onClick={() => onChange(b)}
             className={clsx(
-              'px-4 py-1.5 text-xs font-sans font-medium transition-all duration-150',
-              value === b
-                ? 'bg-pd-surface text-pd-ink '
-                : 'text-pd-muted hover:text-pd-muted'
+              'px-4 py-2 text-xs font-sans font-medium transition-colors duration-150',
+              value === b ? 'bg-pd-oxblood text-pd-cream' : 'text-pd-muted hover:text-pd-ink'
             )}
           >
-            {b === 'monthly' ? 'Monthly' : 'Annual'}
+            {BILLING[b].label}
           </button>
         ))}
       </div>
       {value === 'annual' && (
-        <span className="text-xs font-sans font-medium text-pd-brick-700 bg-pd-surface-2 px-2 py-0.5">
-          Save 17%
-        </span>
+        <span className="text-xs font-sans font-medium text-pd-brick-700 bg-pd-surface-2 px-2 py-0.5">2 months free</span>
       )}
     </div>
   )

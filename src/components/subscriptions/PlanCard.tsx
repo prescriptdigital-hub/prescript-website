@@ -6,30 +6,18 @@ import Button from '@/components/ui/Button'
 import PaymentModal from '@/components/ui/PaymentModal'
 import ServiceTag from '@/components/ui/ServiceTag'
 import type { SubscriptionPlan } from '@/lib/pricing'
-import { CURRENCY_RATES, isEnterprise } from '@/lib/pricing'
+import { BILLING, billingTotalUSD, canCheckout, CURRENCY_RATES, isEnterprise, monthlyEquivalentUSD, type Billing } from '@/lib/pricing'
 
 type ServiceSlug = 'imprint' | 'forge' | 'surge' | 'flow' | 'cortex'
 
 interface PlanCardProps {
   plan: SubscriptionPlan
   currency: 'usd' | 'ngn'
-  billing: 'monthly' | 'annual'
+  billing: Billing
 }
 
-function getAmountUSD(plan: SubscriptionPlan, billing: 'monthly' | 'annual'): number {
-  return billing === 'annual' ? plan.priceMonthly * 10 : plan.priceMonthly
-}
-
-function getPrice(plan: SubscriptionPlan, currency: 'usd' | 'ngn', billing: 'monthly' | 'annual'): string {
-  const monthly = billing === 'annual'
-    ? Math.round((plan.priceMonthly * 10) / 12)
-    : plan.priceMonthly
-  const amount = monthly * CURRENCY_RATES[currency]
-  return currency === 'ngn' ? `₦${amount.toLocaleString()}` : `$${amount.toLocaleString()}`
-}
-
-function getAnnualTotal(plan: SubscriptionPlan, currency: 'usd' | 'ngn'): string {
-  const amount = plan.priceMonthly * 10 * CURRENCY_RATES[currency]
+function money(usd: number, currency: 'usd' | 'ngn'): string {
+  const amount = usd * CURRENCY_RATES[currency]
   return currency === 'ngn' ? `₦${amount.toLocaleString()}` : `$${amount.toLocaleString()}`
 }
 
@@ -37,10 +25,9 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
   const [modalOpen, setModalOpen] = useState(false)
 
   const enterprise = isEnterprise(plan.priceMonthly)
-  const annualByInvoice = billing === 'annual' && !enterprise && isEnterprise(plan.priceMonthly * 10)
-  const contactOnly = enterprise || annualByInvoice
+  const contactOnly = !canCheckout(plan.priceMonthly, billing)
   const bookCall = !contactOnly && plan.name === 'Scale'
-  const amountUSD = getAmountUSD(plan, billing)
+  const amountUSD = billingTotalUSD(plan.priceMonthly, billing)
   const amountNGN = amountUSD * CURRENCY_RATES.ngn
 
   return (
@@ -63,13 +50,13 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
 
           <div className="flex items-baseline gap-1 mb-1">
             <span className="font-display font-light text-4xl text-pd-brick-700 leading-none">
-              {enterprise ? 'Enterprise' : getPrice(plan, currency, billing)}
+              {enterprise ? 'Enterprise' : money(monthlyEquivalentUSD(plan.priceMonthly, billing), currency)}
             </span>
             <span className="text-sm font-sans text-pd-subtle">{enterprise ? 'Custom quote' : '/mo'}</span>
           </div>
-          {billing === 'annual' && !enterprise && (
+          {billing !== 'monthly' && !enterprise && (
             <p className="text-xs font-sans text-pd-subtle mb-3">
-              {annualByInvoice ? 'Contact us for annual billing' : `${getAnnualTotal(plan, currency)} billed annually`}
+              {contactOnly ? 'Contact us for yearly billing' : `${money(amountUSD, currency)} ${BILLING[billing].suffix}`}
             </p>
           )}
 
@@ -118,6 +105,7 @@ export default function PlanCard({ plan, currency, billing }: PlanCardProps) {
           amountUSD={amountUSD}
           amountNGN={amountNGN}
           currency={currency}
+          periodLabel={BILLING[billing].suffix}
           onClose={() => setModalOpen(false)}
         />
       )}

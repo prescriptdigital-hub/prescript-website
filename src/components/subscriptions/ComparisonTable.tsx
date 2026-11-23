@@ -1,15 +1,15 @@
 import { Check, Minus } from 'lucide-react'
 import type { SubscriptionPlan } from '@/lib/pricing'
-import { CURRENCY_RATES, isEnterprise } from '@/lib/pricing'
+import { CURRENCY_RATES, isEnterprise, monthlyEquivalentUSD, type Billing } from '@/lib/pricing'
 
 interface ComparisonTableProps {
   plans: SubscriptionPlan[]
   currency: 'usd' | 'ngn'
-  billing: 'monthly' | 'annual'
+  billing: Billing
 }
 
-function getPrice(plan: SubscriptionPlan, currency: 'usd' | 'ngn', billing: 'monthly' | 'annual'): string {
-  const monthly = billing === 'annual' ? Math.round((plan.priceMonthly * 10) / 12) : plan.priceMonthly
+function getPrice(plan: SubscriptionPlan, currency: 'usd' | 'ngn', billing: Billing): string {
+  const monthly = monthlyEquivalentUSD(plan.priceMonthly, billing)
   const amount = monthly * CURRENCY_RATES[currency]
   return currency === 'ngn' ? `₦${amount.toLocaleString()}` : `$${amount.toLocaleString()}`
 }

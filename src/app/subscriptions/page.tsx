@@ -10,7 +10,7 @@ import FAQItem from '@/components/ui/FAQItem'
 import PlanCard from '@/components/subscriptions/PlanCard'
 import ComparisonTable from '@/components/subscriptions/ComparisonTable'
 import Button from '@/components/ui/Button'
-import { PERSONAL_PLANS, BUSINESS_PLANS, CURRENCY_RATES } from '@/lib/pricing'
+import { PERSONAL_PLANS, BUSINESS_PLANS, CURRENCY_RATES, type Billing } from '@/lib/pricing'
 
 const SUBSCRIBER_PERKS = [
   { title: 'WhatsApp Support Line', desc: '24hr response time on all plans.' },
@@ -25,8 +25,8 @@ const FAQS = [
     a: '3 months. After that, you can cancel with 30 days notice or upgrade/downgrade at any time.',
   },
   {
-    q: 'Is the annual plan billed upfront?',
-    a: 'Yes, annual plans are billed in full at the start of the period. You get 2 months free compared to monthly billing, a 17% saving.',
+    q: 'Can I pay quarterly or yearly?',
+    a: 'Yes. Quarterly is three months paid upfront at the monthly rate. Yearly is paid upfront and gives you 12 months for the price of 10. Yearly totals above $4,000 are arranged with our team.',
   },
   {
     q: 'Can I mix Personal and Business plans?',
@@ -44,7 +44,7 @@ const FAQS = [
 
 export default function SubscriptionsPage() {
   const [track, setTrack] = useState<'personal' | 'business'>('personal')
-  const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly')
+  const [billing, setBilling] = useState<Billing>('monthly')
   const [currency, setCurrency] = useState<'usd' | 'ngn'>('usd')
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
