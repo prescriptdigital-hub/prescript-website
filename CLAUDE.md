@@ -87,7 +87,7 @@ The contact form (Formspree) uses a hardcoded ID in the code, not an env var.
 - **`src/lib/services.ts`** — Single source of truth for all five service definitions (deliverables, process steps, tools, pricing, next-service links). The `SERVICES` array is used by both the home page and dynamic service pages. Any service content edits go here.
 - **`src/lib/pricing.ts`** — Pricing card data
 - **`src/lib/constants.ts`** — Shared constants (WhatsApp number, social links, etc.)
-- **`src/lib/submitForm.ts`** — `submitToWebhook()`, posts to Formspree (`formspree.io/f/maqaqvqg`); used by all contact forms
+- **`src/lib/submitForm.ts`** — `submitToWebhook()`, posts to Formspree (`formspree.io/f/meagpldq`); used by all contact forms
 
 ### Component Structure
 ```
@@ -133,7 +133,7 @@ Always capitalize. Always use exact names and descriptions:
 ## Integrations
 
 ### Contact Form (Formspree)
-All contact forms call `submitToWebhook()` from `src/lib/submitForm.ts`. It POSTs JSON to `https://formspree.io/f/maqaqvqg`; Formspree emails the submission to the linked address. No backend required.
+All contact forms call `submitToWebhook()` from `src/lib/submitForm.ts`. It POSTs JSON to `https://formspree.io/f/meagpldq`; Formspree emails the submission to the linked address. No backend required.
 
 ### Website Assistant
 `src/components/chat/ChatWidget.tsx` (in the root layout) calls the `prescript-chat` Worker (`workers/chat.js`), which answers with Cloudflare Workers AI using facts bundled from `public/llms.txt`. **After editing `llms.txt`, redeploy:** `npx wrangler deploy --config workers/chat-wrangler.toml`. Conversations are not stored; "Talk to the team" emails the details via Formspree. Tawk.to was removed at the owner's request.
